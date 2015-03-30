@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+    <class name="com.ustcsoft.gs.crm.webui.customer.dto.CustomerDto"
+        table="customerInfo">
+        <id column="customerID" name="customerID" type="int">
+            <generator class="native" />
+        </id>
+        <property name="customerName"></property>
+        <property name="holder"></property>
+        <property name="scale"></property>
+        <property name="customerType"></property>
+        <property name="industry"></property>
+        <property name="customerStatement"></property>
+        <property name="valueEvaluate"></property>
+        <property name="fee"></property>
+        <property name="customerAddr"></property>
+        <property name="earning"></property>
+        <property name="isAbolished"></property>
+        <property name="descriptions"></property>
+        <property name="business1"></property>
+        <property name="business2"></property>
+        <property name="business3"></property>
+        <property name="business4"></property>
+        <property name="businessUnit"></property>
+        <property name="number"></property>
+        <property name="unicomNumber"></property>
+        <property name="createTime"></property>
+        <property name="updateTime"></property>
+    </class>
+</hibernate-mapping>

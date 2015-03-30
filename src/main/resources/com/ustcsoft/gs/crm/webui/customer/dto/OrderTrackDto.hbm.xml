@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping  >
+	<class name="com.ustcsoft.gs.crm.webui.customer.dto.OrderTrackDto"
+		table="orderTrackInfo" >
+		<id column="orderTrackNo" name="orderTrackNo" type="int" >
+            <generator class="native"></generator>
+        </id>
+		<property name="editPeople"></property>
+		<property name="orderID"></property>
+		<property name="afterState"></property>
+		<property name="recordTime"></property>
+		<property name="isAbolished"></property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,113 @@
+Ext.define('CRM.view.contactManagement.contactProfiles.ContactDetail', {
+    extend: 'Ext.form.Panel',
+    alias: 'widget.contactdetail',
+    id: 'contactDetail',
+    layout: 'accordion',
+    region: "east",
+    padding: '0 0 0 5',
+    title: '联系人详细信息',
+    collapsible: true,
+    autoScroll: true,
+    width: 300,
+    height: 202,
+    collapsed: true,
+    items: [ {
+        title: '<div style="font-size:12px" align="center">个人信息</div>',
+        defaultType: 'displayfield',
+        autoScroll: true,
+        border: false,
+        defaults: {
+            x: 10,
+            y: 10,
+            labelWidth: 60,
+            width: 248,
+            htmlEncode: true
+        },
+        items: [ {
+            fieldLabel: '姓名',
+            name: 'contactName'
+        }, {
+            fieldLabel: '性别',
+            name: 'sexName'
+        }, {
+            fieldLabel: '单位',
+            name: 'company'
+        }, {
+            fieldLabel: '部门',
+            name: 'department'
+        }, {
+            fieldLabel: '职务',
+            name: 'job'
+        }, {
+            fieldLabel: '学历',
+            name: 'educationName'
+        }, {
+            fieldLabel: '联系电话',
+            name: 'phoneNumber'
+        }, {
+            fieldLabel: '家庭电话',
+            name: 'homePhone'
+        }, {
+            fieldLabel: 'QQ',
+            name: 'QQ'
+        }, {
+            fieldLabel: '传真',
+            name: 'fax'
+        }, {
+            fieldLabel: '邮箱',
+            name: 'email'
+        }, {
+            fieldLabel: '家庭地址',
+            name: 'addr'
+        }, {
+            fieldLabel: '健康状况',
+            name: 'health'
+        }, {
+            fieldLabel: '政治面貌',
+            name: 'political'
+        }, {
+            fieldLabel: '籍贯',
+            name: 'nativePlace'
+        }, {
+            fieldLabel: '民族',
+            name: 'contactNational'
+        }, {
+            fieldLabel: '出生日期',
+            name: 'birthday'
+        }, {
+            fieldLabel: '爱好',
+            name: 'hobby'
+        }, {
+            fieldLabel: '工作简历',
+            name: 'jobResume',
+            htmlEncode: false
+        }, {
+            fieldLabel: '教育经历',
+            name: 'eduBackground',
+            htmlEncode: false
+        }, {
+            fieldLabel: '备注',
+            name: 'descriptions'
+        } ]
+    }, {
+        title: '<div style="font-size:12px" align="center">家庭主要成员</div>',
+        id: 'familyformdetail',
+        defaultType: 'displayfield',
+        border: false,
+        items: [ {
+            xtype: 'panel',
+            html: '没有数据'
+        } ],
+        autoScroll: true
+    }, {
+        title: '<div style="font-size:12px" align="center">社会关系</div>',
+        id: 'socialformdetail',
+        defaultType: 'displayfield',
+        border: false,
+        items: [ {
+            xtype: 'panel',
+            html: '没有数据'
+        } ],
+        autoScroll: true
+    } ]
+});

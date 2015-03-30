@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping  >
+	<class name="com.ustcsoft.gs.crm.webui.index.dto.WorkDto"
+		table="WorkInfo" >
+		<id column="workID" name="workID" type="int" >
+			<generator class="native" />
+		</id>
+		<property name="userID"></property>
+		<property name="customerID"></property>
+		<property name="teamFlag"></property>
+		<property name="assignee"></property>
+		<property name="theme"></property>
+		<property name="priority"></property>
+		<property name="workType"></property>
+		<property name="completion"></property>
+		<property name="startTime"></property>
+		<property name="endTime"></property>
+		<property name="workDetail"></property>
+		<property name="descriptions"></property>
+		<property name="isReaded"></property>
+		<property name="isMailInformed"></property>
+		<property name="isAbolished"></property> 
+	</class>
+</hibernate-mapping>

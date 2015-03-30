@@ -1,0 +1,32 @@
+Ext.define('CRM.model.contactManagement.contactProfiles.ContactSocial', {
+    extend: 'Ext.data.Model',
+    idProperty: 'socialID',
+    fields: [ {
+        name: 'socialID',
+        type: 'number'
+    }, {
+        name: 'contactID',
+        type: 'number'
+    }, {
+        name: 'socialRelation',
+        type: 'string'
+    }, {
+        name: 'socialName',
+        type: 'string'
+    }, {
+        name: 'birthday',
+        type: 'string'
+    }, {
+        name: 'political',
+        type: 'string'
+    }, {
+        name: 'company',
+        type: 'string'
+    }, {
+        name: 'job',
+        type: 'string'
+    }, {
+        name: 'descriptions',
+        type: 'string'
+    } ]
+});

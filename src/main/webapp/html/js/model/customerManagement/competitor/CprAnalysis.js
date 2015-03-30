@@ -1,0 +1,45 @@
+Ext.define('CRM.model.customerManagement.competitor.CprAnalysis', {
+    extend: 'Ext.data.Model',
+    fields: [ {
+        name: 'cprAnalysisID',
+        mapping: 'cprAnalysisID',
+        type: 'int'
+    }, {
+        name: 'competitorInfoId',
+        type: 'int'
+    }, {
+        name: 'competitorName'
+    }, {
+        name: 'area'
+    }, {
+        name: 'areaName'
+    }, {
+        name: 'ability'
+    }, {
+        name: 'targets'
+    }, {
+        name: 'strategy'
+    }, {
+        name: 'prediction'
+    }, {
+        name: 'advantage'
+    }, {
+        name: 'disadvantage'
+    }, {
+        name: 'advAnalysis'
+    }, {
+        name: 'disadvAnalysis'
+    }, {
+        name: 'others'
+    }, {
+        name: 'compositeComp',
+        type: 'int'
+    }, {
+        name: 'compositeDefense',
+        type: 'int'
+    }, {
+        name: 'advice'
+    }, {
+        name: 'cprAnalysisTime'
+    } ]
+});

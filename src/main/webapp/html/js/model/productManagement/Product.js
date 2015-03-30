@@ -1,0 +1,31 @@
+Ext.define('CRM.model.productManagement.Product', {
+    extend: 'Ext.data.Model',
+    fields: [ {
+        name: 'id',
+        type: 'string'
+    }, {
+        name: 'name',
+        type: 'string'
+    }, {
+        name: 'price',
+        type: 'string'
+    }, {
+        name: 'category',
+        type: 'string'
+    }, {
+        name: 'productModel',
+        type: 'string'
+    }, {
+        name: 'productID',
+        type: 'string'
+    }, {
+        name: 'description',
+        type: 'string'
+    }, {
+        name: 'remark',
+        type: 'string'
+    }, {
+        name: 'discount',
+        type: 'string'
+    } ]
+});

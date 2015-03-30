@@ -1,0 +1,47 @@
+Ext.define('CRM.view.customerManagement.proposalOrContract.ProposalDetail', {
+    extend: 'Ext.form.Panel',
+    defaultType: 'displayfield',
+    alias: 'widget.proposaldetail',
+    itemId: 'proposaldetail',
+    id: 'proposaldetail',
+    collapsible: true,
+    autoScroll: true,
+    hidden: true,
+    title: '建议书详细信息',
+    width: 300,
+    region: 'east',
+    height: 202,
+    defaults: {
+        x: 10,
+        y: 10,
+        labelWidth: 60,
+        labelAlign: "left",
+        width: 230,
+        htmlEncode: true
+    },
+    items: [ {
+        fieldLabel: '编号',
+        name: 'proposalOrContractID'
+    }, {
+        fieldLabel: '合同名称',
+        name: 'proposalOrContractName'
+    }, {
+        fieldLabel: '对象',
+        name: 'proposalOrContractObject'
+    }, {
+        fieldLabel: '类型',
+        name: 'proposalOrContractType'
+    }, {
+        fieldLabel: '使用模板',
+        name: 'fileTemplateName'
+    }, {
+        fieldLabel: '添加时间',
+        name: 'proposalOrContractAddDate'
+    }, {
+        fieldLabel: '修改时间',
+        name: 'proposalOrContractEditDate'
+    }, {
+        fieldLabel: '描述',
+        name: 'descriptions'
+    } ]
+});

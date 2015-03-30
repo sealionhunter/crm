@@ -1,0 +1,55 @@
+.x-grid-row-over .x-grid-cell-inner {
+     font-weight: bold;
+}
+#nameView .data 
+{ 
+    background-color : #fff; 
+} 
+#nameView tr.hover { 
+    background-color : #ddd; 
+} 
+#nameView .x-item-selected { 
+    background-color : yellow; 
+}
+#showimportantTask a:link {
+	text-decoration: none;
+}
+#showimportantTask a:visited {
+	text-decoration: none;
+}
+#showimportantTask a:hover {
+	text-decoration: none;
+}
+#showimportantTask a:active {
+	text-decoration: none;
+}
+#showinformTask a:link {
+	text-decoration: none;
+}
+#showinformTask a:visited {
+	text-decoration: none;
+}
+#showinformTask a:hover {
+	text-decoration: none;
+}
+#showinformTask a:active {
+	text-decoration: none;
+}
+
+/* navigation */
+#navigationBar div{
+	font-size: 10pt;
+	color : #000079;
+	display:inline;
+}
+#navigationBar a{
+	font-size: 10pt;
+	color : #000079;
+	text-decoration: none;
+}
+
+#navigationBar a:hover{
+	color:#006000;
+	cursor: pointer;
+	text-decoration: underline;
+}

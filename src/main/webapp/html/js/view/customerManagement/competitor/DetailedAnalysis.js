@@ -1,0 +1,69 @@
+Ext.define('CRM.view.customerManagement.competitor.DetailedAnalysis', {
+    extend: 'Ext.form.Panel',
+    alias: 'widget.detailedanalysis',
+    id: 'detailedanalysis',
+    title: '竞争对手分析详细信息',
+    defaultType: 'displayfield',
+    collapsible: true,
+    region: "east",
+    width: 300,
+    autoScroll: true,
+    hidden: true,
+    defaults: {
+        labelAlign: 'left',
+        labelWidth: 80,
+        width: 260,
+        htmlEncode: true,
+        x: 10,
+        y: 10
+    },
+    initComponent: function() {
+        this.items = [ {
+            name: 'competitorName',
+            fieldLabel: '竞争对手名称'
+        }, {
+            name: 'cprAnalysisTime',
+            fieldLabel: '分析时间'
+        }, {
+            name: 'areaName',
+            fieldLabel: '所属领域'
+        }, {
+            name: 'ability',
+            fieldLabel: '对手能力分析'
+        }, {
+            name: 'targets',
+            fieldLabel: '对手目标分析'
+        }, {
+            name: 'strategy',
+            fieldLabel: '对手战略分析'
+        }, {
+            name: 'prediction',
+            fieldLabel: '反应模式预测'
+        }, {
+            name: 'advantage',
+            fieldLabel: '优势'
+        }, {
+            name: 'disadvantage',
+            fieldLabel: '劣势'
+        }, {
+            name: 'advAnalysis',
+            fieldLabel: '优势详细分析'
+        }, {
+            name: 'disadvAnalysis',
+            fieldLabel: '劣势详细分析'
+        }, {
+            name: 'others',
+            fieldLabel: '其他'
+        }, {
+            name: 'compositeComp',
+            fieldLabel: '综合竞争力'
+        }, {
+            name: 'compositeDefense',
+            fieldLabel: '综合防御力'
+        }, {
+            name: 'advice',
+            fieldLabel: '建议'
+        } ];
+        this.callParent(arguments);
+    }
+});

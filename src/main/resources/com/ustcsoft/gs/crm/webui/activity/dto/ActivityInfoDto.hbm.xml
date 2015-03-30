@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.ustcsoft.gs.crm.webui.activity.dto.ActivityInfoDto"
+		table="ActivityInfo">
+		<id column="activityID" name="activityID" type="int">
+			<generator class="native" />
+		</id>
+		<property name="activityName"></property>
+		<property name="activityType"></property>
+		<property name="activityRange"></property>
+		<property name="activityStartTime"></property>
+		<property name="activityEndTime"></property>
+		<property name="activityPlace"></property>
+		<property name="activityLeader"></property>
+		<property name="activityModifer"></property>
+		<property name="activityOurPersonNO"></property>
+		<property name="activityFunds"></property>
+		<property name="activityDetail"></property>
+		<property name="activityComment"></property>
+		<property name="activityPlan"></property>
+		<property name="activityState"></property>
+		<property name="activityPeriod"></property>
+		<property name="activityMeans"></property>
+		<property name="activityAim"></property>
+		<property name="isAbolished"></property>
+		<property name="activityEmphasis"></property>
+		<property name="activityMember"></property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+    <class name="com.ustcsoft.gs.crm.webui.contact.dto.ContactInfoDto"
+        table="ContactInfo">
+        <id name="contactID" type="int" column="contactID">
+            <generator class="native" />
+        </id>
+        <property name="contactName"></property>
+        <property name="sex"></property>
+        <property name="birthday"></property>
+        <property name="company"></property>
+        <property name="department"></property>
+        <property name="job"></property>
+        <property name="phoneNumber"></property>
+        <property name="nativePlace"></property>
+        <property name="contactNational"></property>
+        <property name="addr"></property>
+        <property name="education"></property>
+        <property name="health"></property>
+        <property name="email"></property>
+        <property name="fax"></property>
+        <property name="QQ"></property>
+        <property name="homePhone"></property>
+        <property name="political"></property>
+        <property name="hobby"></property>
+        <property name="jobResume" column="jobResume"></property>
+        <property name="eduBackground" column="eduBackground"></property>
+        <property name="isAbolished"></property>
+        <property name="descriptions"></property>
+        <property name="customerID"></property>
+        <property name="contactType"></property>
+        <property name="createTime"></property>
+        <property name="updateTime"></property>
+    </class>
+</hibernate-mapping>

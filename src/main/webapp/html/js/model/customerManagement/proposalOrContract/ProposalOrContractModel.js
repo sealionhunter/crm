@@ -1,0 +1,37 @@
+Ext.define('CRM.model.customerManagement.proposalOrContract.ProposalOrContractModel', {
+    extend: 'Ext.data.Model',
+    fields: [ {
+        name: 'proposalOrContractID',
+        type: 'int'
+    }, {
+        name: 'proposalOrContractName',
+        type: 'string'
+    }, {
+        name: 'proposalOrContractObject',
+        type: 'string'
+    }, {
+        name: 'proposalOrContractEvent',
+        type: 'string'
+    }, {
+        name: 'fileTemplateName',
+        type: 'string'
+    }, {
+        name: 'proposalOrContractAddDate',
+        type: 'string'
+    }, {
+        name: 'proposalOrContractType',
+        type: 'string'
+    }, {
+        name: 'proposalOrContractEditDate',
+        type: 'string'
+    }, {
+        name: 'descriptions',
+        type: 'string'
+    }, {
+        name: 'proposalOrContractValue',
+        type: 'string'
+    }, {
+        name: 'type',
+        type: 'int'
+    } ]
+});

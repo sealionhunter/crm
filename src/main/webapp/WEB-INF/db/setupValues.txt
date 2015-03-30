@@ -1,0 +1,7 @@
+-- Environment parameters for sqlcmd
+unicode=N
+collate=Latin1_General_BIN2
+unicode_id=N
+collate_id=Latin1_General_CI_AS
+max=max
+source_rdn_len=4000

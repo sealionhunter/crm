@@ -1,0 +1,54 @@
+Ext.define('CRM.model.customerManagement.competitor.CompetitorInfoModel', {
+
+    extend: 'Ext.data.Model',
+
+    fields: [ {
+        name: 'competitorInfoId',
+        type: 'int'
+    }, {
+        name: 'competitorName',
+        type: 'String'
+    }, {
+        name: 'competitorField',
+        type: 'String'
+    }, {
+        name: 'competitorProperty',
+        type: 'String'
+    }, {
+        name: 'competitorPropertyB',
+        type: 'String'
+    }, {
+        name: 'competitorLocation',
+        type: 'String'
+    }, {
+        name: 'competitorFoundDate',
+        type: 'String'
+    }, {
+        name: 'competitorMoney',
+        type: 'String'
+    }, {
+        name: 'competitorMoneyB',
+        type: 'String'
+    }, {
+        name: 'competitorDescription',
+        type: 'String'
+    }, {
+        name: 'competitorType',
+        type: 'String'
+    }, {
+        name: 'competitorTypeB',
+        type: 'String'
+    }, {
+        name: 'competitorDetail',
+        type: 'String'
+    }, {
+        name: 'competitorPeople',
+        type: 'String'
+    }, {
+        name: 'competitorPeopleB',
+        type: 'String'
+    }, {
+        name: 'isAnalysised',
+        type: 'String'
+    } ]
+});

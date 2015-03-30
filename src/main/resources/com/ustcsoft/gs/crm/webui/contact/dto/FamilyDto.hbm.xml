@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping  >
+    <class name="com.ustcsoft.gs.crm.webui.contact.dto.FamilyDto"
+        table="ContactFamilyInfo" >
+        <id column="familyID" name="familyID" type="int" >
+            <generator class="native" />
+        </id>
+        <property name="contactID"></property>
+        <property name="familyRelation"></property>
+        <property name="familyName"></property>
+        <property name="birthday"></property>  
+        <property name="political"></property>
+        <property name="company"></property>
+        <property name="job"></property>           
+        <property name="descriptions"></property>                  
+        <property name="isAbolished"></property>                  
+    </class>
+</hibernate-mapping>

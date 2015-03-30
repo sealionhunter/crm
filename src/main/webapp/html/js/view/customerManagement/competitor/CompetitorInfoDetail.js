@@ -1,0 +1,53 @@
+Ext.define('CRM.view.customerManagement.competitor.CompetitorInfoDetail', {
+    extend: 'Ext.form.Panel',
+    defaultType: 'displayfield',
+    alias: 'widget.CompetitorInfoDetail',
+    region: "east",
+    id: 'CompetitorInfoDetail',
+    collapsible: true,
+    autoScroll: true,
+    hidden: true,
+    width: 300,
+    margin: '0 0 0 2',
+    height: 202,
+    title: '竞争对手详细信息',
+    defaults: {
+        x: 10,
+        y: 10,
+        labelWidth: 80,
+        htmlEncode: true,
+        width: 248
+    },
+    items: [ {
+        name: 'competitorName',
+        fieldLabel: '竞争对手名称'
+    }, {
+        name: 'competitorTypeB',
+        fieldLabel: '竞争类型'
+    }, {
+        name: 'competitorField',
+        fieldLabel: '竞争领域'
+    }, {
+        name: 'competitorPropertyB',
+        fieldLabel: '对手性质'
+    }, {
+        name: 'competitorLocation',
+        fieldLabel: '地理位置'
+    }, {
+        name: 'competitorFoundDate',
+        fieldLabel: '成立时间'
+    }, {
+        name: 'competitorMoneyB',
+        fieldLabel: '资金力量'
+    }, {
+        name: 'competitorPeopleB',
+        fieldLabel: '员工规模'
+    }, {
+        name: 'competitorDetail',
+        fieldLabel: '详细信息',
+        htmlEncode: false
+    }, {
+        name: 'competitorDescription',
+        fieldLabel: '备注'
+    } ]
+});

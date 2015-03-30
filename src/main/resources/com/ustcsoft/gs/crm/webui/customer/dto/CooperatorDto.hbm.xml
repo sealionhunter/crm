@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping  >
+	<class name="com.ustcsoft.gs.crm.webui.customer.dto.CooperatorDto"
+		table="cooperatorInfo" >
+		<id column="cooperatorID" name="cooperatorID" type="int" >
+			<generator class="native" />
+		</id>
+		<property name="cooperatorName"></property>
+		<property name="cooperatorCity"></property>
+		<property name="cooperatorIndustry"></property>
+		<property name="cooperatorScale"></property>
+		<property name="cooperatorType"></property>
+		<property name="cooperatorTelephone"></property>
+		<property name="cooperatorEmail"></property>
+		<property name="cooperatorFax"></property>
+		<property name="cooperatorWebsite"></property>
+		<property name="cooperatorAddress"></property>
+		<property name="cooperatorRemark"></property>
+		<property name="cooperatorDetail"></property>
+		<property name="isAbolished"></property>  
+		<set name="cooperationProjectDto" inverse="true" lazy="true" fetch="select" >
+		<key column="cooperatorID"></key>
+		<one-to-many class="com.ustcsoft.gs.crm.webui.customer.dto.CooperationProjectDto"></one-to-many>
+		</set>              
+	</class>
+</hibernate-mapping>

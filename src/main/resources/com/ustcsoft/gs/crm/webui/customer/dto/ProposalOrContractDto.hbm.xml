@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping  >
+	<class name="com.ustcsoft.gs.crm.webui.customer.dto.ProposalOrContractDto"
+		table="proposalOrContractInfo" >
+		<id column="proposalOrContractID" name="proposalOrContractID" type="int" >
+			<generator class="native" />
+		</id>
+		<property name="proposalOrContractName"></property>
+		<property name="proposalOrContractAddDate"></property>
+		<property name="proposalOrContractEditDate"></property>
+		<property name="proposalOrContractValue"></property>  
+		<property name="proposalOrContractObject"></property>
+		<property name="fileTemplateName"></property>
+		<property name="proposalOrContractType"></property>
+		<property name="isAbolished"></property>           
+		<property name="descriptions"></property>     
+		<property name="type"></property>                      
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,839 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/jdbc 
+    http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+    http://www.springframework.org/schema/tx 
+    http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+    <bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>/WEB-INF/conf/DB.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+        destroy-method="close">
+        <property name="driverClassName">
+            <value>${driverClassName}</value>
+        </property>
+        <property name="url">
+            <value>${url}</value>
+        </property>
+        <property name="username">
+            <value>${username}</value>
+        </property>
+        <property name="password">
+            <value>${password}</value>
+        </property>
+        <property name="maxActive" value="100"></property>
+        <property name="maxIdle" value="30"></property>
+        <property name="maxWait" value="500"></property>
+        <property name="defaultAutoCommit" value="true"></property>
+    </bean>
+    <!--
+            Database initializer. If any of the script fails, the
+            initialization stops.
+        -->
+    <!--As an alternative, for embedded databases see <jdbc:embedded-database/>. 
+        <jdbc:initialize-database data-source="dataSource"> <jdbc:script location="${location}"
+        encoding="UTF-8" /> </jdbc:initialize-database> -->
+    
+    <bean id="sessionFactory"
+        class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">
+                    org.hibernate.dialect.SQLServerDialect
+                </prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+        <property name="mappingResources">
+            <list>
+                <value>
+                    com/ustcsoft/gs/crm/webui/customer/dto/CustomerDto.hbm.xml
+                </value>
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/customer/dto/CompetitorinfoDto.hbm.xml -->
+<!--                 </value> -->
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/customer/dto/FileTemplateDto.hbm.xml -->
+<!--                 </value> -->
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/customer/dto/ContactSelectDto.hbm.xml -->
+<!--                 </value> -->
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/customer/dto/ContractDto.hbm.xml -->
+<!--                 </value> -->
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/customer/dto/ProposalOrContractDto.hbm.xml -->
+<!--                 </value> -->
+                <value>
+                    com/ustcsoft/gs/crm/webui/customer/dto/ContactTrackInfoDto.hbm.xml
+                </value>
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/customer/dto/SourceInfoDto.hbm.xml -->
+<!--                 </value> -->
+                <value>
+                    com/ustcsoft/gs/crm/webui/contact/dto/ContactInfoDto.hbm.xml
+                </value>
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/activity/dto/ActivityInfoDto.hbm.xml -->
+<!--                 </value> -->
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/customer/dto/OrderDto.hbm.xml -->
+<!--                 </value> -->
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/customer/dto/OrderTrackDto.hbm.xml -->
+<!--                 </value> -->
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/customer/dto/SelectProductInfo.hbm.xml -->
+<!--                 </value> -->
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/customer/dto/CooperatorDto.hbm.xml -->
+<!--                 </value> -->
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/customer/dto/CooperationProjectDto.hbm.xml -->
+<!--                 </value> -->
+                <value>
+                    com/ustcsoft/gs/crm/webui/code/dto/CodeDto.hbm.xml
+                </value>
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/customer/dto/CprAnalysisDto.hbm.xml -->
+<!--                 </value> -->
+                <value>
+                    com/ustcsoft/gs/crm/webui/contact/dto/FamilyDto.hbm.xml
+                </value>
+                <value>
+                    com/ustcsoft/gs/crm/webui/contact/dto/SocialDto.hbm.xml
+                </value>
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/customer/dto/CoopResumeDto.hbm.xml -->
+<!--                 </value> -->
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/customer/dto/CopAnalysisDto.hbm.xml -->
+<!--                 </value> -->
+                <value>
+                    com/ustcsoft/gs/crm/webui/system/dto/ActionGroupDto.hbm.xml
+                </value>
+                <value>
+                    com/ustcsoft/gs/crm/webui/system/dto/GroupManagerDto.hbm.xml
+                </value>
+                <value>
+                    com/ustcsoft/gs/crm/webui/system/dto/TreeDto.hbm.xml
+                </value>
+                <value>
+                    com/ustcsoft/gs/crm/webui/index/dto/WorkDto.hbm.xml
+                </value>
+                <value>
+                    com/ustcsoft/gs/crm/webui/system/dto/DepartmentDto.hbm.xml
+                </value>
+                <value>
+                    com/ustcsoft/gs/crm/webui/system//dto/ProjectTeamDto.hbm.xml
+                </value>
+                <value>
+                    com/ustcsoft/gs/crm/webui/system//dto/UserInfoDto.hbm.xml
+                </value>
+<!--                 product management -->
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/product/dto/ProductDto.hbm.xml -->
+<!--                 </value> -->
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/product/dto/ProductPriceRangeDto.hbm.xml -->
+<!--                 </value> -->
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/count/dto/SalesCountDto.hbm.xml -->
+<!--                 </value> -->
+<!--                 sales event mapping -->
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/sales/dto/SalesEventDto.hbm.xml -->
+<!--                 </value> -->
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/sales/dto/SalesTrackDto.hbm.xml -->
+<!--                 </value> -->
+                <value>
+                    com/ustcsoft/gs/crm/webui/system/dto/OrganizationalStructureDto.hbm.xml
+                </value>
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/sales/dto/SalesEventFlow.hbm.xml -->
+<!--                 </value> -->
+<!--                 <value> -->
+<!--                     com/ustcsoft/gs/crm/webui/sales/dto/SalesEventFlowCode.hbm.xml -->
+<!--                 </value> -->
+            </list>
+        </property>
+    </bean>
+
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <!-- 定义事务管理器（声明式的事务） -->
+    <bean id="transactionManager"
+        class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <!-- use declarative transaction management -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+    <!-- 客户合作履历 -->
+    <bean id="coopResumeDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.CoopResumeDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="coopResumeService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.CoopResumeServiceImpl">
+        <property name="coopResumeDao" ref="coopResumeDao"></property>
+    </bean>
+    <bean id="coopResumeList"
+        class="com.ustcsoft.gs.crm.webui.customer.action.CoopResumeListAction"
+        scope="prototype">
+        <property name="coopResumeService" ref="coopResumeService"></property>
+    </bean>
+    <!-- 客户基本信息 -->
+    <bean id="customerDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.CustomerDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="customerService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.CustomerServiceImpl">
+        <property name="sourceInfoService" ref="sourceInfoService"></property>
+        <property name="customerDao" ref="customerDao"></property>
+        <property name="transferService" ref="transferService"></property>
+    </bean>
+    <bean id="customerList"
+        class="com.ustcsoft.gs.crm.webui.customer.action.CustomerListAction"
+        scope="prototype">
+        <property name="customerService" ref="customerService"></property>
+    </bean>
+
+    <!-- 文件模板 -->
+    <bean id="fileTemplateDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.FileTemplateDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="fileTemplateService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.FileTemplateServiceImpl">
+        <property name="fileTemplateDao" ref="fileTemplateDao"></property>
+    </bean>
+    <bean id="fileTemplate"
+        class="com.ustcsoft.gs.crm.webui.customer.action.FileTemplateAction"
+        scope="prototype">
+        <property name="fileTemplateService" ref="fileTemplateService"></property>
+    </bean>
+
+    <!--合同一览 -->
+    <bean id="proposalOrContractDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.ProposalOrContractDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="proposalOrContractService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.ProposalOrContractServiceImpl">
+        <property name="proposalOrContractDao" ref="proposalOrContractDao"></property>
+    </bean>
+    <bean id="proposalOrContract"
+        class="com.ustcsoft.gs.crm.webui.customer.action.ProposalOrContractAction"
+        scope="prototype">
+        <property name="proposalOrContractService" ref="proposalOrContractService"></property>
+    </bean>
+    <!-- 合同一览 -->
+    <bean id="contractAction"
+        class="com.ustcsoft.gs.crm.webui.customer.action.ContractAction"
+        scope="prototype">
+        <property name="contractService" ref="contractService"></property>
+        <property name="proposalOrContractService" ref="proposalOrContractService"></property>
+    </bean>
+    <bean id="contractService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.ContractServiceImpl">
+        <property name="contractDao" ref="contractDao"></property>
+        <property name="orderDao" ref="orderDao"></property>
+        <property name="salesTrackDao" ref="salesTrackDao"></property>
+        <property name="salesEventDao" ref="salesEventDao"></property>
+    </bean>
+    <bean id="contractDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.ContractDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+
+    <!--联系人选择 -->
+    <bean id="contactSelectDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.ContactSelectDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="contactSelectService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.ContactSelectServiceImpl">
+        <property name="contactSelectDao" ref="contactSelectDao"></property>
+    </bean>
+    <bean id="contactSelectAction"
+        class="com.ustcsoft.gs.crm.webui.customer.action.ContactSelectAction"
+        scope="prototype">
+        <property name="contactSelectService" ref="contactSelectService"></property>
+    </bean>
+
+    <!-- 客户联系跟踪 -->
+    <bean id="contactTrackDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.ContactTrackDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="contactTrackService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.ContactTrackServiceImpl">
+        <property name="contactTrackDao" ref="contactTrackDao"></property>
+        <property name="sourceInfoService" ref="sourceInfoService"></property>
+    </bean>
+    <bean id="contactTrackAction"
+        class="com.ustcsoft.gs.crm.webui.customer.action.ContactTrackAction"
+        scope="prototype">
+        <property name="contactTrackService" ref="contactTrackService"></property>
+<!--         <property name="salesEventService" ref="salesEventService"></property> -->
+    </bean>
+
+    <!-- 客户联系历史 -->
+    <bean id="contactHistoryDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.ContactHistoryDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="contactHistoryService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.ContactHistoryServiceImpl">
+        <property name="contactHistoryDao" ref="contactHistoryDao"></property>
+        <property name="sourceInfoService" ref="sourceInfoService"></property>
+    </bean>
+    <bean id="contactHistoryAction"
+        class="com.ustcsoft.gs.crm.webui.customer.action.ContactHistoryAction"
+        scope="prototype">
+        <property name="contactHistoryService" ref="contactHistoryService"></property>
+    </bean>
+
+    <!-- 客户来源基本信息 -->
+    <bean id="sourceInfoService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.SourceInfoServiceImpl">
+        <property name="sourceInfoDao">
+            <ref bean="sourceInfoDao" />
+        </property>
+        <property name="authorizationDao">
+            <ref bean="authorizationDao" />
+        </property>
+        <property name="userInfoDao" ref="userInfoDao"></property>
+        <property name="mainDao" ref="mainDao"></property>
+    </bean>
+    <bean id="sourceInfoDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.SourceInfoDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="sourceListAction"
+        class="com.ustcsoft.gs.crm.webui.customer.action.SourceListAction"
+        scope="prototype">
+        <property name="sourceInfoService" ref="sourceInfoService"></property>
+    </bean>
+
+    <!-- 联系人基本信息 -->
+    <bean id="contactInfoService"
+        class="com.ustcsoft.gs.crm.webui.contact.service.impl.ContactInfoServiceImpl">
+        <property name="contactInfoDao">
+            <ref bean="contactInfoDao" />
+        </property>
+    </bean>
+    <bean id="contactInfoDao"
+        class="com.ustcsoft.gs.crm.webui.contact.dao.impl.ContactInfoDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="contactListAction"
+        class="com.ustcsoft.gs.crm.webui.contact.action.ContactListAction"
+        scope="prototype">
+        <property name="contactInfoService" ref="contactInfoService"></property>
+    </bean>
+
+
+    <!-- 活动基本信息 -->
+    <bean id="activityInfoService"
+        class="com.ustcsoft.gs.crm.webui.activity.service.impl.ActivityInfoServiceImpl">
+        <property name="activityInfoDao">
+            <ref bean="activityInfoDao" />
+        </property>
+    </bean>
+
+    <bean id="activityInfoDao"
+        class="com.ustcsoft.gs.crm.webui.activity.dao.impl.ActivityInfoDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="activityListAction"
+        class="com.ustcsoft.gs.crm.webui.activity.action.ActivityListAction"
+        scope="prototype">
+        <property name="activityInfoService" ref="activityInfoService"></property>
+    </bean>
+    <!-- 合作伙伴基本信息 -->
+    <bean id="cooperatorDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.CooperatorDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="cooperatorService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.CooperatorServiceImpl">
+        <property name="cooperatorDao" ref="cooperatorDao"></property>
+    </bean>
+    <bean id="CooperatorList"
+        class="com.ustcsoft.gs.crm.webui.customer.action.CooperatorListAction"
+        scope="prototype">
+        <property name="cooperatorService" ref="cooperatorService"></property>
+    </bean>
+    <!-- 合作伙伴合作履历 -->
+    <bean id="cooperationProjectDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.CooperationProjectDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="cooperationProjectService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.CooperationProjectServiceImpl">
+        <property name="cooperationProjectDao" ref="cooperationProjectDao"></property>
+    </bean>
+    <bean id="cooperationProject"
+        class="com.ustcsoft.gs.crm.webui.customer.action.CooperationProjectAction"
+        scope="prototype">
+        <property name="cooperationProjectService" ref="cooperationProjectService"></property>
+    </bean>
+    <!-- 事件流程操作 -->
+    <bean id="salesEventFlowCodeDao"
+        class="com.ustcsoft.gs.crm.webui.sales.dao.impl.SalesEventFlowCodeDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="salesEventFlowCodeService"
+        class="com.ustcsoft.gs.crm.webui.sales.service.impl.SalesEventFlowCodeServiceImpl">
+        <property name="salesEventFlowCodeDao" ref="salesEventFlowCodeDao"></property>
+    </bean>
+    <bean id="salesEventFlowCodeAction"
+        class="com.ustcsoft.gs.crm.webui.sales.action.SalesEventFlowCodeAction"
+        scope="prototype">
+        <property name="salesEventFlowCodeService" ref="salesEventFlowCodeService"></property>
+    </bean>
+    <!-- 竞争对手分析 -->
+    <bean id="cprAnalysisDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.CprAnalysisDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="cprAnalysisService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.CprAnalysisServiceImpl">
+        <property name="cprAnalysisDao" ref="cprAnalysisDao"></property>
+    </bean>
+    <bean id="cprAnalysis"
+        class="com.ustcsoft.gs.crm.webui.customer.action.CprAnalysisAction"
+        scope="prototype">
+        <property name="cprAnalysisService" ref="cprAnalysisService"></property>
+    </bean>
+    <!-- 联系人家庭关系信息 -->
+    <bean id="familyInfoDao"
+        class="com.ustcsoft.gs.crm.webui.contact.dao.impl.FamilyInfoDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="familyInfoService"
+        class="com.ustcsoft.gs.crm.webui.contact.service.impl.FamilyInfoServiceImpl">
+        <property name="familyInfoDao" ref="familyInfoDao"></property>
+    </bean>
+    <bean id="familyInfoList"
+        class="com.ustcsoft.gs.crm.webui.contact.action.FamilyInfoAction"
+        scope="prototype">
+        <property name="familyInfoService" ref="familyInfoService"></property>
+    </bean>
+    <!-- 联系人 社会关系信息 -->
+    <bean id="socialInfoDao"
+        class="com.ustcsoft.gs.crm.webui.contact.dao.impl.SocialInfoDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="socialInfoService"
+        class="com.ustcsoft.gs.crm.webui.contact.service.impl.SocialInfoServiceImpl">
+        <property name="socialInfoDao" ref="socialInfoDao"></property>
+    </bean>
+    <bean id="socialInfoList"
+        class="com.ustcsoft.gs.crm.webui.contact.action.SocialInfoAction"
+        scope="prototype">
+        <property name="socialInfoService" ref="socialInfoService"></property>
+    </bean>
+    <!-- 订单信息 -->
+    <bean id="orderDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.OrderDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="orderService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.OrderServiceImpl">
+        <property name="orderDao" ref="orderDao"></property>
+        <property name="sourceInfoService" ref="sourceInfoService"></property>
+        <property name="salesEventDao" ref="salesEventDao"></property>
+        <property name="salesTrackDao" ref="salesTrackDao"></property>
+    </bean>
+    <bean id="orderList"
+        class="com.ustcsoft.gs.crm.webui.customer.action.OrderAction"
+        scope="prototype">
+        <property name="orderService" ref="orderService"></property>
+    </bean>
+    <!-- 竞争对手基本信息 -->
+    <bean id="competitorinfoDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.CompetitorinfoDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="competitorinfoService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.CompetitorinfoServiceImpl">
+        <property name="competitorinfoDao">
+            <ref bean="competitorinfoDao" />
+        </property>
+    </bean>
+    <bean id="competitorListAction"
+        class="com.ustcsoft.gs.crm.webui.customer.action.CompetitorinfoListAction"
+        scope="prototype">
+        <property name="competitorinfoService" ref="competitorinfoService"></property>
+    </bean>
+    <!-- 合作伙伴分析 -->
+    <bean id="copAnalysisDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.CopAnalysisDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="copAnalysisService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.CopAnalysisServiceImpl">
+        <property name="copAnalysisDao">
+            <ref bean="copAnalysisDao" />
+        </property>
+    </bean>
+    <bean id="copAnalysisAction"
+        class="com.ustcsoft.gs.crm.webui.customer.action.CopAnalysisListAction"
+        scope="prototype">
+        <property name="copAnalysisService">
+            <ref bean="copAnalysisService" />
+        </property>
+    </bean>
+    <!-- 用户权限管理 -->
+    <bean id="authorizationDao"
+        class="com.ustcsoft.gs.crm.webui.system.dao.impl.AuthorizationDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="authorizationService"
+        class="com.ustcsoft.gs.crm.webui.system.service.impl.AuthorizationServiceImpl">
+        <property name="authorizationDao">
+            <ref bean="authorizationDao" />
+        </property>
+    </bean>
+    <bean id="authorizationAction"
+        class="com.ustcsoft.gs.crm.webui.system.action.AuthorizationAction"
+        scope="prototype">
+        <property name="authorizationService" ref="authorizationService"></property>
+    </bean>
+
+    <!-- 客户转移 -->
+    <bean id="transferDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.CustomerTransferDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="transferService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.CustomerTransferServiceImpl">
+        <property name="transferDao" ref="transferDao"></property>
+        <property name="mainDao" ref="mainDao"></property>
+    </bean>
+    <bean id="customerTransfer"
+        class="com.ustcsoft.gs.crm.webui.customer.action.CustomerTransferAction"
+        scope="prototype">
+        <property name="transferService" ref="transferService"></property>
+    </bean>
+    <!-- 销售事件管理 -->
+    <bean id="salesEventAction"
+        class="com.ustcsoft.gs.crm.webui.sales.action.SalesEventAction">
+        <property name="salesEventService" ref="salesEventService"></property>
+        <property name="transferService" ref="transferService"></property>
+    </bean>
+    <bean id="salesEventService"
+        class="com.ustcsoft.gs.crm.webui.sales.service.impl.SalesEventServiceImpl">
+        <property name="salesEventDao" ref="salesEventDao"></property>
+        <property name="salesTrackDao" ref="salesTrackDao"></property>
+    </bean>
+    <bean id="salesEventDao"
+        class="com.ustcsoft.gs.crm.webui.sales.dao.impl.SalesEventDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
+    <!-- 销售事件搜索 -->
+    <bean id="salesEventSearchAction"
+        class="com.ustcsoft.gs.crm.webui.sales.action.SalesEventSearchAction">
+        <property name="salesEventSearchService" ref="salesEventSearchService"></property>
+        <property name="transferService" ref="transferService"></property>
+    </bean>
+    <bean id="salesEventSearchService"
+        class="com.ustcsoft.gs.crm.webui.sales.service.impl.SalesEventSearchServiceImpl">
+        <property name="salesEventSearchDao" ref="salesEventSearchDao"></property>
+    </bean>
+    <bean id="salesEventSearchDao"
+        class="com.ustcsoft.gs.crm.webui.sales.dao.impl.SalesEventSearchDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
+    <!-- 主页任务信息 -->
+    <bean id="workDao" class="com.ustcsoft.gs.crm.webui.index.dao.impl.WorkDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="workService"
+        class="com.ustcsoft.gs.crm.webui.index.service.impl.WorkServiceImpl">
+        <property name="workDao" ref="workDao"></property>
+    </bean>
+    <bean id="workAction" class="com.ustcsoft.gs.crm.webui.index.action.WorkAction"
+        scope="prototype">
+        <property name="workService" ref="workService"></property>
+    </bean>
+    <!--登录登出密码修改 -->
+    <bean id="loginAction" class="com.ustcsoft.gs.crm.webui.system.action.LoginAction"
+        scope="prototype">
+        <property name="loginService" ref="loginService"></property>
+    </bean>
+    <bean id="loginService"
+        class="com.ustcsoft.gs.crm.webui.system.service.impl.LoginServiceImpl">
+        <property name="loginDao" ref="loginDao"></property>
+    </bean>
+    <bean id="loginDao"
+        class="com.ustcsoft.gs.crm.webui.system.dao.impl.LoginDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
+    <!--主页相关 -->
+    <bean id="mainAction" class="com.ustcsoft.gs.crm.webui.system.action.MainAction"
+        scope="prototype">
+        <property name="mainService" ref="mainService"></property>
+    </bean>
+    <bean id="mainService"
+        class="com.ustcsoft.gs.crm.webui.system.service.impl.MainServiceImpl">
+        <property name="mainDao" ref="mainDao"></property>
+    </bean>
+    <bean id="mainDao"
+        class="com.ustcsoft.gs.crm.webui.system.dao.impl.MainDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
+    <!-- 用户基本信息 -->
+    <bean id="userInfoDao"
+        class="com.ustcsoft.gs.crm.webui.system.dao.impl.UserInfoDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="userInfoService"
+        class="com.ustcsoft.gs.crm.webui.system.service.impl.UserInfoServiceImpl">
+        <property name="userInfoDao" ref="userInfoDao"></property>
+    </bean>
+    <bean id="userAction"
+        class="com.ustcsoft.gs.crm.webui.system.action.UserInfoAction"
+        scope="prototype">
+        <property name="userInfoService" ref="userInfoService"></property>
+    </bean>
+    <!-- 部门基本信息 -->
+    <bean id="departmentInfoDao"
+        class="com.ustcsoft.gs.crm.webui.system.dao.impl.DepartmentInfoDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="departmentInfoService"
+        class="com.ustcsoft.gs.crm.webui.system.service.impl.DepartmentInfoServiceImpl">
+        <property name="departmentInfoDao" ref="departmentInfoDao"></property>
+    </bean>
+    <bean id="departmentAction"
+        class="com.ustcsoft.gs.crm.webui.system.action.DepartmentInfoAction"
+        scope="prototype">
+        <property name="departmentInfoService" ref="departmentInfoService"></property>
+    </bean>
+    <!-- 产品报价 -->
+    <bean id="priceDao"
+        class="com.ustcsoft.gs.crm.webui.product.dao.impl.PriceDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="priceService"
+        class="com.ustcsoft.gs.crm.webui.product.service.impl.PriceServiceImpl">
+        <property name="priceDao" ref="priceDao"></property>
+        <property name="userInfoDao" ref="userInfoDao"></property>
+        <property name="productDao" ref="productDao"></property>
+    </bean>
+    <bean id="priceAction" class="com.ustcsoft.gs.crm.webui.product.action.PriceAction"
+        scope="prototype">
+        <property name="priceService" ref="priceService"></property>
+    </bean>
+    <bean id="priceSearchAction"
+        class="com.ustcsoft.gs.crm.webui.product.action.PriceSearchAction"
+        scope="prototype">
+        <property name="priceService" ref="priceService"></property>
+    </bean>
+    <!-- 产品基本信息 -->
+    <bean id="productDao"
+        class="com.ustcsoft.gs.crm.webui.product.dao.impl.ProductDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="productService"
+        class="com.ustcsoft.gs.crm.webui.product.service.impl.ProductServiceImpl">
+        <property name="productDao" ref="productDao"></property>
+        <property name="priceDao" ref="priceDao"></property>
+    </bean>
+    <bean id="productAction"
+        class="com.ustcsoft.gs.crm.webui.product.action.ProductAction"
+        scope="prototype">
+        <property name="productService" ref="productService"></property>
+    </bean>
+    <bean id="productSearchAction"
+        class="com.ustcsoft.gs.crm.webui.product.action.ProductSearchAction"
+        scope="prototype">
+        <property name="productService" ref="productService"></property>
+    </bean>
+    <!-- 角色基本信息 -->
+    <bean id="groupInfoDao"
+        class="com.ustcsoft.gs.crm.webui.system.dao.impl.GroupInfoDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="groupInfoService"
+        class="com.ustcsoft.gs.crm.webui.system.service.impl.GroupInfoServiceImpl">
+        <property name="groupInfoDao" ref="groupInfoDao"></property>
+    </bean>
+    <bean id="groupInfoAction"
+        class="com.ustcsoft.gs.crm.webui.system.action.GroupInfoAction"
+        scope="prototype">
+        <property name="groupInfoService" ref="groupInfoService"></property>
+    </bean>
+    <!-- 销售漏斗图-->
+    <bean id="salesCountAction"
+        class="com.ustcsoft.gs.crm.webui.count.action.SalesCountAction">
+        <property name="salesCountService" ref="salesCountService"></property>
+    </bean>
+    <bean id="salesCountService"
+        class="com.ustcsoft.gs.crm.webui.count.service.impl.SalesCountServiceImpl">
+        <property name="salesCountDao" ref="salesCountDao"></property>
+    </bean>
+    <bean id="salesCountDao"
+        class="com.ustcsoft.gs.crm.webui.count.dao.impl.SalesCountDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+
+    <!--组织结构图-->
+    <bean id="organizationalStructureAction"
+        class="com.ustcsoft.gs.crm.webui.system.action.OrganizationalStructureAction">
+        <property name="organizationalStructureService" ref="organizationalStructureService"></property>
+    </bean>
+    <bean id="organizationalStructureService" 
+        class="com.ustcsoft.gs.crm.webui.system.service.impl.OrganizationalStructureServiceImpl">
+        <property name="organizationalStructureDao" ref="organizationalStructureDao"></property>
+    </bean>
+    <bean id="organizationalStructureDao"
+        class="com.ustcsoft.gs.crm.webui.system.dao.impl.OrganizationalStructureDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+
+    <!-- 销售事件 -->
+    <bean id="salesTrackDao"
+        class="com.ustcsoft.gs.crm.webui.sales.dao.impl.SalesTrackDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="salesTrackService"
+        class="com.ustcsoft.gs.crm.webui.sales.service.impl.SalesTrackServiceImpl">
+        <property name="salesTrackDao" ref="salesTrackDao"></property>
+    </bean>
+    <bean id="salesTrackAction"
+        class="com.ustcsoft.gs.crm.webui.sales.action.SalesTrackAction"
+        scope="prototype">
+        <property name="salesTrackService" ref="salesTrackService"></property>
+    </bean>
+
+    <!-- 菜单管理 -->
+    <bean id="menuManageDao"
+        class="com.ustcsoft.gs.crm.webui.system.dao.impl.MenuManageDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="menuManageService"
+        class="com.ustcsoft.gs.crm.webui.system.service.impl.MenuManageServiceImpl">
+        <property name="menuManageDao" ref="menuManageDao"></property>
+    </bean>
+    <bean id="menuManageAction"
+        class="com.ustcsoft.gs.crm.webui.system.action.MenuManageAction"
+        scope="prototype">
+        <property name="menuManageService" ref="menuManageService"></property>
+    </bean>
+
+    <!-- 项目组管理 -->
+    <bean id="projectTeamDao"
+        class="com.ustcsoft.gs.crm.webui.system.dao.impl.ProjectTeamDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="projectTeamService"
+        class="com.ustcsoft.gs.crm.webui.system.service.impl.ProjectTeamServiceImpl">
+        <property name="projectTeamDao" ref="projectTeamDao"></property>
+    </bean>
+    <bean id="projectTeam"
+        class="com.ustcsoft.gs.crm.webui.system.action.ProjectTeamAction"
+        scope="prototype">
+        <property name="projectTeamService" ref="projectTeamService"></property>
+    </bean>
+    <!-- code -->
+    <bean id="codeDao" class="com.ustcsoft.gs.crm.webui.code.dao.impl.CodeDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="codeService"
+        class="com.ustcsoft.gs.crm.webui.code.service.impl.CodeServiceImpl">
+        <property name="codeDao" ref="codeDao"></property>
+    </bean>
+    <bean id="code" class="com.ustcsoft.gs.crm.webui.code.action.CodeAction"
+        scope="prototype">
+        <property name="codeService" ref="codeService"></property>
+    </bean>
+</beans>

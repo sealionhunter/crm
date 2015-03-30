@@ -1,0 +1,37 @@
+Ext.define('CRM.model.systemManagement.organizationManagement.projectTeamManagement.ProjectTeamInfo', {
+    extend: 'Ext.data.Model',
+    fields: [ {
+        name: 'projectTeamID',
+        type: 'int'
+    }, {
+        name: 'projectTeamName',
+        type: 'string'
+    }, {
+        name: 'departmentID',
+        type: 'int'
+    }, {
+        name: 'departmentName',
+        type: 'string'
+    }, {
+        name: 'projectTeamLeaderID',
+        type: 'int'
+    }, {
+        name: 'projectTeamLeaderName',
+        type: 'string'
+    }, {
+        name: 'projectTeamStatusCode',
+        type: 'string'
+    }, {
+        name: 'projectTeamStatusValue',
+        type: 'string'
+    }, {
+        name: 'createTime',
+        type: 'string'
+    }, {
+        name: 'endTime',
+        type: 'string'
+    }, {
+        name: 'description',
+        type: 'string'
+    } ]
+});

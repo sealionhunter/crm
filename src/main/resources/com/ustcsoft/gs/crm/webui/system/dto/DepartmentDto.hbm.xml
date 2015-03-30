@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping  >
+	<class name="com.ustcsoft.gs.crm.webui.system.dto.DepartmentDto"
+		table="Department" >
+		<id column="departmentID" name="departmentID" type="int" >
+			<generator class="native" />
+		</id>
+		<property name="departmentName"></property>
+		<property name="fatherDepartmentID"></property>
+		<property name="departmentManager"></property>
+		<property name="departmentPhone"></property>
+		<property name="createTime"></property>
+		<property name="departmentDescription"></property>
+		<property name="depth"></property>
+		<property name="serialNumber"></property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,31 @@
+Ext.define('CRM.model.customerManagement.proposalOrContract.ContractModel', {
+    extend: 'Ext.data.Model',
+    fields: [ {
+        name: 'contractID',
+        type: 'int'
+    }, {
+        name: 'orderKey',
+        type: 'int'
+    }, {
+        name: 'contractName',
+        type: 'string'
+    }, {
+        name: 'orderID',
+        type: 'string'
+    }, {
+        name: 'fileTemplateName',
+        type: 'string'
+    }, {
+        name: 'proposalOrContractValue',
+        type: 'string'
+    }, {
+        name: 'payEndTime',
+        type: 'string'
+    }, {
+        name: 'payType',
+        type: 'string'
+    }, {
+        name: 'contractValue',
+        type: 'string'
+    } ]
+});

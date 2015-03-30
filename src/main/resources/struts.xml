@@ -1,0 +1,1063 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.custom.i18n.resources" value="message" />
+    <include file="struts-default.xml"></include>
+    <package name="crm" extends="json-default">
+        <interceptors>
+            <interceptor name="loginInterceptor"
+                class="com.ustcsoft.gs.crm.webui.common.interceptor.LoginInterceptor" />
+            <interceptor-stack name="login">
+                <interceptor-ref name="loginInterceptor"></interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="login"></default-interceptor-ref>
+        <global-results>
+            <result name="login">login.jsp</result>
+            <result name="redirect">/WEB-INF/views/redirect.jsp</result>
+            <!--
+                <result name="error">/WEB-INF/views/error.jsp</result>
+            -->
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping result="error"
+                exception="com.ustcsoft.gs.crm.webui.common.exception.CRMException" />
+            <exception-mapping result="error"
+                exception="com.ustcsoft.gs.crm.webui.common.exception.CRMDBException" />
+        </global-exception-mappings>
+
+        <!-- 客户基本信息  -->
+        <action name="getAllCustomer" class="customerList"
+            method="getAllCustomer">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="updateCustomer" class="customerList"
+            method="updateCustomer">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="deleteCustomer" class="customerList"
+            method="deleteCustomer">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!--合同模板 -->
+        <action name="getAllFileTemplate" class="fileTemplate">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="deleteFileTemplate" class="fileTemplate"
+            method="delete">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="updateFileTemplate" class="fileTemplate"
+            method="update">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="createFileTemplateDoc" class="fileTemplate"
+            method="createTemplateDoc">
+            <result type="json">
+            </result>
+        </action>
+
+        <!--合同一览 -->
+        <action name="getAllProposalOrContract" class="proposalOrContract">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="deleteProposalOrContract" class="proposalOrContract"
+            method="deleteProposalOrContract">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="addOrUpdateProposalOrContract" class="proposalOrContract"
+            method="addOrUpdateProposalOrContract">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="createDoc" class="proposalOrContract"
+            method="createDoc">
+            <result name="success" type="json">
+            </result>
+        </action>
+        <action name="getFileTemplateName" class="proposalOrContract"
+            method="getFileTemplateName">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getAllContract" class="contractAction"
+            method="execute">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="deleteContract" class="contractAction"
+            method="deleteContract">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="addOrUpdateContract" class="contractAction"
+            method="addOrUpdateContract">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="NameOrOrderIdIsExit" class="contractAction"
+            method="NameOrOrderIdIsExit">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getContractEvent" class="contractAction"
+            method="getContractEvent">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <!--联系人选择 -->
+        <action name="getContactSelect" class="contactSelectAction">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="addContactSelect" class="contactSelectAction"
+            method="addContactSelect">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <action name="getContactSelect" class="contactSelectAction">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="addContactSelect" class="contactSelectAction"
+            method="addContactSelect">
+            <result name="success" type="json">
+                <param name="root">sign</param>
+            </result>
+        </action>
+
+        <action name="deleteContactSelect" class="contactSelectAction"
+            method="deleteContactSelect">
+            <result name="success" type="json">
+                <param name="root">sign</param>
+            </result>
+        </action>
+
+        <!--客户联系跟踪 -->
+        <action name="*ContactTrackAction" class="contactTrackAction"
+            method="{1}">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!--客户联系历史 -->
+        <action name="contactHistoryAction" class="contactHistoryAction">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!--客户来源基本信息 -->
+        <action name="CustomerSourceList" class="sourceListAction">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <action name="*Source" class="sourceListAction" method="{1}">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!--联系人基本信息 -->
+        <action name="ContactList" class="contactListAction">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getContactCanSelect" class="contactListAction" method="getContactCanSelect">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="*Contact" class="contactListAction" method="{1}">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!-- 营销活动 -->
+        <action name="getAllActivity" class="activityListAction">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="*Activity" class="activityListAction"
+            method="{1}">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!--合作伙伴基本信息 -->
+        <action name="getAllCooperator" class="CooperatorList"
+            method="getAllCooperator">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="addNowCompetitorinfo" class="competitorListAction"
+            method="addCompetitorinfo">
+        </action>
+        <action name="addNewCompetitorinfo" class="competitorListAction"
+            method="addCompetitorinfo">
+        </action>
+        <action name="updateCooperator" class="CooperatorList"
+            method="updateCooperator">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name='delCooperator' class="CooperatorList"
+            method="deleteCooperator">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!-- 销售流程管理 -->
+        <action name="salesEventFlowCode" class="salesEventFlowCodeAction">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="addOrUpdateEventFlow" class="salesEventFlowCodeAction"
+            method="addOrUpdateCode">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="checkName" class="eventFlowAction" method="checkName">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="deleteEventFlow" class="salesEventFlowCodeAction"
+            method="deleteCode">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="salesEventFlowCategory" class="salesEventFlowCodeAction"
+            method="salesEventFlowCategory">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getCodeByCategory" class="salesEventFlowCodeAction"
+            method="getCodeByCategory">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <!-- 竞争对手分析 -->
+        <!-- list -->
+        <action name="*CprAnalysis" class="cprAnalysis" method="{1}">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!--联系人家庭信息 -->
+        <action name="getAllFamilyInfo" class="familyInfoList">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!--联系人的社会关系信息 -->
+        <action name="getAllSocialInfo" class="socialInfoList">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!-- 竞争对手基本信息 -->
+        <action name="getAllCompetitor" class="competitorListAction"
+            method="getAllCompetitor">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">errorMsg</param>
+            </result>
+        </action>
+        <action name="updateCompetitorinfo" class="competitorListAction"
+            method="updateCompetitorinfo">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="deleteCompetitorinfo" class="competitorListAction"
+            method="deleteCompetitorinfo">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">errorMsg</param>
+            </result>
+        </action>
+
+        <!--合作伙伴合作履历 -->
+        <action name="getAllCooperationProject" class="cooperationProject"
+            method="getAllCooperationProject">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="updateCooperationProject" class="cooperationProject"
+            method="updateCooperationProject">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="deleteCooperationProject" class="cooperationProject"
+            method="deleteCooperationProject">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!-- 订单信息 -->
+        <action name="orderList" class="orderList">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="orderDelete" class="orderList" method="deleteOrder">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getOrderEventDemand" class="orderList" method="getOrderEventDamands">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="orderAddOrUpdate" class="orderList" method="addOrUpdateOrder">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="addOrUpdateFormalOrder" class="orderList" method="addOrUpdateFormalOrder">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="orderTrackList" class="orderList" method="getOrderTrack">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getCustomerContact" class="orderList"
+            method="getCustomerContact">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="changeToOrder" class="orderList" method="changeToOrder">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="buyProduct" class="orderList" method="buyProduct">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getContactNumber" class="orderList" method="getContactNumber">
+            <result name="success" type="json">
+                <param name="root">valueString</param>
+            </result>
+        </action>
+        <action name="getOrderByStatus" class="orderList" method="getOrderByStatus">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getEventByCustomer" class="orderList" method="getEventByCustomer">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="findStatsu" class="orderList" method="findStatsu">
+            <result name="success" type="json">
+                <param name="root">valueString</param>
+            </result>
+        </action>
+        <action name="eventIsAbolished" class="orderList" method="eventIsAbolished">
+            <result name="success" type="json">
+                <param name="root">valueString</param>
+            </result>
+        </action>
+        <!-- 合作伙伴分析 -->
+        <action name="saveOrUpdateCopAnalysis" class="copAnalysisAction"
+            method="saveOrUpdateCopAnalysis">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="delCopAnalysisInfo" class="copAnalysisAction"
+            method="deleteCopAnalysis">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getCopAnalysisInfoForPage" class="copAnalysisAction"
+            method="getAllCopAnalysis">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!-- get cooperator name set  cooperator analysis -->
+        <action name="getAllCopNameSetAnalysis" class="copAnalysisAction"
+            method="getCopName">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!-- get Cooperator Analysis for show in page -->
+        <action name="getCopAnalysisForShow" class="copAnalysisAction"
+            method="getCopAnalysisByID">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!-- 客户合作履历  -->
+        <action name="GetCoopResume" class="coopResumeList"
+            method="getCoopResume">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="coopResumeAddOrUpdate" class="coopResumeList"
+            method="addOrUpdateCoopResume">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="coopResumeDelete" class="coopResumeList"
+            method="deleteCoopResume">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!-- 用户权限管理 -->
+        <action name="getAccessTree" class="authorizationAction"
+            method="getAccessTree">
+            <result type="json">
+                <param name="root">treeList</param>
+            </result>
+        </action>
+        <action name="getOperationTree" class="authorizationAction"
+            method="getOperationTree">
+            <result type="json">
+                <param name="root">treeList</param>
+            </result>
+        </action>
+        <action name="saveAuthorization" class="authorizationAction"
+            method="saveAuthorization">
+            <result type="json">
+                <param name="root">menus</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <action name="getMembers" class="authorizationAction"
+            method="getMembers">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getMemberAuthorization" class="authorizationAction"
+            method="getMemberAuthorization">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getOperationAuthorization" class="authorizationAction"
+            method="getOperationAuthorization">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!-- 客户转移 -->
+        <action name="getCustomerForTransfer" class="customerTransfer"
+            method="getCustomerForTransfer">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="saveTransfer" class="customerTransfer"
+            method="saveTransfer">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getDepartment" class="customerTransfer"
+            method="getDepartment">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getProjectTeam" class="customerTransfer"
+            method="getProjectTeam">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getUser" class="customerTransfer" method="getUser">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getUserByProjectTeam" class="customerTransfer" method="getUserByProjectTeam">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!-- 销售事件管理 -->
+        <action name="salesEventAction" class="salesEventAction">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="salesEventSearchAction" class="salesEventSearchAction">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="salesSuperQueryAction" class="salesEventSearchAction"
+            method="superQuery">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="salesEventDeleteAction" class="salesEventAction"
+            method="deleteEvents">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="salesAddOrUpdateEvent" class="salesEventAction"
+            method="addOrUpdateEvent">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">errMap</param>
+            </result>
+        </action>
+        <action name="loadTabsAction" class="salesEventAction"
+            method="getTabInfo">
+            <result name="success" type="json">
+                <param name="root">tabMap</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">tabMap</param>
+            </result>
+        </action>
+        <action name="orderIsExist" class="salesEventAction" 
+            method="orderIsExist">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+         </action>
+         <action name="findEventInfoById" class="salesEventAction" 
+            method="findEventInfoById">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+         </action>
+        <!--主页任务信息 -->
+        <action name="workAction" class="workAction">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="updateWork" class="workAction" method="updateWork">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name='deleteWork' class="workAction" method="deleteWork">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name='getTask' class="workAction" method="getTask">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name='getContactTrackInfo' class="workAction" method="getContactTrackInfo">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name='getReadedTask' class="workAction" method="getReadedTask">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name='readMessage' class="workAction" method="readMessage">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name='setIsMailed' class="workAction" method="setIsMailed">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name='userIsProjectTeamLeader' class="workAction" method="userIsProjectTeamLeader">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <!-- 登陆登出密码修改 -->
+        <action name="login" class="loginAction" method="login">
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="logout" class="loginAction" method="logout">
+            <result name="success">login.jsp</result>
+        </action>
+
+        <!-- 主页相关-->
+        <action name="main" class="mainAction">
+            <result name="success">/WEB-INF/views/app.jsp</result>
+        </action>
+        <action name="passwordChange" class="mainAction" method="passwordChange">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!-- 用户基本信息 -->
+        <action name="getAllUserInfo" class="userAction" method="getAllUserInfo">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getGroupID" class="userAction" method="getGroupID">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getUserDepartment" class="userAction" method="getUserDepartment">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="updateUser" class="userAction" method="updateUserInfo">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="deleteUser" class="userAction" method="deleteUserInfo">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!-- 部门信息 -->
+        <action name="getAllDepartment" class="departmentAction"
+            method="getAllDepartment">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="updateDepartment" class="departmentAction"
+            method="updateDepartmentInfo">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="deleteDeparment" class="departmentAction"
+            method="deleteDepartmentInfo">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getFatherDepartment" class="departmentAction"
+            method="getFatherDepartment">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getDepartmentManager" class="departmentAction"
+            method="getDepartmentManager">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getDepartmentName" class="departmentAction"
+            method="getDepartmentName">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        
+
+        <!-- 产品信息-->
+        <action name="*Product" class="productAction" method="{1}Product">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getProductPriceRange" class="productPriceRangeAction"
+            method="getProductPriceRange">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getProductAttribute" class="productAttributeAction"
+            method="getProductAttribute">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="priceDelete" class="priceAction" method="deletePrice">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <!--角色信息-->
+        <action name="getGroupMembers" class="groupInfoAction"
+            method="getGroupMembers">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getGroup" class="groupInfoAction"
+            method="getGroup">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="updateGroup" class="groupInfoAction"
+            method="updateGroupInfo">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="deleteGroup" class="groupInfoAction"
+            method="deleteGroupInfo">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="removeGroupMembers" class="groupInfoAction"
+            method="removeMembers">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="addGroupMembers" class="groupInfoAction"
+            method="addMembers">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!--产品查询-->
+        <action name="productSearch" class="productSearchAction">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+         <action name="getAllProductByUserID" class="productAction" method="getAllProductByUserID">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="*Price" class="priceAction" method="{1}">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="priceSearch" class="priceSearchAction">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="countPartSalesEvents" class="salesEventsAction"
+            method="countPartSalesEvents"></action>
+
+        <!-- 菜单管理 -->
+        <action name="editMenuText" class="menuManageAction"
+            method="editMenuText">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!--销售漏斗统计 -->
+        <action name="countSalesEvents" class="salesCountAction"
+            method="countSalesEventsByDateOrNot">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+        <!--组织结构图-->
+        <action name="organizationStructure" class="organizationalStructureAction"
+            method="queryOrganizationStructure">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+
+        </action>
+        <!-- 销售事件-->
+        <action name="getSalesTrack" class="salesTrackAction"
+            method="getSalesTrack">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
+		<!-- 项目组 -->
+		<action name="getTeam" class="projectTeam" method="getProjectTeam">               
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getTeamLeaderSelecting" class="projectTeam" method="getTeamLeaderSelecting">               
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+			<action name="getProjectTeamStatus" class="projectTeam" method="getProjectTeamStatus">               
+			<result type="json">
+				<param name="root">map</param>
+			</result>
+		</action>
+        <action name="saveOrUpdateProjectTeam" class="projectTeam" method="saveOrUpdateProjectTeam">               
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+				<param name="root">map</param>
+			</result>
+        </action>
+        <action name="deleteProjectTeam" class="projectTeam" method="deleteProjectTeam">               
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+		<action name="getProjectTeamMembers" class="projectTeam" method="getMembers">
+			<result name="success" type="json">
+				<param name="root">map</param>
+			</result>
+		</action>
+		<action name="getOtherMembers" class="projectTeam" method="getMembers">
+			<result name="success" type="json">
+			<param name="root">map</param>
+			</result>
+		</action>
+		<action name="removeTeamMembers" class="projectTeam" method="removeMembers">
+			<result name="success" type="json">
+				<param name="root">map</param>
+			</result>
+		</action>
+		<action name="addTeamMembers" class="projectTeam" method="addMembers">
+			<result name="success" type="json">
+				<param name="root">map</param>
+			</result>
+		</action>
+
+        <!-- code -->
+		<action name="getAComboBox" class="code" method="getComboBox">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getACode" class="code" method="getACode">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getModule" class="code" method="getModule">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getCategory" class="code" method="getCategory">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getAllData" class="code" method="getAllData">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getData" class="code" method="getData">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="editCode" class="code" method="editCode">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="addCode" class="code" method="addCode">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="deleteCode" class="code" method="deleteCode">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+    </package>
+</struts>

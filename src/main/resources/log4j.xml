@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+	
+	<appender name="crmLog" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="c:/crmLogs/crmLog.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-5p %c{3}.%M - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="info" />
+			<param name="levelMax" value="fatal" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+	
+	<logger name="ebt.crm" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="crmLog" />
+	</logger>
+
+	<root>
+		<appender-ref ref="crmLog" />
+	</root>
+
+</log4j:configuration>
