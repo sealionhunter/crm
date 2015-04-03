@@ -358,6 +358,20 @@ Ext.define('CRM.controller.contactManagement.contactProfiles.Contact', {
         var contactID = form.down('#contactID').getValue();
 //        var customerID = form.down('#customerID').getValue();
         if (form.getForm().isValid()) {
+            var form = button.up('window').down('form');
+//            var createTimeField = form.down('hiddenfield[name=createTime]');
+//            var updateTimeField = form.down('hiddenfield[name=updateTime]');
+//
+//            var now = Ext.util.Format.date(new Date(), 'Y-m-d H:i:s');
+//            // create contact : set updateTime to blank
+//            if (form.down('hiddenfield[name=contactID]').getValue() === '') {
+//                createTimeField.setValue(now);
+//                updateTimeField.setValue('');
+//            } else {
+//                // update contact
+//                updateTimeField.setValue(now);
+//            }
+
             if (!form.down('#jobResume').getValue()) {
                 form.down('#jobResume').setValue('');
             }

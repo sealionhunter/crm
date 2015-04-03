@@ -56,7 +56,7 @@ public class ContactConstant {
     public static final String CONTACT_ADVANCECOUNT = "select count(*) from ContactInfoDto as con where con.customerID = :customerID and con.isAbolished = 0 ";
 
     public static final String CONTACT_FIND_BY_ID = "from ContactInfoDto con where con.contactID=";
-    public static final String CONTACT_DELETE = "update ContactInfoDto contact set contact.isAbolished = 1  where contact.contactID in";
+    public static final String CONTACT_DELETE = "update ContactInfoDto contact set contact.updateTime=CONVERT(varchar(19), getdate(), 120),contact.isAbolished = 1  where contact.contactID in";
     public static final String CONTACT_DELETE_CHECK = "from ContactSelectDto consDto where consDto.contactID in";
     public static final String SOCIAL_DELETE = "update SocialDto Social set Social.isAbolished = 1 where Social.socialID=";
     public static final String FAMILY_DELETE = "update FamilyDto Family set Family.isAbolished = 1 where Family.familyID in";

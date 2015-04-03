@@ -270,16 +270,12 @@
                   emptyText: "是否整体覆盖、主干光纤是否进入或联通接入方式情况！"
               }, {
                   fieldLabel: '创建时间',
-                  xtype: 'textfield',
-                  name: 'createTime',
-                  value: Ext.util.Format.date(new Date(), 'Y-m-d H:i:s'),
-                  hidden: true
+                  xtype: 'hiddenfield',
+                  name: 'createTime'
               }, {
                   fieldLabel: '更新时间',
-                  xtype: 'textfield',
-                  name: 'updateTime',
-                  value: Ext.util.Format.date(new Date(), 'Y-m-d H:i:s'),
-                  hidden: true
+                  xtype: 'hiddenfield',
+                  name: 'updateTime'
               }]
             }
             /*

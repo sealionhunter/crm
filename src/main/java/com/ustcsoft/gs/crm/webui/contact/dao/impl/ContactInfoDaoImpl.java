@@ -133,6 +133,7 @@ public class ContactInfoDaoImpl extends CRMUtils implements ContactInfoDao {
         if (contactInfo.getContactID() == 0) {
             // add/edit contactInfo by contactInfo
             hibernateTemplate.saveOrUpdate(contactInfo);
+            CRMUtils.setCustomerUpdateTime(hibernateTemplate);
 
             // add ContactID in familyInfoList
             if (familyInfoList != null) {
@@ -149,6 +150,7 @@ public class ContactInfoDaoImpl extends CRMUtils implements ContactInfoDao {
             }
         } else {
             hibernateTemplate.saveOrUpdate(contactInfo);
+            CRMUtils.setCustomerUpdateTime(hibernateTemplate);
         }
 
         // add/edit familyInfo by familyInfoList
@@ -196,6 +198,7 @@ public class ContactInfoDaoImpl extends CRMUtils implements ContactInfoDao {
     public final void deleteContact(final String contactIDs) {
         LOG.debug("method deleteContact  start!");
         hibernateTemplate.bulkUpdate(ContactConstant.CONTACT_DELETE + contactIDs);
+        CRMUtils.setCustomerUpdateTime(hibernateTemplate);
         LOG.debug("method deleteContact end!");
     }
 

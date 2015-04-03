@@ -846,9 +846,9 @@ Ext.define('CRM.store.commonStore', {
     extend : 'Ext.data.Store',
     listeners : {
         load : function(store, records, successful, eOpts) {
-//            if (!records) {
-//                CRM.reload();
-//            }
+            if (!records) {
+                CRM.reload();
+            }
         }
     }
 });

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.dao.DataAccessException;
@@ -82,6 +83,13 @@ public class ContactInfoServiceImpl implements ContactInfoService {
             throws CRMDBException {
         try {
             LOG.debug("method add or update contact records start!");
+            if (StringUtils.isBlank(contactInfo.getCreateTime())) {
+                contactInfo.setCreateTime(CRMUtils.currentTimeAsString());
+                contactInfo.setUpdateTime(null);
+            } else {
+                contactInfo.setUpdateTime(CRMUtils.currentTimeAsString());
+                
+            }
             contactInfoDao.addContact(contactInfo, familyInfoList, socialInfoList, familyID,
                     socialID);
             LOG.debug("method add or update contact records end!");

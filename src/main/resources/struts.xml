@@ -721,6 +721,11 @@
                 <param name="root">map</param>
             </result>
         </action>
+        <action name='getCustomerUpdatedStatus' class="workAction" method="getCustomerUpdatedStatus">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
         <action name='getReadedTask' class="workAction" method="getReadedTask">
             <result name="success" type="json">
                 <param name="root">map</param>

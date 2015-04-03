@@ -71,7 +71,15 @@ Ext.define('CRM.view.contactManagement.contactProfiles.ContactList', {
             fieldLabel: '联系人ID',
             dataIndex: 'contactID',
             hidden: true
-        } ];
+        }, {
+            fieldLabel: '创建时间',
+            dataIndex: 'createTime',
+            hidden: true
+        } , {
+            fieldLabel: '更新时间',
+            dataIndex: 'updateTime',
+            hidden: true
+        }];
         this.dockedItems = [ {
             dock: 'top',
             xtype: 'toolbar',

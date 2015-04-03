@@ -46,6 +46,8 @@ public class ContactBean extends ContactInfoDto {
         super.setSex(contact.getSex());
         super.setCustomerID(contact.getCustomerID());
         super.setContactType(contact.getContactType());
+        super.setCreateTime(contact.getCreateTime());
+        super.setUpdateTime(contact.getUpdateTime());
     }
 
     /**

@@ -154,7 +154,7 @@ public class CustomerConstant {
 
     public static final String CUSTOMER_MID_SEARCH = " and cus.customerName like:customerName and cus.earning like:earning and cus.customerAddr like:customerAddr ";
 
-    public static final String CUSTOMER_DEL_HQL = "update CustomerDto as cus set cus.isAbolished = 1 where cus.customerID in";
+    public static final String CUSTOMER_DEL_HQL = "update CustomerDto as cus set cus.updateTime=CONVERT(varchar(19), getdate(), 120),cus.isAbolished = 1 where cus.customerID in";
 
     public static final String CUSTOMER_COUNT_HQL = "select count(*) from CustomerDto as cus where cus.isAbolished = 0 ";
 

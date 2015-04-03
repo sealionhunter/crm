@@ -17,6 +17,7 @@ import com.ustcsoft.gs.crm.webui.common.util.PagingHibernateCallback;
 import com.ustcsoft.gs.crm.webui.common.util.SuperHibernateCallback;
 import com.ustcsoft.gs.crm.webui.customer.bean.ContactTrackListBean;
 import com.ustcsoft.gs.crm.webui.customer.constant.CustomerConstant;
+import com.ustcsoft.gs.crm.webui.index.bean.CustomerUpdatedStatusBean;
 import com.ustcsoft.gs.crm.webui.index.bean.WorkBean;
 import com.ustcsoft.gs.crm.webui.index.bean.WorkSearchBean;
 import com.ustcsoft.gs.crm.webui.index.constant.IndexConstant;
@@ -426,5 +427,22 @@ public class WorkDaoImpl implements WorkDao {
         long total = (Long) hibernateTemplate.findByNamedParam(hqlCount, "userID", userID).get(0);
         LOG.debug("method userIsProjectTeamLeader end!");
         return total != 0;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public Map<String, Object> getCustomerUpdatedStatus(int userID, String date) {
+        LOG.debug("method getCustomerUpdatedStatus start!");
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        String[] params = { "userID" };
+        Object[] paramValues = { userID };
+        List<CustomerUpdatedStatusBean> list = new ArrayList<CustomerUpdatedStatusBean>();
+        list = hibernateTemplate.findByNamedParam(IndexConstant.GET_CUSTOMER_UPDATED_STATUS,
+                params, paramValues);
+        map.put(CRMConstant.ITEMS, list);
+
+        LOG.debug("method getCustomerUpdatedStatus end!");
+        return map;
     }
 }

@@ -175,6 +175,14 @@ Ext.define('CRM.view.contactManagement.contactProfiles.ContactForm', {
                             editable: false,
                             valueField: 'code',
                             displayField: 'value'
+                        }, {
+                            fieldLabel: '创建时间',
+                            xtype: 'hiddenfield',
+                            name: 'createTime'
+                        }, {
+                            fieldLabel: '更新时间',
+                            xtype: 'hiddenfield',
+                            name: 'updateTime'
                         } ]
                     } ]
                 },

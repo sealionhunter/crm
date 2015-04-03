@@ -145,7 +145,6 @@ Ext.define('CRM.controller.systemManagement.userManagement.User', {
 
     },
     userEdit: function() {
-        debugger;
         var row = Ext.getCmp('UserList').getSelectionModel().getSelection()[0];
         var userInfo = Ext.widget('UserUpdate');
         var departCombo = userInfo.down('combobox[name="departmentID"]');

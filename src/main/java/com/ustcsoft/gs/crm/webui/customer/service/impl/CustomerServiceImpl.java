@@ -8,11 +8,14 @@
  */
 package com.ustcsoft.gs.crm.webui.customer.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.dao.DataAccessException;
@@ -158,18 +161,18 @@ public class CustomerServiceImpl implements CustomerService {
             if ((Long) iMap.get("ContactTrackInfoDto") > 0) {
                 table.add("客户联系模块");
             }
-            if ((Long) iMap.get("OrderDto_1") > 0) {
-                table.add("订单模块");
-            }
-            if ((Long) iMap.get("OrderDto_0") > 0) {
-                table.add("意向订单模块");
-            }
-            if ((Long) iMap.get("SalesEventDto") > 0) {
-                table.add("销售事件模块");
-            }
-            if (isActivityMember(i)) {
-                table.add("营销活动模块");
-            }
+//            if ((Long) iMap.get("OrderDto_1") > 0) {
+//                table.add("订单模块");
+//            }
+//            if ((Long) iMap.get("OrderDto_0") > 0) {
+//                table.add("意向订单模块");
+//            }
+//            if ((Long) iMap.get("SalesEventDto") > 0) {
+//                table.add("销售事件模块");
+//            }
+//            if (isActivityMember(i)) {
+//                table.add("营销活动模块");
+//            }
             if (!table.isEmpty()) {
                 customerName = customerDao.getCusNameByID(i);
                 break;
@@ -201,6 +204,13 @@ public class CustomerServiceImpl implements CustomerService {
 
         LOG.debug("method updateCustomer start.");
         try {
+            String now = CRMUtils.currentTimeAsString();
+            if (StringUtils.isBlank(customerDto.getCreateTime())) {
+                customerDto.setCreateTime(now);
+                customerDto.setUpdateTime(now);
+            } else {
+                customerDto.setUpdateTime(now);
+            }
             customerDao.updateCustomer(customerDto);
         } catch (DataAccessException e) {
             LOG.error("DataAccessException occurs in method updateCustomer.", e);

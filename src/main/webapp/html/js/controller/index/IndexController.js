@@ -1,7 +1,7 @@
 Ext.define('CRM.controller.index.IndexController', {
     extend: 'Ext.app.Controller',
     views: [ 'index.WorkIndex', 'index.MyWorkingList', 'index.ImportantTask', 'index.InformTask', 'index.WorkUpdate', 'index.MessageList', 'index.TaskForm', 'index.ContactTrackInfo'],
-    stores: [ 'index.WorkStore', 'index.TaskStore', 'index.ContactTrackStore' ],
+    stores: [ 'index.WorkStore', 'index.TaskStore', 'index.ContactTrackStore', 'index.CustomerUpdatedStatus' ],
     models: [],
     init: function() {
         this.control({
@@ -145,7 +145,7 @@ Ext.define('CRM.controller.index.IndexController', {
         workGridStore.currentPage = 1;
         //this.changeTask('informTask');
         this.showTask('importantTask');
-        this.refreshContactTrackInfo('informTask');
+        this.refreshInformTask('informTask');
     },
 
     showTask: function(componentId) {
@@ -419,11 +419,11 @@ Ext.define('CRM.controller.index.IndexController', {
                     var workID = item.get('workID');
                     var theme = item.get('theme');
                     html = html + "<div style='padding-left:20px;'><h3>" + "<span style='color:blue;cursor:pointer;'" + "onclick=utils.showOneTask(this,'" + componentID + "'," + workID + ")>" + storelength
-                            + ". " + Ext.htmlEncode(theme) + "</span></h3></div>";
+                            + "、" + Ext.htmlEncode(theme) + "</span></h3></div>";
                     storelength += 1;
                 });
                 if (store.getCount() == 0) {
-                    html = "<div style='padding-left:20px;'><br>无数据</div>";
+                    html = "<div style='padding-left:20px;'><br>无通知信息。</div>";
                 } else if (store.getCount() < 6) {
                     html = "<div><br>" + html + "</div>";
                 } else {
@@ -445,10 +445,10 @@ Ext.define('CRM.controller.index.IndexController', {
             isMailInformed.setValue(false);
         }
     },
-    refreshContactTrackInfo: function(componentID) {
+    refreshInformTask: function(componentID) {
         var me = this;
         // refresh ContactTrack information
-        me.getContactTrackInfo(componentID);
+        me.getCustomerUpdatedStatus(componentID);
         if (typeof(me.contactIntervalId) != 'undefined') {
             // clear The last setting
             clearInterval(me.contactIntervalId);
@@ -457,40 +457,114 @@ Ext.define('CRM.controller.index.IndexController', {
         // interval time: 60 s
         me.contactIntervalId = setInterval(function(){
             if (Ext.getCmp('centercard').getLayout().getActiveItem().id == 'workIndex') {
-                me.getContactTrackInfo(componentID);
+                me.getCustomerUpdatedStatus(componentID);
             }
         }, 1 * 60 * 1000);
     },
-    getContactTrackInfo: function(componentID) {
-        var store = Ext.getCmp(componentID).store;
+    getCustomerUpdatedStatus: function(componentID) {
+        var me = this;
+//        var store = Ext.getCmp(componentID).store;
+//        store.load({
+//            params: {
+//                date: Ext.util.Format.date(new Date(), 'Y-m-d H:i:s'),
+//                userID: USER_ID
+//            },
+//            callback: function() {
+//                me.appendMessage(store, componentID);
+//            }
+//        });
+
+        // customer update info notification 
+        var store = Ext.create('CRM.store.index.CustomerUpdatedStatus');
         store.load({
-            params: {
-                date: Ext.util.Format.date(new Date(), 'Y-m-d H:i:s'),
+            params : {
                 userID: USER_ID
             },
             callback: function() {
-                var html = "";
-                var storelength = 1;
-                store.each(function(item) {
-                    // get contactTrack info
-                    var contactID = item.get('contactID');
-                    var contactTheme = item.get('contactTheme');
-                    html = html + "<div style='padding-left:20px;'><h3>" 
-                                    + "<span style='color:blue;cursor:pointer;'" 
-                                    + "onclick=utils.showContactTrackInfo(this,'" + componentID + "'," + contactID + ")>" + storelength
-                                    + ". " + Ext.htmlEncode(contactTheme) + "</span></h3></div>";
-                    storelength += 1;
-                });
-                if (store.getCount() == 0) {
-                    html = "<div style='padding-left:20px;'><br>无数据</div>";
-                } else if (store.getCount() < 6) {
-                    html = "<div><br>" + html + "</div>";
-                } else {
-                    html = "<marquee behavior=scroll direction=up scrollamount=2 scrolldelay=0 vspace=0 hspace=1 loop=-1 onmouseover=this.stop() onmouseout=this.start()>" + html + "</marquee>";
-                }
-                var domshow = Ext.get('showinformTask').dom;
-                Ext.DomHelper.overwrite(domshow, html);
+                me.displayNotification(store, componentID);
             }
         });
+
+    },
+    displayNotification: function(store, componentID) {
+        var me = this;
+        var db = Ext.DomHelper;
+        var tplHtml = '<div style="padding-left:20px;"><h4>'
+            + '<span style="color:blue;cursor:pointer;">{index}、客户【 {customerName}】长时间未更新，{days}天后将客户放入公海。</span>'
+            + '</h4></div>';
+        var tpl = db.createTemplate(tplHtml);
+        tpl.compile(); // The performance is great
+
+        // clean
+        db.overwrite(Ext.get('showinformTask').dom, '');
+        if (store.getCount() == 0) {
+            db.append('showinformTask', {tag: 'div', html: '<br>无通知信息。', style: 'padding-left:20px;'});
+            return true;
+        }
+
+        // default component
+        var infoDiv = 'showinformTask';
+        if (store.getCount() > 5){
+            infoDiv = me.addMarquee('showinformTask');
+        }
+        var index = 1;
+        store.each(function(item){
+            var customerName = item.get('customerName');
+            var days = item.get('days');
+            tpl.append(infoDiv, {
+                'index': index++,
+                'days': me.formatDays(days),
+                'customerName': Ext.htmlEncode(customerName) 
+            });
+        });
+    },
+//    appendMessage: function(store, componentID) {
+//        var me = this;
+//        var db = Ext.DomHelper;
+//
+//        var tplHtml = '<div style="padding-left:20px;"><h3>'
+//            + '<span style="color:blue;cursor:pointer;" onclick=utils.showContactTrackInfo(this,"{componentID}",{contactID})>{index}. {contactTheme}</span>'
+//            + '</h3></div>';
+//        var tpl = db.createTemplate(tplHtml);
+//        tpl.compile(); // The performance is great
+//
+//        // clean
+//        db.overwrite(Ext.get('showinformTask').dom, '');
+//        if (store.getCount() == 0) {
+//            db.append('showinformTask', {tag: 'div', html: '<br>无数据'});
+//            return true;
+//        }
+//
+//        // default component
+//        var infoDiv = 'showinformTask';
+//        if (store.getCount() > 5){
+//            infoDiv = me.addMarquee('showinformTask');
+//        }
+//
+//        var index = 1;
+//        store.each(function(item){
+//            var contactID = item.get('contactID');
+//            var contactTheme = item.get('contactTheme');
+//            tpl.append(infoDiv, {
+//                'componentID': componentID,
+//                'contactID': contactID,
+//                'index': index++,
+//                'contactTheme': Ext.htmlEncode(contactTheme) 
+//            });
+//        });
+//    },
+    addMarquee: function(el) {
+        var html = "<marquee behavior=scroll direction=up scrollamount=2 scrolldelay=0 vspace=0 hspace=1 loop=-1 onmouseover=this.stop() onmouseout=this.start()></marquee>";
+        // add Scrolling
+        return Ext.DomHelper.append(el, html);
+    },
+    formatDays: function(days) {
+        if (days <= 3) {
+            return '<span style="color:red;">' + days + '</span>';
+        } else if (days <= 10) {
+            return '<span style="color:orange;">' + days + '</span>';
+        } else {
+            return '<span style="color:blue;">' + days + '</span>';
+        }
     }
 });

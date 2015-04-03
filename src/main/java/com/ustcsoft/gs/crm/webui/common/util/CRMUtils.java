@@ -11,12 +11,14 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang3.StringUtils;
-
 import net.sf.json.JSONObject;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.ustcsoft.gs.crm.webui.common.constant.CRMConstant;
 import com.ustcsoft.gs.crm.webui.common.exception.CRMException;
+import com.ustcsoft.gs.crm.webui.customer.dto.CustomerDto;
 
 public class CRMUtils {
 
@@ -259,5 +261,25 @@ public class CRMUtils {
         // get the current time
         String date = sdf.format(calendar.getTime());
         return date;
+    }
+
+    /**
+     * get current time
+     * @return the return value represents current time
+     */
+    public static String currentTimeAsString() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return formatter.format(new Date());
+    }
+
+    /**
+     * update customer updateTime
+     * 
+     * @param ht HibernateTemplate
+     */
+    public static void setCustomerUpdateTime(HibernateTemplate ht) {
+        CustomerDto dto = new CustomerDto();
+        dto.setUpdateTime(currentTimeAsString());
+        ht.saveOrUpdate(dto);
     }
 }

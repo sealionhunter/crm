@@ -1,5 +1,9 @@
 package com.ustcsoft.gs.crm.webui.index.action;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -105,6 +109,15 @@ public class WorkAction extends CRMAction {
         LOG.debug("method getContactTrackInfo start!");
         map = workService.getContactTrackInfo(userID, date);
         LOG.debug("method getContactTrackInfo end!");
+        return SUCCESS;
+    }
+
+    public String getCustomerUpdatedStatus() throws CRMDBException {
+        LOG.debug("method getCustomerUpdatedStatus start!");
+        Date now = Calendar.getInstance().getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        map = workService.getCustomerUpdatedStatus(userID, formatter.format(now));
+        LOG.debug("method getCustomerUpdatedStatus end!");
         return SUCCESS;
     }
 

@@ -8,8 +8,6 @@
  */
 package com.ustcsoft.gs.crm.webui.customer.dao.impl;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -97,18 +95,18 @@ public class CustomerDaoImpl implements CustomerDao {
                 "select count(*) from ContactTrackInfoDto ctid where ctid.isAbolished=0 and ctid.customerID ="
                         + customerID).get(0);
         map.put("ContactTrackInfoDto", cnt);
-        cnt = (Long) hibernateTemplate.find(
-                "select count(*) from OrderDto od where od.isAbolished=0 and od.type=1 and od.customerID ="
-                        + customerID).get(0);
-        map.put("OrderDto_1", cnt);
-        cnt = (Long) hibernateTemplate.find(
-                "select count(*) from OrderDto od where od.isAbolished=0 and od.type=0 and od.customerID ="
-                        + customerID).get(0);
-        map.put("OrderDto_0", cnt);
-        cnt = (Long) hibernateTemplate.find(
-                "select count(*) from SalesEventDto sed where sed.isAbolished=0 and sed.customerID ="
-                        + customerID).get(0);
-        map.put("SalesEventDto", cnt);
+//        cnt = (Long) hibernateTemplate.find(
+//                "select count(*) from OrderDto od where od.isAbolished=0 and od.type=1 and od.customerID ="
+//                        + customerID).get(0);
+//        map.put("OrderDto_1", cnt);
+//        cnt = (Long) hibernateTemplate.find(
+//                "select count(*) from OrderDto od where od.isAbolished=0 and od.type=0 and od.customerID ="
+//                        + customerID).get(0);
+//        map.put("OrderDto_0", cnt);
+//        cnt = (Long) hibernateTemplate.find(
+//                "select count(*) from SalesEventDto sed where sed.isAbolished=0 and sed.customerID ="
+//                        + customerID).get(0);
+//        map.put("SalesEventDto", cnt);
         LOG.debug("method getUsingCnt end.");
         return map;
     }
@@ -267,10 +265,10 @@ public class CustomerDaoImpl implements CustomerDao {
     public void deleteCustomer(String customerIDs) {
         LOG.debug("method deleteCustomer start");
         hibernateTemplate.bulkUpdate(CustomerConstant.CUSTOMER_DEL_HQL + customerIDs);
-        hibernateTemplate.bulkUpdate(CustomerConstant.CUS_COOP_DEL_HQL + customerIDs);
-        hibernateTemplate.bulkUpdate(CustomerConstant.CUS_WORK_DEL_HQL + customerIDs);
-        hibernateTemplate.bulkUpdate(CustomerConstant.CUS_COURSE_DEL_HQL + customerIDs);
-        hibernateTemplate.bulkUpdate(CustomerConstant.CUS_CONTACT_SELECT_DEL_HQL + customerIDs);
+//        hibernateTemplate.bulkUpdate(CustomerConstant.CUS_COOP_DEL_HQL + customerIDs);
+//        hibernateTemplate.bulkUpdate(CustomerConstant.CUS_WORK_DEL_HQL + customerIDs);
+//        hibernateTemplate.bulkUpdate(CustomerConstant.CUS_COURSE_DEL_HQL + customerIDs);
+//        hibernateTemplate.bulkUpdate(CustomerConstant.CUS_CONTACT_SELECT_DEL_HQL + customerIDs);
         LOG.debug("method deleteCustomer end");
     }
 

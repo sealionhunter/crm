@@ -30,6 +30,9 @@ public class IndexConstant {
     public static final String WORK_WORKDETAIL_LENGTH_INVALID = "workWorkDetailLength.invalid";
     public static final String WORK_DESCRIPTIONS_LENGTH_INVALID = "workDescriptionsLength.invalid";
     public static final String WORK_ASSIGNEES_INVALID = "workAssignees.invalid";
+    /** the millis of one day */
+    public static long MILLIS_OF_ONE_DAY = 24 * 60 * 60 * 1000;
+    public static int MAX_DAYS_TO_NOTIIFY = 90;
 
     public static final String WORK_GETALL_HQL = "select new Map("
             + " WD.workID as workID,"
@@ -184,4 +187,11 @@ public class IndexConstant {
     public static final String DELETE_TEAMWORK_ME = "update WorkDto as WD set WD.isAbolished = 'true' where WD.workID in ";
     public static final String DELETE_TEAMWORK_OTHER = "update WorkDto as WD set WD.isAbolished = 'true' where WD.teamFlag in ";
     public static final String EDIT_TEAMWORK = "update WorkDto as WD set WD.isAbolished = 'true' where WD.teamFlag = ? ";
+    public static final String GET_CUSTOMER_UPDATED_STATUS = "select new com.ustcsoft.gs.crm.webui.index.bean.CustomerUpdatedStatusBean("
+            + " cus.customerName, cus.updateTime) "
+            + " from CustomerDto cus"
+            + " where cus.holder = :userID"
+            + " and cus.isAbolished = 0"
+            + " and cus.updateTime <= CONVERT(varchar(19), getdate() - 70, 120)"
+            + " and cus.updateTime >= CONVERT(varchar(19), getdate() - 90, 120)";
 }

@@ -53,8 +53,7 @@ Ext.define('CRM.view.customerManagement.contactTrack.ContactInfoAdd', {
                 items: [ {
                     name: 'contactID',
                     id: 'contactID',
-                    xtype: 'textfield',
-                    hidden: true
+                    xtype: 'hiddenfield'
                 }, {
                     name: 'customerID',
                     itemId: 'customerID',
@@ -184,6 +183,14 @@ Ext.define('CRM.view.customerManagement.contactTrack.ContactInfoAdd', {
                 enforceMaxLength: true,
                 maxLengthText: "备注长度不能超过1024个字符！",
                 name: 'remarks'
+            }, {
+                fieldLabel: '创建时间',
+                xtype: 'hiddenfield',
+                name: 'createTime'
+            }, {
+                fieldLabel: '更新时间',
+                xtype: 'hiddenfield',
+                name: 'updateTime'
             } ]
         } ];
         this.buttons = [ {

@@ -3,6 +3,7 @@ package com.ustcsoft.gs.crm.webui.customer.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.dao.DataAccessException;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ustcsoft.gs.crm.webui.common.constant.CRMConstant;
 import com.ustcsoft.gs.crm.webui.common.exception.CRMDBException;
+import com.ustcsoft.gs.crm.webui.common.util.CRMUtils;
 import com.ustcsoft.gs.crm.webui.customer.bean.ContactTrackListBean;
 import com.ustcsoft.gs.crm.webui.customer.bean.ContactTrackSearchBean;
 import com.ustcsoft.gs.crm.webui.customer.dao.ContactTrackDao;
@@ -141,8 +143,13 @@ public class ContactTrackServiceImpl implements ContactTrackService {
 //            contactTrackInfoDto.setState(contactTrackListBean.getChanceType());
             contactTrackInfoDto.setUserFeedbackInformation(contactTrackListBean
                     .getUserFeedbackInformation());
-            contactTrackInfoDto.setCreateTime(contactTrackListBean.getCreateTime());
-            contactTrackInfoDto.setUpdateTime(contactTrackListBean.getUpdateTime());
+            if (StringUtils.isBlank(contactTrackListBean.getCreateTime())) {
+                contactTrackInfoDto.setCreateTime(CRMUtils.currentTimeAsString());
+                contactTrackInfoDto.setUpdateTime(null);
+            } else {
+                contactTrackInfoDto.setCreateTime(contactTrackListBean.getCreateTime());
+                contactTrackInfoDto.setUpdateTime(CRMUtils.currentTimeAsString());
+            }
 
             if (submitFlag == 2) {
 //                SalesEventDto salesEventDto = new SalesEventDto();

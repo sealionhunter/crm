@@ -282,4 +282,18 @@ public class WorkServiceImpl implements WorkService {
         map = getWorkDao().getReadedTask(page, userID, searchFlag, date, limit);
         return map;
     }
+
+    @Override
+    public Map<String, Object> getCustomerUpdatedStatus(int userID, String date) throws CRMDBException {
+        LOG.debug("method getCustomerUpdatedStatus start!");
+        Map<String, Object> map = null;
+        try {
+            map = workDao.getCustomerUpdatedStatus(userID, date);
+        } catch (DataAccessException e) {
+            LOG.debug("DataAccessException occurs in method getContactTrackInfo!", e);
+            throw new CRMDBException(e);
+        }
+        LOG.debug("method getCustomerUpdatedStatus end!");
+        return map;
+    }
 }
