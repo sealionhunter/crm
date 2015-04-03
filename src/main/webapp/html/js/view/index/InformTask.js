@@ -2,7 +2,7 @@ Ext.define('CRM.view.index.InformTask', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.informTask',
     id: 'informTask',
-    title: '客户联系',
+    title: '客户提醒',
     layout: 'anchor',
     height: 200,
 //    padding: '0 5 0 0',

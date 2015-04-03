@@ -490,7 +490,7 @@ Ext.define('CRM.controller.index.IndexController', {
         var me = this;
         var db = Ext.DomHelper;
         var tplHtml = '<div style="padding-left:20px;"><h4>'
-            + '<span style="color:blue;cursor:pointer;">{index}、客户【 {customerName}】长时间未更新，{days}天后将客户放入公海。</span>'
+            + '<span style="color:blue;">{index}、客户【 {customerName}】长时间未更新，{days}天后将客户放入公海。</span>'
             + '</h4></div>';
         var tpl = db.createTemplate(tplHtml);
         tpl.compile(); // The performance is great
