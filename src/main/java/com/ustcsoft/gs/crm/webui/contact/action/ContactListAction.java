@@ -194,9 +194,9 @@ public class ContactListAction extends CRMAction {
             }
         }
 
-        if (!"000100070003".equals(contact.getContactType()) && contactInfoService.exist(contact)) {
-            addFieldError("contactType", "该客户的【决策人】或【关键人】已经存在！");
-        }
+//        if (!"000100070003".equals(contact.getContactType()) && contactInfoService.exist(contact)) {
+//            addFieldError("contactType", "该客户的【决策人】或【关键人】已经存在！");
+//        }
 
         String gridCheck = CRMConstant.SPACE;
 
