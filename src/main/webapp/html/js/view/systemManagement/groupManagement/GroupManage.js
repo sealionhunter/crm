@@ -11,10 +11,15 @@ Ext.define('CRM.view.systemManagement.groupManagement.GroupManage', {
         this.groupMemberStore = Ext.create('CRM.store.systemManagement.groupManagement.GroupInfo');
         this.items = [ {
             region: 'west',
+            flex: 1,
             xtype: 'gridpanel',
             id: 'groupList',
             title: '角色列表（单选）',
             border : false,
+            store: this.groupStore,
+            selType: 'checkboxmodel',
+            multiSelect: false,
+            hideHeaders: true,
             minWidth: 50,
             tbar: [ '->', {
                 text: '添加',
@@ -31,12 +36,6 @@ Ext.define('CRM.view.systemManagement.groupManagement.GroupManage', {
                 action: 'groupDeleteBtn',
                 disabled: true
             } ],
-            width: '30%',
-            store: this.groupStore,
-            selType: 'checkboxmodel',
-            multiSelect: false,
-            hideHeaders: true,
-            border: true,
             columns: [ {
                 header: '角色编号',
                 dataIndex: 'groupID',

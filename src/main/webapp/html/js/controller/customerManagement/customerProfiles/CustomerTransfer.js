@@ -9,12 +9,12 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
             'customertransfer button[action=save]': {
                 click: this.save
             },
-            'customertransfer button[action=saveAndClose]': {
-                click: this.saveAndClose
-            },
-            'customertransfer button[action=close]': {
-                click: utils.winClose
-            },
+//            'customertransfer button[action=saveAndClose]': {
+//                click: this.saveAndClose
+//            },
+//            'customertransfer button[action=close]': {
+//                click: utils.winClose
+//            },
             'customertransfer button[action=search]': {
                 click: this.search
             },
@@ -42,9 +42,14 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
         });
     },
     viewInit: function(flag) {
-        var transferWin = Ext
-                .create('CRM.view.customerManagement.customerProfiles.CustomerTransfer');
-        if (flag && flag === 'show') {
+        var transferWin = Ext.getCmp('customertransfer');
+        if (typeof (transferWin) == 'undefined') {
+            transferWin = Ext.widget('customertransfer');
+            Ext.getCmp('centercard').insert(1, transferWin);
+        }
+        Ext.getCmp('centercard').getLayout().setActiveItem('customertransfer');
+//        var transferWin = Ext.widget('customertransfer');
+//        if (flag && flag === 'show') {
             transferWin.store.load();
             transferWin.noHolderStore.load({
                 params: {
@@ -55,8 +60,8 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
             this.loadCallbackFormD(transferWin.departmentFormStore);
             this.loadCallbackP(transferWin.projectTeamStore);
             this.loadCallbackP(transferWin.projectTeamFormStore);
-            transferWin.show();
-        }
+//            transferWin.show();
+//        }
         return transferWin;
     },
 
@@ -190,7 +195,7 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
         this.transferCustomer(button, 'close');
     },
     transferCustomer: function(button, flag) {
-        var win = button.up('window');
+        var win = button.up('panel');
         var grid = win.down('grid');
         var userID = win.down('form').down('#user').getValue() || '';
         var store = grid.getStore();
@@ -230,8 +235,8 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
         }
     },
     search: function(button) {
-        var win = button.up('window');
-        var store = win.down('grid').getStore();
+//        var win = button.up('panel');
+        var store = button.up('grid').getStore();
         var toolbar = button.up('toolbar');
         var departmentID = toolbar.down('#department').getValue();
         var projectTeamID = toolbar.down('#projectTeam').getValue();

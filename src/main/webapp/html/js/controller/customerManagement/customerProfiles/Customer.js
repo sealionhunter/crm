@@ -31,9 +31,9 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer', {
             'customerlist button[action=lookContactBtn]': {
                 click: this.lookContactBtn
             },
-            'customerlist button[action=customer-transfer]': {
-                click: this.customerTransfer
-            },
+//            'customerlist button[action=customer-transfer]': {
+//                click: this.customerTransfer
+//            },
             'customerlist toolbar button[action=addCustomer]': {
                 click: this.addCustomer
             },
@@ -120,7 +120,7 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer', {
         function setVal(id, index) {
             list.down('#' + id).hide();
         }
-        var actionIds = isGonghai ? ['11101','11102','11103','11104','11105','11106','11107'] : ['11201','11202','11203','11204','11205'];
+        var actionIds = isGonghai ? ['11102','11103','11104','11105','11106','11107'] : ['11201','11202','11203','11204','11205'];
         Ext.each(actionIds, setVal);
         utils.authorizationControl(treeId, list);
     },

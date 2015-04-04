@@ -105,6 +105,8 @@
             initController('customerManagement.customerProfiles.Customer').viewInit(treeId, false);
         } else if (treeId == 112) {
             initController('customerManagement.customerProfiles.Customer').viewInit(treeId, true);
+        } else if (treeId == 113) {
+            initController('customerManagement.customerProfiles.CustomerTransfer').viewInit(treeId, true);
 //        } else if (treeId == 121) {
 //            initController('customerManagement.contactTrack.ContactController').viewInit(treeId);
 //        } else if (treeId == 122) {

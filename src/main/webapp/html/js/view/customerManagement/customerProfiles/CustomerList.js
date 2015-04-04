@@ -105,13 +105,13 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
                 action: 'openOrCloseSuperQueryBtn'
             }, {
                 xtype: 'tbfill'
-            }, {
-                text: '客户转移',
-                hidden: true,
-                itemId: '11101',
-                id: 'customer-transfer',
-                disabled: false,
-                action: 'customer-transfer'
+//            }, {
+//                text: '客户转移',
+//                hidden: true,
+//                itemId: '11101',
+//                id: 'customer-transfer',
+//                disabled: false,
+//                action: 'customer-transfer'
             }, {
                 hidden: true,
                 itemId: '11107',

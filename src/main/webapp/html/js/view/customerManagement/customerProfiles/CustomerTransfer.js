@@ -1,19 +1,10 @@
 Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTransfer', {
-    extend: 'Ext.window.Window',
+    extend: 'Ext.panel.Panel',
     alias: 'widget.customertransfer',
     id: 'customertransfer',
     title: '客戶转移',
-    autoShow: true,
-    width: 750,
-    height: 424,
-    resizable: false,
-    constrainHeader: true,
-    modal: true,
-    layout: {
-        type: 'hbox',
-        align: 'stretch',
-        padding: 5
-    },
+    layout: 'border',
+    frame: false,
     initComponent: function() {
         var me = this;
         this.store = Ext.create('CRM.store.customerManagement.customerProfiles.CustomerTransfer');
@@ -49,14 +40,13 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTransfer', {
         this.projectTeamFormStore = Ext.create('CRM.store.customerManagement.customerProfiles.ProjectTeam');
         this.userFormStore = Ext.create('CRM.store.customerManagement.customerProfiles.User');
         this.items = [ {
+            region: "center",
             flex: 2,
             xtype: 'gridpanel',
-            multiSelect: true,
-            stripeRows: true,
             title: '可选客户',
             margins: '0 2 0 0',
             store: this.store,
-            selModel: Ext.create('Ext.selection.CheckboxModel'),
+            selType: 'checkboxmodel',
             columns: [ Ext.create('Ext.grid.RowNumberer', {
                 text: '序号',
                 width: 40,
@@ -95,8 +85,7 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTransfer', {
                 name: 'queryMode',
                 itemId: 'queryMode',
                 labelWidth: 60,
-                width: 150,
-                //tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.value)]}</li>', '</tpl></ul>'),
+                width: 180,
                 store: this.queryModeStore,
                 queryMode: 'local',
                 forceSelection: true,
@@ -110,8 +99,7 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTransfer', {
                 itemId: 'department',
                 labelWidth: 40,
                 hidden: true,
-                //tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.departmentName)]}</li>', '</tpl></ul>'),
-                width: 140,
+                width: 180,
                 store: this.departmentStore,
                 queryMode: 'local',
                 forceSelection: true,
@@ -123,10 +111,9 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTransfer', {
                 fieldLabel: '团队',
                 itemId: 'projectTeam',
                 name: 'projectTeam',
-                //tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.projectTeamName)]}</li>', '</tpl></ul>'),
                 hidden: true,
                 labelWidth: 40,
-                width: 140,
+                width: 180,
                 store: this.projectTeamStore,
                 queryMode: 'local',
                 forceSelection: true,
@@ -140,11 +127,10 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTransfer', {
                 itemId: 'user',
                 hidden: true,
                 labelWidth: 40,
-                width: 120,
+                width: 180,
                 store: this.userStore,
                 queryMode: 'local',
                 forceSelection: true,
-                //tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.realName)]}</li>', '</tpl></ul>'),
                 displayField: 'realName',
                 valueField: 'userID',
                 editable: false
@@ -156,15 +142,16 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTransfer', {
                 action: 'search',
                 itemId: 'searchBtn'
             } ],
-            bbar: [ {
+            dockedItems: [ {
                 xtype: 'pagingtoolbar',
-                width: 475,
                 store: this.store,
+                dock: 'bottom',
                 displayInfo: true
             } ]
         }, {
             flex: 1,
             title: '转移对象',
+            region: "east",
             xtype: 'form',
             margin: '0 0 0 2',
             defaultType: 'textfield',
@@ -180,10 +167,9 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTransfer', {
                 name: 'queryMode',
                 itemId: 'queryMode',
                 labelWidth: 60,
-                width: 150,
+                width: 220,
                 store: this.queryModeFormStore,
                 queryMode: 'local',
-               // tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.value)]}</li>', '</tpl></ul>'),
                 forceSelection: true,
                 displayField: 'value',
                 valueField: 'code',
@@ -194,8 +180,7 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTransfer', {
                 name: 'department',
                 itemId: 'department',
                 labelWidth: 60,
-               // tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.departmentName)]}</li>', '</tpl></ul>'),
-                width: 150,
+                width: 220,
                 store: this.departmentFormStore,
                 queryMode: 'local',
                 forceSelection: true,
@@ -209,10 +194,9 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTransfer', {
                 name: 'projectTeam',
                 hidden: true,
                 labelWidth: 60,
-                width: 150,
+                width: 220,
                 store: this.projectTeamFormStore,
                 queryMode: 'local',
-               // tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.projectTeamName)]}</li>', '</tpl></ul>'),
                 forceSelection: true,
                 displayField: 'projectTeamName',
                 valueField: 'projectTeamID',
@@ -223,26 +207,29 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTransfer', {
                 name: 'user',
                 itemId: 'user',
                 labelWidth: 60,
-                width: 150,
+                width: 220,
                 store: this.userFormStore,
-              //  tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.realName)]}</li>', '</tpl></ul>'),
                 queryMode: 'local',
                 forceSelection: true,
                 displayField: 'realName',
                 valueField: 'userID',
                 editable: false
+            } ],
+            buttons: [ {
+                text: '确定',
+                action: 'save'
             } ]
         } ];
-        this.buttons = [ {
-            text: '确定',
-            action: 'save'
-        }, {
-            text: '确定并关闭',
-            action: 'saveAndClose'
-        }, {
-            text: '取消',
-            action: 'close'
-        } ];
+//        this.buttons = [ {
+//            text: '确定',
+//            action: 'save'
+//        }, {
+//            text: '确定并关闭',
+//            action: 'saveAndClose'
+//        }, {
+//            text: '取消',
+//            action: 'close'
+//        } ];
         this.callParent(arguments);
     },
     rendererValue: function(value, metadata, record, rowIndex) {
