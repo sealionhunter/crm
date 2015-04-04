@@ -43,6 +43,9 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer', {
             'customerlist toolbar button[action=deleteCustomer]': {
                 click: this.deleteCustomer
             },
+            'customerlist toolbar button[action=receiveCustomerCommon]': {
+                click: this.receiveCustomerCommon
+            },
             'customerlist toolbar button[action=addCustomerCommon]': {
                 click: this.addCustomerCommon
             },
@@ -161,6 +164,7 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer', {
     changeBtnType: function(sm, selections) {
         if (this.isGonghai) {
             Ext.getCmp('customerCommonDelBtn').setDisabled(selections.length == 0);
+            Ext.getCmp('receiveCustomerCommon').setDisabled(selections.length != 1);
             Ext.getCmp('customerCommonEditBtn').setDisabled(selections.length != 1);
         } else {
             Ext.getCmp('customerDelBtn').setDisabled(selections.length == 0);
@@ -274,6 +278,35 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer', {
         view.down('#holder').allowBlank = true;
         view.setTitle('添加客户信息');
         view.down('#cusReset').setText('清空');
+    },
+    receiveCustomerCommon: function(button) {
+        var selection = button.up("panel").getView().getSelectionModel().getSelection()[0];
+        if (selection === undefined) {
+            return;
+        }
+        var customerID = selection.get("customerID");
+        Ext.Ajax.request({
+            url: "receiveCustomerCommon.action",
+            params: {
+                customerID: customerID,
+                userID: USER_ID
+            },
+            success: function(response) {
+                if (CRM.checkResponse(response)) {
+                    return;
+                }
+                var responseText = Ext.decode(response.responseText) || '';
+                if (responseText.message) {
+                    messageBox.alert('提示', 'responseText.message');
+                } else {
+                    Ext.crm.msg("领取成功!", "");
+                    Ext.getCmp('customerlist').getStore().loadPage(1);
+                }
+            },
+            failure: function(response) {
+                messageBox.alert('提示', '领取客户失败，请联系管理员！');
+            }
+        });
     },
     toEditCustomer: function(grid, record) {
         if (!Ext.getCmp('customerEditBtn').isHidden()) {

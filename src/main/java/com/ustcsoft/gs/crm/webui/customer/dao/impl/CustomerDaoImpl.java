@@ -302,4 +302,22 @@ public class CustomerDaoImpl implements CustomerDao {
         LOG.debug("method getAllCustomerName end.");
         return nameList;
     }
+
+    @Override
+    public boolean isHolderExist(int customerID) {
+        LOG.debug("method judgeCustomerName start");
+        int holder = (int) hibernateTemplate.findByNamedParam(
+                "select cus.holder from CustomerDto cus where cus.customerID = :customerID", "customerID", customerID).get(0);
+        LOG.debug("method judgeCustomerName end");
+        return holder > 0;
+    }
+
+    @Override
+    public void receiveCustomer(int customerID, int userID) {
+        LOG.debug("method judgeCustomerName start");
+        CustomerDto dto = (CustomerDto) hibernateTemplate.get(CustomerDto.class, customerID);
+        dto.setHolder(userID);
+        hibernateTemplate.update(dto);
+        LOG.debug("method judgeCustomerName end");
+    }
 }

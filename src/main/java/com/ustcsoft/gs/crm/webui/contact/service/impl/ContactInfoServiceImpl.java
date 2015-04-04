@@ -19,7 +19,6 @@ import com.ustcsoft.gs.crm.webui.contact.dto.ContactInfoDto;
 import com.ustcsoft.gs.crm.webui.contact.dto.FamilyDto;
 import com.ustcsoft.gs.crm.webui.contact.dto.SocialDto;
 import com.ustcsoft.gs.crm.webui.contact.service.ContactInfoService;
-import com.ustcsoft.gs.crm.webui.customer.dto.ContactSelectDto;
 
 /**
  * @author xuzhen and shenkaichuan

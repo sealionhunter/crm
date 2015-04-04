@@ -157,9 +157,10 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
                 action: 'exportCustomerCommon'
             }, {
                 hidden: true,
+                id: 'receiveCustomerCommon',
                 itemId: '11204',
                 text: '领取客户',
-                action: 'getCustomerCommon'
+                action: 'receiveCustomerCommon'
             }, {
                 hidden: true,
                 itemId: '11201',

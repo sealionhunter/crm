@@ -101,4 +101,8 @@ public interface CustomerDao {
      */
     public boolean judgeCustomerName(CustomerDto customerDto);
 
+    public boolean isHolderExist(int customerID);
+
+    public void receiveCustomer(int customerID, int userID);
+
 }

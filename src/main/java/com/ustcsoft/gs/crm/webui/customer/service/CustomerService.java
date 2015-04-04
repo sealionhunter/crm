@@ -87,4 +87,6 @@ public interface CustomerService {
      *            the customerDao to set
      */
     public void setCustomerDao(CustomerDao customerDao);
+
+    public Map<String, Object> receiveCustomer(int customerID, int userID);
 }

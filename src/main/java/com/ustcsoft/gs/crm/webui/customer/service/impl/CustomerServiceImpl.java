@@ -8,9 +8,7 @@
  */
 package com.ustcsoft.gs.crm.webui.customer.service.impl;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -258,21 +256,21 @@ public class CustomerServiceImpl implements CustomerService {
         return bool;
     }
 
-    private boolean isActivityMember(int customerID) {
-        LOG.debug("method isActivityMember start.");
-        List<String> activityMember = customerDao.findActivityMember();
-        for (String s : activityMember) {
-            Integer[] sArray = CRMUtils.getDeleteIds(s);
-            for (int i : sArray) {
-                if (i == customerID) {
-                    LOG.debug("method isActivityMember end.");
-                    return true;
-                }
-            }
-        }
-        LOG.debug("method isActivityMember end.");
-        return false;
-    }
+//    private boolean isActivityMember(int customerID) {
+//        LOG.debug("method isActivityMember start.");
+//        List<String> activityMember = customerDao.findActivityMember();
+//        for (String s : activityMember) {
+//            Integer[] sArray = CRMUtils.getDeleteIds(s);
+//            for (int i : sArray) {
+//                if (i == customerID) {
+//                    LOG.debug("method isActivityMember end.");
+//                    return true;
+//                }
+//            }
+//        }
+//        LOG.debug("method isActivityMember end.");
+//        return false;
+//    }
 
     /**
      * @return the sourceInfoService
@@ -295,6 +293,17 @@ public class CustomerServiceImpl implements CustomerService {
 
     public void setTransferService(CustomerTransferService transferService) {
         this.transferService = transferService;
+    }
+
+    @Override
+    public Map<String, Object> receiveCustomer(int customerID, int userID) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (customerDao.isHolderExist(customerID)) {
+            map.put("message", "该客户已经被领取，请重新选择！");
+        } else {
+            customerDao.receiveCustomer(customerID, userID);
+        }
+        return map;
     }
 
 }

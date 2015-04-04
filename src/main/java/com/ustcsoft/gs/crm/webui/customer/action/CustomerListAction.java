@@ -31,6 +31,14 @@ import com.ustcsoft.gs.crm.webui.customer.service.CustomerService;
  */
 public class CustomerListAction extends CRMAction {
 
+    public int getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
+    }
+
     private static final long serialVersionUID = 1L;
 
     private static final Log LOG = LogFactory.getLog(CustomerListAction.class);
@@ -44,6 +52,8 @@ public class CustomerListAction extends CRMAction {
     private boolean flag = true;
 
     private boolean gonghai = false;
+
+    private int customerID;
 
     /**
      * validate updateCustomer method.
@@ -178,6 +188,20 @@ public class CustomerListAction extends CRMAction {
     public String deleteCustomer() throws CRMDBException {
         LOG.debug("method deleteCustomer start.");
         map = customerService.deleteCustomer(super.jsonString);
+        LOG.debug("method deleteCustomer end.");
+        return SUCCESS;
+    }
+
+    /**
+     * Delete customer and cooperator resume
+     * 
+     * @return SUCCESS
+     * @throws CRMDBException
+     *             in case of DataAccessException.
+     */
+    public String receiveCustomer() throws CRMDBException {
+        LOG.debug("method deleteCustomer start.");
+        map = customerService.receiveCustomer(customerID, userID);
         LOG.debug("method deleteCustomer end.");
         return SUCCESS;
     }
