@@ -218,6 +218,16 @@
         scope="prototype">
         <property name="customerService" ref="customerService"></property>
     </bean>
+        <bean id="customerCommonDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.CustomerCommonDaoImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate" />
+        </property>
+    </bean>
+    <bean id="customerCommonService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.CustomerCommonServiceImpl">
+        <property name="customerCommonDao" ref="customerCommonDao"></property>
+    </bean>
 
     <!-- 文件模板 -->
     <bean id="fileTemplateDao"

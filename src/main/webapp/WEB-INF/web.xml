@@ -22,11 +22,13 @@
     </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener> 
+    </listener>
     <listener>
         <listener-class>com.ustcsoft.gs.crm.webui.mail.listener.MailListener</listener-class>
     </listener>
-
+    <listener>
+        <listener-class>com.ustcsoft.gs.crm.webui.customer.listener.CustomerListener</listener-class>
+    </listener>
     <!-- session超时定义,单位为分钟 -->
     <session-config>
         <session-timeout>30</session-timeout>

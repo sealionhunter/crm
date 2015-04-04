@@ -113,7 +113,11 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
                 disabled: false,
                 action: 'customer-transfer'
             }, {
-//            }, {
+                hidden: true,
+                itemId: '11107',
+                text: '导出客户信息',
+                action: 'exportCustomer'
+            }, {
                 text: '客户详情',
                 itemId: '11102',
                 hidden: true,
@@ -146,6 +150,16 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
                 text: '删除',
                 disabled: true,
                 action: 'deleteCustomer'
+            }, {
+                hidden: true,
+                itemId: '11205',
+                text: '导出客户信息',
+                action: 'exportCustomerCommon'
+            }, {
+                hidden: true,
+                itemId: '11204',
+                text: '领取客户',
+                action: 'getCustomerCommon'
             }, {
                 hidden: true,
                 itemId: '11201',
@@ -190,7 +204,6 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
                 maxLengthText: '客户经理最大长度不能超过20个字符！',
                 name: 'holder',
                 labelWidth: 55,
-//                width: 170,
                 selectOnFocus: true
             }, {
                 xtype: 'combobox',
@@ -200,9 +213,7 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
                 allowBlank: true,
                 emptyText: '请选择',
                 editable: false,
-//                tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.value)]}</li>', '</tpl></ul>'),
                 labelWidth: 55,
-//                width: 130,
                 store: this.searchScaleStore,
                 displayField: 'value',
                 queryMode: 'local',
@@ -217,8 +228,6 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
                 emptyText: '请选择',
                 editable: false,
                 labelWidth: 55,
-//                width: 130,
-//                tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.value)]}</li>', '</tpl></ul>'),
                 store: this.searchIndustryStore,
                 displayField: 'value',
                 queryMode: 'local',
@@ -234,7 +243,6 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
                 editable: false,
                 width: 147,
                 labelWidth: 42,
-//                tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.value)]}</li>', '</tpl></ul>'),
                 store: this.searchFeeStore,
                 displayField: 'value',
                 valueField: 'code',
@@ -258,10 +266,6 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
                     itemId: 'earning',
                     name: 'earning',
                     selectOnFocus: true
-//                }, {
-//                    xtype: 'displayfield',
-//                    width: 26,
-//                    value: '万元'
                 } ]
             }, {
                 fieldLabel: '标准地址',

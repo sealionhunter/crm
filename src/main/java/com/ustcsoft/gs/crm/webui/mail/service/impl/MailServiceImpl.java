@@ -70,6 +70,7 @@ public class MailServiceImpl extends TimerTask implements MailService {
                 mailInfoBeans = getMailInfo(0);
             } catch (CRMDBException e) {
                 LOG.error("DataAccessException occurs in method getMailInfo!", e);
+                return;
             }
 
             List<String> workIDList = new ArrayList<String>();
