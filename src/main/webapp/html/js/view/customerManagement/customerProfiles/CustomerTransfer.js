@@ -49,7 +49,7 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTransfer', {
             selType: 'checkboxmodel',
             columns: [ Ext.create('Ext.grid.RowNumberer', {
                 text: '序号',
-                width: 40,
+                width: 50,
                 renderer: function(value, metadata, record, rowIndex) {
                     var page = me.store.currentPage, pageSize = me.store.pageSize;
                     return (page - 1) * pageSize + rowIndex + 1;
@@ -67,14 +67,14 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTransfer', {
                 renderer: this.rendererValue,
                 sortable: true
             }, {
-                text: "所有权",
+                text: "客户状态",
                 flex: 1,
-                dataIndex: 'feeName',
+                dataIndex: 'customerStatementName',
                 renderer: this.rendererValue,
                 sortable: true
             }, {
                 text: "标准地址",
-                flex: 1,
+                flex: 2,
                 dataIndex: 'customerAddr',
                 renderer: this.rendererValue,
                 sortable: true

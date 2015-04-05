@@ -276,9 +276,10 @@ public class CRMUtils {
      * update customer updateTime
      * 
      * @param ht HibernateTemplate
+     * @param customerID customerID
      */
-    public static void setCustomerUpdateTime(HibernateTemplate ht) {
-        CustomerDto dto = new CustomerDto();
+    public static void setCustomerUpdateTime(HibernateTemplate ht, int customerID) {
+        CustomerDto dto = ht.get(CustomerDto.class, customerID);
         dto.setUpdateTime(currentTimeAsString());
         ht.saveOrUpdate(dto);
     }

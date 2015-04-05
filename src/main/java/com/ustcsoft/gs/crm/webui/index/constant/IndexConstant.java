@@ -192,6 +192,6 @@ public class IndexConstant {
             + " from CustomerDto cus"
             + " where cus.holder = :userID"
             + " and cus.isAbolished = 0"
-            + " and cus.updateTime <= CONVERT(varchar(19), getdate() - 70, 120)"
+            + " and cus.updateTime <= CONVERT(varchar(19), getdate() - 10, 120)"
             + " and cus.updateTime >= CONVERT(varchar(19), getdate() - 90, 120)";
 }

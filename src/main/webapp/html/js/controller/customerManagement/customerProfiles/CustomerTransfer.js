@@ -67,26 +67,26 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
 
     onSelectQueryModeToolCombo: function(combo) {
         var value = combo.getValue();
-        if (value == '000100050001') {
+        if (value === '000100050001') {
             combo.up('toolbar').down('combo[itemId=department]').show();
             combo.up('toolbar').down('combo[itemId=department]').select(-1);
             this.changeToolDepartment(combo.up('toolbar').down('combo[itemId=department]'));
             combo.up('toolbar').down('combo[itemId=projectTeam]').hide();
             combo.up('toolbar').down('combo[itemId=user]').show();
-            combo.up('toolbar').down('combo[itemId=user]').select('00');
-        } else if (value == '000100050002') {
+            combo.up('toolbar').down('combo[itemId=user]').select(0);
+        } else if (value === '000100050002') {
             combo.up('toolbar').down('combo[itemId=department]').hide();
             var projectTeamCombo = combo.up('toolbar').down('combo[itemId=projectTeam]');
             projectTeamCombo.show();
             projectTeamCombo.setValue(projectTeamCombo.getStore().getAt(0).get('projectTeamID'));
             this.changeToolProjectTeam(projectTeamCombo);
             combo.up('toolbar').down('combo[itemId=user]').show();
-            combo.up('toolbar').down('combo[itemId=user]').select('00');
-        } else if (value == '000100050003') {
+            combo.up('toolbar').down('combo[itemId=user]').select(0);
+        } else if (value === '000100050003') {
             combo.up('toolbar').down('combo[itemId=department]').hide();
             combo.up('toolbar').down('combo[itemId=projectTeam]').hide();
             combo.up('toolbar').down('combo[itemId=user]').hide();
-        } else if (value == '00') {
+        } else if (value === 0) {
             combo.up('toolbar').down('combo[itemId=department]').hide();
             combo.up('toolbar').down('combo[itemId=projectTeam]').hide();
             combo.up('toolbar').down('combo[itemId=user]').hide();
@@ -97,13 +97,13 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
 
     onSelectQueryModeFormCombo: function(combo) {
         var value = combo.getValue();
-        if (value == '000100050001') {
+        if (value === '000100050001') {
             combo.up('form').down('combo[itemId=department]').show();
             combo.up('form').down('combo[itemId=department]').select(-1);
             this.changeFormDepartment(combo.up('form').down('combo[itemId=department]'));
             combo.up('form').down('combo[itemId=projectTeam]').hide();
             combo.up('form').down('combo[itemId=user]').show();
-        } else if (value == '000100050002') {
+        } else if (value === '000100050002') {
             combo.up('form').down('combo[itemId=department]').hide();
             var projectTeamCombo = combo.up('form').down('combo[itemId=projectTeam]');
             projectTeamCombo.show();
@@ -129,7 +129,7 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
                 });
                 var toolCombo = Ext.getCmp('customertransfer').down('toolbar').down(
                         'combo[itemId=department]');
-                if (toolCombo.getValue() != -1) {
+                if (toolCombo.getValue() !== -1) {
                     toolCombo.select(-1);
                 }
             }
@@ -151,7 +151,7 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
                 });
                 var formDepartmentCombo = Ext.getCmp('customertransfer').down('form').down(
                         'combo[itemId=department]');
-                if (formDepartmentCombo.getValue() != -1) {
+                if (formDepartmentCombo.getValue() !== -1) {
                     formDepartmentCombo.select(-1);
                 }
                 var formUserCombo = formDepartmentCombo.up('form').down('combo[itemId=user]');
@@ -166,9 +166,9 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
                 userID: USER_ID
             },
             callback: function(records, operation, success) {
-                if (store.getCount() == 0) {
+                if (store.getCount() === 0) {
                     store.insert(0, {
-                        projectTeamID: '00',
+                        projectTeamID: 0,
                         projectTeamName: '- 无 -'
                     });
                 }
@@ -195,9 +195,9 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
         this.transferCustomer(button, 'close');
     },
     transferCustomer: function(button, flag) {
-        var win = button.up('panel');
-        var grid = win.down('grid');
-        var userID = win.down('form').down('#user').getValue() || '';
+        var form = button.up('panel');
+        var grid = form.up('panel').down('grid');
+        var userID = form.down('#user').getValue() || '';
         var store = grid.getStore();
         var checkRecord = grid.getSelectionModel().getSelection();
         var checkRecordIDs = new Array();
@@ -216,22 +216,20 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
                         return;
                     }
                     Ext.crm.msg('转移成功！', '');
-                    if (flag == 'close') {
-                        win.close();
-                    } else {
+//                    if (flag == 'close') {
+//                        win.close();
+//                    } else {
                         store.loadPage(1);
-                    }
+//                    }
                 },
                 failure: function(response) {
                     messageBox.alert('提示', '转移失败，请联系管理员！');
                 }
             });
-        } else if (checkRecord.length == 0) {
+        } else if (checkRecord.length === 0) {
             messageBox.alert('提示', '请选择客户！');
-
         } else {
             messageBox.alert('提示', '请指定转移对象！');
-
         }
     },
     search: function(button) {
@@ -257,7 +255,7 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
         if (mode == '000100050001') {
             projectTeamID = 0;
         }
-        if (mode == '00') {
+        if (mode === 0) {
             searchFlag = 0;
         }
         store.on('beforeload', function(store, options) {
@@ -304,7 +302,7 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
             },
             callback: function(records, operation, success) {
                 user.store.insert(0, {
-                    userID: '00',
+                    userID: 0,
                     realName: '- 不限 -'
                 });
                 user.setValue('00');
@@ -337,7 +335,7 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
 
     changeProjectTeam: function(combo, user) {
         user.clearValue();
-        if (combo.value == '00') {
+        if (combo.value === 0) {
             user.store.removeAll();
             messageBox.alert('提示', '当前用户没有负责的团队！');
             return;
@@ -350,10 +348,10 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
             },
             callback: function(records, operation, success) {
                 user.store.insert(0, {
-                    userID: '00',
+                    userID: 0,
                     realName: '- 不限 -'
                 });
-                user.setValue('00');
+                user.setValue(0);
             }
         });
         Ext.override(Ext.LoadMask, {
@@ -364,7 +362,7 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
     },
     changeProjectTeamD: function(combo, user) {
         user.clearValue();
-        if (combo.value == '00') {
+        if (combo.value === 0) {
             user.store.removeAll();
             messageBox.alert('提示', '当前用户没有负责的团队！');
             return;

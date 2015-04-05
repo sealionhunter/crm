@@ -28,8 +28,8 @@ Ext.define('CRM.view.systemManagement.codeManagement.CodeList', {
                 fieldLabel: 'Code类别',
                 store: this.modeStore,
                 queryMode: 'local',
-                width: 158,
-                labelWidth: 58,
+                width: 180,
+                labelWidth: 60,
                 editable: false,
                 valueField: 'code',
                 displayField: 'value',
@@ -45,8 +45,8 @@ Ext.define('CRM.view.systemManagement.codeManagement.CodeList', {
                 fieldLabel: '模块',
                 store: this.moduleStore,
                 queryMode: 'local',
-                width: 132,
-                labelWidth: 32,
+                width: 160,
+                labelWidth: 40,
                 editable: false,
                 valueField: 'code',
                 displayField: 'value',
@@ -60,10 +60,10 @@ Ext.define('CRM.view.systemManagement.codeManagement.CodeList', {
                 name: 'category',
                 id: 'categoryComboBox',
                 fieldLabel: '分类',
-                width: 132,
+                width: 160,
                 store: this.categoryStore,
                 queryMode: 'local',
-                labelWidth: 32,
+                labelWidth: 40,
                 editable: false,
                 displayField: 'value',
                 valueField: 'code',
@@ -98,7 +98,7 @@ Ext.define('CRM.view.systemManagement.codeManagement.CodeList', {
         } ];
         this.columns = [ Ext.create('Ext.grid.RowNumberer', {
             text: '序号',
-            width: 40,
+            width: 50,
             align: 'right',
             renderer: function(value, metadata, record, rowIndex) {
                 var page = me.store.currentPage, pageSize = me.store.pageSize;

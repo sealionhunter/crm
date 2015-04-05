@@ -87,12 +87,12 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTabInfo', {
                 name : 'customerAddr',
                 fieldLabel : '标准地址',
                 labelWidth : 60,
-                width : 350
-            }, {
-                name : 'descriptions',
-                fieldLabel : '企业简介',
-                labelWidth : 60,
-                width : 350
+                width : 500
+//            }, {
+//                name : 'descriptions',
+//                fieldLabel : '企业简介',
+//                labelWidth : 60,
+//                width : 750
             } ]
         } ]
     }, {

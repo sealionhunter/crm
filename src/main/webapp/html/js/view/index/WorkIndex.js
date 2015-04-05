@@ -9,7 +9,7 @@ Ext.define('CRM.view.index.WorkIndex', {
         this.items = [ {
             xtype: 'panel',
             region: 'north',
-            height: 200,
+            height: 197,
             layout: 'border',
             border: '0 0 0 0',
             padding: '0 0 0 0',
@@ -39,6 +39,7 @@ Ext.define('CRM.view.index.WorkIndex', {
                 padding: '0 0 0 0',
                 margins: '0 0 0 0',
                 width: 210,
+                height: 197,
                 layout: 'anchor',
                 listeners: {
                     dblclick: {

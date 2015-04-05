@@ -161,6 +161,7 @@ INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf],
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (38, N'operation', 11203, N'删除公海客户', 0, 1, 1120);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (54, N'operation', 11204, N'领取公海客户', 0, 1, 1120);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (55, N'operation', 11205, N'导出公海客户', 0, 1, 1120);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (56, N'operation', 11206, N'客户详情', 0, 1, 1120);
 
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (39, N'operation', 1210, N'客户联系', 0, 0, -1);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (40, N'operation', 12101, N'客户反馈', 0, 1, 1210);

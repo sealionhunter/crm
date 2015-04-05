@@ -18,8 +18,7 @@ Ext.define('CRM.view.customerManagement.proposalOrContract.FileTemplateUpdate', 
             layout: 'anchor',
             fieldDefaults: {
                 anchor: '100%',
-                labelAlign: 'top',
-                msgTarget: 'side'
+                labelAlign: 'top'
             },
             items: [ {
                 xtype: 'hidden',

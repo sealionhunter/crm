@@ -28,8 +28,11 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer', {
             'customerlist button[action=customerLookResume]': {
                 click: this.customerLookResume
             },
-            'customerlist button[action=lookContactBtn]': {
-                click: this.lookContactBtn
+            'customerlist button[action=customerDetail]': {
+                click: this.customerDetail
+            },
+            'customerlist button[action=customerCommonDetail]': {
+                click: this.customerCommonDetail
             },
 //            'customerlist button[action=customer-transfer]': {
 //                click: this.customerTransfer
@@ -120,7 +123,7 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer', {
         function setVal(id, index) {
             list.down('#' + id).hide();
         }
-        var actionIds = isGonghai ? ['11102','11103','11104','11105','11106','11107'] : ['11201','11202','11203','11204','11205'];
+        var actionIds = isGonghai ? ['11102','11103','11104','11105','11106','11107'] : ['11201','11202','11203','11204','11205','11206'];
         Ext.each(actionIds, setVal);
         utils.authorizationControl(treeId, list);
     },
@@ -164,13 +167,14 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer', {
     changeBtnType: function(sm, selections) {
         if (this.isGonghai) {
             Ext.getCmp('customerCommonDelBtn').setDisabled(selections.length == 0);
-            Ext.getCmp('receiveCustomerCommon').setDisabled(selections.length != 1);
+            Ext.getCmp('customerCommonReceiveBtn').setDisabled(selections.length != 1);
             Ext.getCmp('customerCommonEditBtn').setDisabled(selections.length != 1);
+            Ext.getCmp('customerCommonDetailBtn').setDisabled(selections.length != 1);
         } else {
             Ext.getCmp('customerDelBtn').setDisabled(selections.length == 0);
             Ext.getCmp('customerEditBtn').setDisabled(selections.length != 1);
             Ext.getCmp('customerLookResBtn').setDisabled(selections.length != 1);
-            Ext.getCmp('lookContactBtn').setDisabled(selections.length != 1);
+            Ext.getCmp('customerDetailBtn').setDisabled(selections.length != 1);
         }
 //        if (selections.length != 1) {
 //            Ext.getCmp('customerdatail').hide();
@@ -244,9 +248,13 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer', {
         var record = button.up('toolbar').up('grid').getView().getSelectionModel().getSelection()[0];
         initController('customerManagement.customerProfiles.CustomerResume').viewInit(record);
     },
-    lookContactBtn: function(button) {
+    customerDetail: function(button) {
         var record = button.up('toolbar').up('grid').getView().getSelectionModel().getSelection()[0];
-        initController('customerManagement.customerProfiles.Customer2').viewInit(record);
+        initController('customerManagement.customerProfiles.Customer2').viewInit(record, false);
+    },
+    customerCommonDetail: function(button) {
+        var record = button.up('toolbar').up('grid').getView().getSelectionModel().getSelection()[0];
+        initController('customerManagement.customerProfiles.Customer2').viewInit(record, true);
     },
     changeCusDetail: function(grid, record) {
         Ext.getCmp('customerdatail').loadRecord(record);
@@ -259,10 +267,9 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer', {
             }
         });
     },
-
-    customerTransfer: function(button) {
-        initController('customerManagement.customerProfiles.CustomerTransfer').viewInit('show');
-    },
+//    customerTransfer: function(button) {
+//        initController('customerManagement.customerProfiles.CustomerTransfer').viewInit('show');
+//    },
     deleteCustomer: function(button) {
         var grid = button.up('grid');
         utils.delRecordsCheck(grid, 'deleteCustomer.action', 'customerID');

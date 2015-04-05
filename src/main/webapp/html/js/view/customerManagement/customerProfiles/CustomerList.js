@@ -21,7 +21,7 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
         this.searchFeeStore = Ext.create('CRM.store.code.Code');
         this.columns = [ Ext.create('Ext.grid.RowNumberer', {
             text: '序号',
-            width: 40,
+            width: 50,
             renderer: function(value, metadata, record, rowIndex) {
                 var page = me.store.currentPage, pageSize = me.store.pageSize;
                 return (page - 1) * pageSize + rowIndex + 1;
@@ -105,13 +105,6 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
                 action: 'openOrCloseSuperQueryBtn'
             }, {
                 xtype: 'tbfill'
-//            }, {
-//                text: '客户转移',
-//                hidden: true,
-//                itemId: '11101',
-//                id: 'customer-transfer',
-//                disabled: false,
-//                action: 'customer-transfer'
             }, {
                 hidden: true,
                 itemId: '11107',
@@ -121,9 +114,9 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
                 text: '客户详情',
                 itemId: '11102',
                 hidden: true,
-                id: 'lookContactBtn',
+                id: 'customerDetailBtn',
                 disabled: true,
-                action: 'lookContactBtn'
+                action: 'customerDetail'
             }, {
                 itemId: '11103',
                 hidden: true,
@@ -156,10 +149,18 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
                 text: '导出客户信息',
                 action: 'exportCustomerCommon'
             }, {
+                text: '客户详情',
+                itemId: '11206',
                 hidden: true,
-                id: 'receiveCustomerCommon',
+                id: 'customerCommonDetailBtn',
+                disabled: true,
+                action: 'customerCommonDetail'
+            }, {
+                hidden: true,
+                id: 'customerCommonReceiveBtn',
                 itemId: '11204',
                 text: '领取客户',
+                disabled: true,
                 action: 'receiveCustomerCommon'
             }, {
                 hidden: true,

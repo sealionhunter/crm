@@ -12,7 +12,7 @@ Ext.define('CRM.view.customerManagement.cooperator.CooperatorAnalysisShowList', 
         this.columns = [ {
             xtype: 'rownumberer',
             text: '序号',
-            width: 40,
+            width: 50,
             align: 'left'
         }, {
             text: '合作伙伴名称',

@@ -11,7 +11,7 @@ Ext.define('CRM.view.salesManagement.eventFlow.EventFlow', {
     initComponent: function() {
         this.columns = [ Ext.create('Ext.grid.RowNumberer', {
             text: '序号',
-            width: 40,
+            width: 50,
             renderer: function(value, metadata, record, rowIndex) {
                 return rowIndex + 1;
             }

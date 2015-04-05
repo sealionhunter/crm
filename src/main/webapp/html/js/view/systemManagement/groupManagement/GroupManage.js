@@ -4,7 +4,7 @@ Ext.define('CRM.view.systemManagement.groupManagement.GroupManage', {
     title: '角色管理',
     id: 'groupmanage',
     layout: 'border',
-    border : false,
+//    border : false,
     frame: false,
     initComponent: function() {
         this.groupStore = Ext.create('CRM.store.systemManagement.groupManagement.Group');
@@ -49,10 +49,10 @@ Ext.define('CRM.view.systemManagement.groupManagement.GroupManage', {
             } ]
         }, {
             region: 'center',
+            flex: 2,
             xtype: 'gridpanel',
             id: 'groupMembers',
             title: '角色成员列表',
-            border : false,
             sortableColumns: false,
             tbar: [ '->', {
                 text: '成员管理',

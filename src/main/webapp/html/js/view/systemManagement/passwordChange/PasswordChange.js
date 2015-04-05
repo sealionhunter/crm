@@ -17,7 +17,6 @@ Ext.define('CRM.view.systemManagement.passwordChange.PasswordChange', {
             defaults: {
                 anchor: '90%',
                 labelAlign: 'left',
-                msgTarget: 'side',
                 labelWidth: 80,
                 margin: '10 20 10 10',
                 xtype: 'textfield',

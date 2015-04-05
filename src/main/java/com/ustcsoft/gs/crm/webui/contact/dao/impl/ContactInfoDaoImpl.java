@@ -130,10 +130,11 @@ public class ContactInfoDaoImpl extends CRMUtils implements ContactInfoDao {
             final List<FamilyDto> familyInfoList, final List<SocialDto> socialInfoList,
             final String familyID, final String socialID) throws DataAccessException {
         LOG.debug("method addContact  start!");
+        int customerID = contactInfo.getCustomerID();
         if (contactInfo.getContactID() == 0) {
             // add/edit contactInfo by contactInfo
             hibernateTemplate.saveOrUpdate(contactInfo);
-            CRMUtils.setCustomerUpdateTime(hibernateTemplate);
+            CRMUtils.setCustomerUpdateTime(hibernateTemplate, customerID);
 
             // add ContactID in familyInfoList
             if (familyInfoList != null) {
@@ -150,7 +151,7 @@ public class ContactInfoDaoImpl extends CRMUtils implements ContactInfoDao {
             }
         } else {
             hibernateTemplate.saveOrUpdate(contactInfo);
-            CRMUtils.setCustomerUpdateTime(hibernateTemplate);
+            CRMUtils.setCustomerUpdateTime(hibernateTemplate, customerID);
         }
 
         // add/edit familyInfo by familyInfoList
@@ -198,7 +199,10 @@ public class ContactInfoDaoImpl extends CRMUtils implements ContactInfoDao {
     public final void deleteContact(final String contactIDs) {
         LOG.debug("method deleteContact  start!");
         hibernateTemplate.bulkUpdate(ContactConstant.CONTACT_DELETE + contactIDs);
-        CRMUtils.setCustomerUpdateTime(hibernateTemplate);
+        String substr = contactIDs.substring(1, contactIDs.length() - 1);
+        String contactID = (substr.split(","))[0].trim();
+        ContactInfoDto dto = hibernateTemplate.get(ContactInfoDto.class, Integer.parseInt(contactID));
+        CRMUtils.setCustomerUpdateTime(hibernateTemplate, dto.getCustomerID());
         LOG.debug("method deleteContact end!");
     }
 

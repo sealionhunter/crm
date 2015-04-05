@@ -13,7 +13,7 @@ Ext.define('CRM.view.customerManagement.order.OrderList', {
         this.orderStateStore = Ext.create('CRM.store.code.Code');
         this.columns = [ Ext.create('Ext.grid.RowNumberer', {
             text: '序号',
-            width: 40,
+            width: 50,
             renderer: function(value, metadata, record, rowIndex) {
                 var page = me.store.currentPage, pageSize = me.store.pageSize;
                 return (page - 1) * pageSize + rowIndex + 1;

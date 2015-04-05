@@ -153,20 +153,22 @@ public class ContactTrackDaoImpl implements ContactTrackDao {
     public void deleteContactTrack(String contactIDs) {
         LOG.debug("method deleteContactTrack start!");
         hibernateTemplate.bulkUpdate(CustomerConstant.GETNUMOFCONTACTTRACK_HQL + contactIDs);
-        CRMUtils.setCustomerUpdateTime(hibernateTemplate);
+        String substr = contactIDs.substring(1, contactIDs.length() - 1);
+        String contactID = (substr.split(","))[0].trim();
+        ContactTrackInfoDto dto = hibernateTemplate.get(ContactTrackInfoDto.class, Integer.parseInt(contactID));
+        CRMUtils.setCustomerUpdateTime(hibernateTemplate, dto.getCustomerID());
         LOG.debug("method deleteContactTrack end!");
     }
 
     /**
      * the function is add or update the information
      * 
-     * @param contactTrackInfoDto
      */
     @Override
     public void updateContactTrack(ContactTrackInfoDto contactTrackInfoDto) {
         LOG.debug("method updateContactTrack start!");
         hibernateTemplate.saveOrUpdate(contactTrackInfoDto);
-        CRMUtils.setCustomerUpdateTime(hibernateTemplate);
+        CRMUtils.setCustomerUpdateTime(hibernateTemplate, contactTrackInfoDto.getCustomerID());
         LOG.debug("method updateContactTrack end!");
     }
 
