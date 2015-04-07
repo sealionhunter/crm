@@ -1,4 +1,4 @@
-﻿Ext.define('CRM.view.customerManagement.customerProfiles.CoopResumeList', {
+Ext.define('CRM.view.customerManagement.customerProfiles.CoopResumeList', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.coopResumelist',
     id: 'coopResumelist',

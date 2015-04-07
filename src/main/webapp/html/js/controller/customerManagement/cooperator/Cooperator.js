@@ -1,4 +1,4 @@
-﻿Ext.define('CRM.controller.customerManagement.cooperator.Cooperator', {
+Ext.define('CRM.controller.customerManagement.cooperator.Cooperator', {
     extend: 'Ext.app.Controller',
     views: [ 'customerManagement.cooperator.CooperatorDetail', 'customerManagement.cooperator.CooperatorList',
             'customerManagement.cooperator.CooperatorUpdate', 'customerManagement.cooperator.CooperatorBody',

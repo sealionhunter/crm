@@ -1,4 +1,4 @@
-﻿Ext.define('CRM.view.customerManagement.cooperator.CooperatorList', {
+Ext.define('CRM.view.customerManagement.cooperator.CooperatorList', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.cooperatorlist',
     id: 'cooperatorList',

@@ -1,4 +1,4 @@
-﻿Ext.define('CRM.controller.menu.Menu', {
+Ext.define('CRM.controller.menu.Menu', {
     extend: 'Ext.app.Controller',
     views: [ 'menu.Menu', 'main.Main' ],
     stores: [ 'systemManagement.authorizationManagement.AccessRightsTree' ],

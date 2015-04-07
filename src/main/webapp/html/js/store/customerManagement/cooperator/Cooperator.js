@@ -1,4 +1,4 @@
-﻿Ext.define('CRM.store.customerManagement.cooperator.Cooperator', {
+Ext.define('CRM.store.customerManagement.cooperator.Cooperator', {
     extend: 'CRM.store.commonStore',
     model: 'CRM.model.customerManagement.cooperator.Cooperator',
     pageSize: 25,

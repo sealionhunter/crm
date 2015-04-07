@@ -1,4 +1,4 @@
-﻿Ext.define('CRM.controller.customerManagement.competitor.CompetitorInfoController', {
+Ext.define('CRM.controller.customerManagement.competitor.CompetitorInfoController', {
     extend: 'Ext.app.Controller',
     views: [ 'customerManagement.competitor.CompetitorInfoList', 'customerManagement.competitor.CompetitorInfoDetail',
             'customerManagement.competitor.ShowCprAnalysisWin', 'customerManagement.competitor.CompetitorUpdate',

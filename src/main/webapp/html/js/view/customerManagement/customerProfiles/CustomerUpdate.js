@@ -1,4 +1,4 @@
-﻿Ext.define('CRM.view.customerManagement.customerProfiles.CustomerUpdate', {
+Ext.define('CRM.view.customerManagement.customerProfiles.CustomerUpdate', {
     extend: 'Ext.window.Window',
     alias: 'widget.customerupdate',
     layout: 'fit',

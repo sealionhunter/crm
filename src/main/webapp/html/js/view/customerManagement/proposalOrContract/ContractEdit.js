@@ -1,4 +1,4 @@
-﻿Ext.define('CRM.view.customerManagement.proposalOrContract.ContractEdit', {
+Ext.define('CRM.view.customerManagement.proposalOrContract.ContractEdit', {
     extend: 'Ext.window.Window',
     alias: 'widget.contractedit',
     id: 'contractEdit',
