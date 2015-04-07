@@ -268,7 +268,14 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerUpdate', {
                   height: 100,
                   height: 50,
                   emptyText: "是否整体覆盖、主干光纤是否进入或联通接入方式情况！"
-              }, {
+              }/* TODO, {
+                  fieldLabel: '附件',
+                  xtype: 'fileuploadfield',
+                  name: 'attach',
+                  itemId: 'attach',
+                  buttonText: '选择文件',
+                  emptyText: "请选择需要上传的附件!"
+              }*/, {
                   fieldLabel: '创建时间',
                   xtype: 'hiddenfield',
                   name: 'createTime'

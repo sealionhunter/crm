@@ -67,4 +67,7 @@ public class CRMConstant {
     public static final String MOBILE_REG = "(^1[3-8][0-9]{9}$)";
     public static final String EMAIL_REG = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
 
+
+    public static final String DOCUMENT_ROOT = "C:/crm/docment";
+
 }

@@ -8,8 +8,10 @@
  */
 package com.ustcsoft.gs.crm.webui.customer.action;
 
+import java.io.File;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -54,6 +56,10 @@ public class CustomerListAction extends CRMAction {
     private boolean gonghai = false;
 
     private int customerID;
+
+    private File attach;
+    private String attachFileName;
+    private String attachContentType;
 
     /**
      * validate updateCustomer method.
@@ -216,6 +222,18 @@ public class CustomerListAction extends CRMAction {
     public String updateCustomer() throws CRMDBException {
 
         LOG.debug("method updateCustomer start.");
+        /* TODO
+        try {
+            String uid = UUID.random().toString();
+            String attachFilePath = "customer/" + customerDto.getCustomerID + "/" + uid + "_" + attachFileName;
+            File dest = new File(CRMConstant.DOCUMENT_ROOT, attachFilePath);
+            FileUtils.copyFile(this.attach, dest);
+            customerDto.setAttach(attachFilePath);
+        } catch (Exception ex) {
+            LOG.error("File upload failed!", ex);
+            this.map.put("errorMessages", "File upload failed!");
+        }
+        */
         customerService.updateCustomer(customerDto);
         LOG.debug("method updateCustomer start.");
         return SUCCESS;
