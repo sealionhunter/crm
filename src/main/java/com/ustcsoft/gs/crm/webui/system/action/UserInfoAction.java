@@ -228,6 +228,19 @@ public class UserInfoAction extends CRMAction {
         return SUCCESS;
     }
 
+    /**
+     * Reset User's Password
+     * 
+     * @throws CRMDBException
+     *             in case of Hibernate Exception
+     */
+    public String resetUserPass() throws CRMDBException {
+        log.debug("method resetUserPass start!");
+        map = userInfoService.resetUserPass(jsonString);
+        log.debug("method resetUserPass end!");
+        return SUCCESS;
+    }
+
     public String getDepartmentNameByID(int departmentID) {
 
         map.put("departmentName", getUserInfoService().getDepartmentNameByID(departmentID));

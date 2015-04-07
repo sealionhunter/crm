@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ustcsoft.gs.crm.webui.common.exception.CRMDBException;
+import com.ustcsoft.gs.crm.webui.common.util.CryptUtil;
 import com.ustcsoft.gs.crm.webui.system.dao.MainDao;
 import com.ustcsoft.gs.crm.webui.system.dto.UserInfoDto;
 import com.ustcsoft.gs.crm.webui.system.service.MainService;
@@ -36,7 +37,7 @@ public class MainServiceImpl implements MainService {
     public void changePasswordByUserID(int userID, String password) throws CRMDBException {
         LOG.debug("method changePasswordByUserID in MainServiceImpl start");
         try {
-            mainDao.changePasswordByUserID(userID, password);
+            mainDao.changePasswordByUserID(userID, CryptUtil.encrypt(password));
         } catch (DataAccessException e) {
             LOG.error("DataAccessException occurs in method changePasswordByUserID!", e);
             throw new CRMDBException(e);

@@ -49,6 +49,11 @@ Ext.define('CRM.view.systemManagement.userManagement.UserList', {
                 id: 'userDelete',
                 action: 'userDelete',
                 disabled: true
+            }, {
+                text: '密码重置',
+                id: 'resetUserPass',
+                action: 'resetUserPass',
+                disabled: true
             } ]
         }, {
             xtype: 'form',

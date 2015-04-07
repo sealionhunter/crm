@@ -8,6 +8,7 @@ import org.apache.commons.logging.LogFactory;
 import com.opensymphony.xwork2.ActionContext;
 import com.ustcsoft.gs.crm.webui.common.action.CRMAction;
 import com.ustcsoft.gs.crm.webui.common.exception.CRMDBException;
+import com.ustcsoft.gs.crm.webui.common.util.CryptUtil;
 import com.ustcsoft.gs.crm.webui.system.dto.UserInfoDto;
 import com.ustcsoft.gs.crm.webui.system.service.MainService;
 
@@ -56,7 +57,7 @@ public class MainAction extends CRMAction {
         // 检测原始密码是否正确]
         UserInfoDto userInfo = mainService.findByUserID(userID);
         // 若原始密码错误，直接返回页面
-        if (!oldPassword.equals(userInfo.getPassword())) {
+        if (!CryptUtil.encrypt(oldPassword).equals(userInfo.getPassword())) {
             return SUCCESS;
         }
         // 更新新密码

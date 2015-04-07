@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <!DOCTYPE struts PUBLIC
 
@@ -804,6 +804,11 @@
             </result>
         </action>
         <action name="deleteUser" class="userAction" method="deleteUserInfo">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="resetUserPass" class="userAction" method="resetUserPass">
             <result name="success" type="json">
                 <param name="root">map</param>
             </result>
