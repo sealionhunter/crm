@@ -102,7 +102,7 @@ Ext.define('CRM.controller.systemManagement.userManagement.User', {
             Ext.getCmp('UserDetail').show();
         }
         Ext.getCmp('userDelete').setDisabled(selections.length == 0);
-        Ext.getCmp('resetPass').setDisabled(selections.length != 1);
+        Ext.getCmp('resetUserPass').setDisabled(selections.length != 1);
         Ext.getCmp('userEdit').setDisabled(selections.length != 1);
     },
     storeLoad: function(store, paramNames) {
@@ -215,7 +215,7 @@ Ext.define('CRM.controller.systemManagement.userManagement.User', {
                     }
                 });
             }
-        }
+        });
     },
     saveUpdate: function(button) {
         var win = button.up('window');

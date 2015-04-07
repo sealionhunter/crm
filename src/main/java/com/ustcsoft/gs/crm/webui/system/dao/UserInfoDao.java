@@ -12,7 +12,7 @@ public interface UserInfoDao {
 	 * @param userID 
 	 * @return UserInfo
 	 */
-	public UserInfoDto getUserByID(String userID);
+	public UserInfoDto getUserByID(Integer userID);
 
     /**
      * get Size of UserInfo

@@ -158,7 +158,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         log.debug("method resetUserPass start!");
         Map<String, Object> userMap = new HashMap<String, Object>();
         try {
-            UserInfoDto user = userInfoDao.getUserByID(userID);
+            UserInfoDto user = userInfoDao.getUserByID(Integer.valueOf(userID));
             if (user != null) {
                 user.setPassword(CryptUtil.encrypt(DEFAULT_PASSWORD));
                 userInfoDao.updateUser(user);
