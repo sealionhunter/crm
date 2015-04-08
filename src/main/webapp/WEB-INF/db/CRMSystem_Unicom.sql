@@ -71,7 +71,7 @@ CREATE TABLE [dbo].[UserInfo](
     [groupID] [int] NOT NULL,
     [jobID] [nvarchar](20) NOT NULL,
     [userName] [nvarchar](20) NOT NULL,
-    [password] [nvarchar](20) NOT NULL,
+    [password] [nvarchar](64) NOT NULL,
     [realName] [nvarchar](20) NOT NULL,
     [company] [nvarchar](50) NOT NULL,
     [departmentID] [int] NOT NULL,
@@ -92,8 +92,8 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 END;
 
-INSERT [dbo].[UserInfo] ([groupID], [jobID], [userName], [password], [realName], [company], [departmentID], [projectTeamID], [job], [jobTitle], [email], [mobile], [officePhone], [education], [entryTime], [descriptions], [isAbolished]) VALUES ( 0, N'123', N'aaa', N'000000', N'系统管理员', N'中国联通合肥分公司', 1, 0, N'', N'', N'dummary@unicom.com', N'', N'', N'', CAST(0xAE370B00 AS Date), N'', 0);
-INSERT [dbo].[UserInfo] ([groupID], [jobID], [userName], [password], [realName], [company], [departmentID], [projectTeamID], [job], [jobTitle], [email], [mobile], [officePhone], [education], [entryTime], [descriptions], [isAbolished]) VALUES ( 1, N'123', N'crm', N'000000', N'超级管理员', N'中国联通合肥分公司', 1, 0, N'', N'', N'dummary@unicom.com', N'', N'', N'', CAST(0x7E360B00 AS Date), N'', 0);
+INSERT [dbo].[UserInfo] ([groupID], [jobID], [userName], [password], [realName], [company], [departmentID], [projectTeamID], [job], [jobTitle], [email], [mobile], [officePhone], [education], [entryTime], [descriptions], [isAbolished]) VALUES ( 0, N'123', N'aaa', N'ZwsUcorZkCrsujLiL6T2vQ==', N'系统管理员', N'中国联通合肥分公司', 1, 0, N'', N'', N'dummary@unicom.com', N'', N'', N'', CAST(0xAE370B00 AS Date), N'', 0);
+INSERT [dbo].[UserInfo] ([groupID], [jobID], [userName], [password], [realName], [company], [departmentID], [projectTeamID], [job], [jobTitle], [email], [mobile], [officePhone], [education], [entryTime], [descriptions], [isAbolished]) VALUES ( 1, N'123', N'crm', N'ZwsUcorZkCrsujLiL6T2vQ==', N'超级管理员', N'中国联通合肥分公司', 1, 0, N'', N'', N'dummary@unicom.com', N'', N'', N'', CAST(0x7E360B00 AS Date), N'', 0);
 
 
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Tree]') AND type in (N'U'))

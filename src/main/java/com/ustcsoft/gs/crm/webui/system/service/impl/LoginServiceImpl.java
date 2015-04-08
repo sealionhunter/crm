@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.dao.DataAccessException;
 
 import com.ustcsoft.gs.crm.webui.common.exception.CRMDBException;
+import com.ustcsoft.gs.crm.webui.common.util.CryptUtil;
 import com.ustcsoft.gs.crm.webui.system.dao.LoginDao;
 import com.ustcsoft.gs.crm.webui.system.dto.UserInfoDto;
 import com.ustcsoft.gs.crm.webui.system.service.LoginService;
@@ -37,7 +38,7 @@ public class LoginServiceImpl implements LoginService {
         LOG.debug("method findByUsernamePassword start!");
         UserInfoDto userInfoDto = null;
         try {
-            userInfoDto = loginDao.findByUsernamePassword(userName, password);
+            userInfoDto = loginDao.findByUsernamePassword(userName, CryptUtil.encrypt(password));
         } catch (DataAccessException e) {
             LOG.error("DataAccessException occurs in method findByUsernamePassword!", e);
             throw new CRMDBException(e);

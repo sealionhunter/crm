@@ -1,4 +1,4 @@
-﻿Ext.define('CRM.view.customerManagement.cooperator.CooperationProjectList', {
+Ext.define('CRM.view.customerManagement.cooperator.CooperationProjectList', {
     extend: 'Ext.window.Window',
     alias: 'widget.cooperationprojectlist',
     id: 'cooperationprojectwindow',

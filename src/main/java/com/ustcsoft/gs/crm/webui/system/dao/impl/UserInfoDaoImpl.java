@@ -32,6 +32,13 @@ public class UserInfoDaoImpl implements UserInfoDao {
         this.hibernateTemplate = hibernateTemplate;
     }
 
+    public UserInfoDto getUserByID(Integer userID) {
+        log.debug("method getUserByID start!");
+        UserInfoDto user = hibernateTemplate.get(UserInfoDto.class, userID);
+        log.debug("method getUserByID end!");
+        return user;
+    }
+
     /**
      * get Size of UserInfo
      * 

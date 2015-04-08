@@ -7,6 +7,12 @@ import com.ustcsoft.gs.crm.webui.system.bean.UserInfoSearchBean;
 import com.ustcsoft.gs.crm.webui.system.dto.UserInfoDto;
 
 public interface UserInfoDao {
+	/**
+	 * Get UserInfo by ID
+	 * @param userID 
+	 * @return UserInfo
+	 */
+	public UserInfoDto getUserByID(Integer userID);
 
     /**
      * get Size of UserInfo

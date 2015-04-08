@@ -1,4 +1,4 @@
-﻿Ext.define('CRM.view.customerManagement.proposalOrContract.ContractList', {
+Ext.define('CRM.view.customerManagement.proposalOrContract.ContractList', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.contractlist',
     id: 'contractlist',

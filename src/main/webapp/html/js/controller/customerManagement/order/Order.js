@@ -1,4 +1,4 @@
-﻿Ext.define('CRM.controller.customerManagement.order.Order', {
+Ext.define('CRM.controller.customerManagement.order.Order', {
     extend: 'Ext.app.Controller',
     views: [ 'customerManagement.order.OrderList', 'customerManagement.order.OrderUpdate', 'customerManagement.order.OrderDetail', 'customerManagement.order.OrderInfo',
             'customerManagement.intentOrder.AllProductList', 'customerManagement.order.SelectProduct', 'customerManagement.order.BuyProduct', 'customerManagement.order.OrderTrack' ],

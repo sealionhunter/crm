@@ -1,4 +1,4 @@
-﻿Ext.define('CRM.view.customerManagement.cooperator.CooperatorDetail', {
+Ext.define('CRM.view.customerManagement.cooperator.CooperatorDetail', {
     extend: 'Ext.form.Panel',
     alias: 'widget.cooperatordetail',
     id: 'cooperatorDetail',

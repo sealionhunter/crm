@@ -1,4 +1,4 @@
-﻿Ext.define('CRM.model.customerManagement.cooperator.Cooperator', {
+Ext.define('CRM.model.customerManagement.cooperator.Cooperator', {
     extend: 'Ext.data.Model',
     fields: [ {
         name: 'cooperatorID',

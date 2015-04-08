@@ -1,4 +1,4 @@
-﻿Ext.define('CRM.view.customerManagement.proposalOrContract.ContractDetail', {
+Ext.define('CRM.view.customerManagement.proposalOrContract.ContractDetail', {
     extend: 'Ext.form.Panel',
     defaultType: 'displayfield',
     alias: 'widget.contractdetail',

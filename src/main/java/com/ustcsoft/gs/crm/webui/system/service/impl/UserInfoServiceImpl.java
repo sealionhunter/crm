@@ -11,12 +11,14 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ustcsoft.gs.crm.webui.common.exception.CRMDBException;
+import com.ustcsoft.gs.crm.webui.common.util.CryptUtil;
 import com.ustcsoft.gs.crm.webui.system.bean.UserInfoSearchBean;
 import com.ustcsoft.gs.crm.webui.system.dao.UserInfoDao;
 import com.ustcsoft.gs.crm.webui.system.dto.UserInfoDto;
 import com.ustcsoft.gs.crm.webui.system.service.UserInfoService;
 
 public class UserInfoServiceImpl implements UserInfoService {
+    private static final String DEFAULT_PASSWORD = "000000";
     private UserInfoDao userInfoDao = null;
     private static final Log log = LogFactory.getLog(UserInfoServiceImpl.class);
 
@@ -103,7 +105,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         log.debug("method updateUser start!");
         try {
             if (userInfoDto.getUserID() == 0) {
-                userInfoDto.setPassword("000000");
+                userInfoDto.setPassword(CryptUtil.encrypt(DEFAULT_PASSWORD));
             }
             userInfoDao.updateUser(userInfoDto);
         } catch (DataAccessException e) {
@@ -140,6 +142,34 @@ public class UserInfoServiceImpl implements UserInfoService {
             throw new CRMDBException(e);
         }
         log.debug("method deleteUser end!");
+        return userMap;
+    }
+
+    /**
+     * reset User's Password
+     * 
+     * @param userID
+     * @throws CRMDBException
+     *             in case of Hibernate Exception
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
+    public Map<String, Object> resetUserPass(String userID) throws CRMDBException {
+        log.debug("method resetUserPass start!");
+        Map<String, Object> userMap = new HashMap<String, Object>();
+        try {
+            UserInfoDto user = userInfoDao.getUserByID(Integer.valueOf(userID));
+            if (user != null) {
+                user.setPassword(CryptUtil.encrypt(DEFAULT_PASSWORD));
+                userInfoDao.updateUser(user);
+            } else {
+                userMap.put("errorMessage", "该用户已被删除!");
+            }
+        } catch (DataAccessException e) {
+            log.error("DataAccessException occurs in method resetUserPass!", e);
+            throw new CRMDBException(e);
+        }
+        log.debug("method resetUserPass end!");
         return userMap;
     }
 

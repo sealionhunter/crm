@@ -1,4 +1,4 @@
-﻿Ext.define('CRM.view.customerManagement.customerProfiles.ContactSelect', {
+Ext.define('CRM.view.customerManagement.customerProfiles.ContactSelect', {
     extend: 'Ext.window.Window',
     alias: 'widget.contactselect',
     id: 'contactSelect',

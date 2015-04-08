@@ -20,6 +20,9 @@ Ext.define('CRM.controller.systemManagement.userManagement.User', {
             'UserList button[action=userDelete]': {
                 click: this.userDelete
             },
+            'UserList button[action=resetUserPass]': {
+                click: this.resetUserPass
+            },
             'UserUpdate button[action=save]': {
                 click: this.saveUpdate
             },
@@ -99,6 +102,7 @@ Ext.define('CRM.controller.systemManagement.userManagement.User', {
             Ext.getCmp('UserDetail').show();
         }
         Ext.getCmp('userDelete').setDisabled(selections.length == 0);
+        Ext.getCmp('resetUserPass').setDisabled(selections.length != 1);
         Ext.getCmp('userEdit').setDisabled(selections.length != 1);
     },
     storeLoad: function(store, paramNames) {
@@ -182,6 +186,36 @@ Ext.define('CRM.controller.systemManagement.userManagement.User', {
     userDelete: function(button) {
         var grid = button.up('gridpanel');
         utils.delRecordsCheck(grid, 'deleteUser.action', 'userID');
+    },
+    resetUserPass: function(button) {
+        var row = Ext.getCmp('UserList').getSelectionModel().getSelection()[0],
+            id = row.get("userID");
+        box.confirm('提示', '确定重置所选用户密码？', function showResult(button) {
+            if (button === 'yes') {
+                Ext.Ajax.request({
+                    url: 'resetUserPass.action',
+                    params: {
+                        jsonString: id,
+                        userID: id
+                    },
+                    success: function(response) {
+                        var responseJSON;
+                    	if (CRM.checkResponse(response)) {
+                            return;
+                        }
+                        responseJSON = Ext.JSON.decode(response.responseText)
+                        if (responseJSON && responseJSON.errorMessage) {
+                        	messageBox.alert('提示', responseJSON.errorMessage);
+                        } else {
+                            Ext.crm.msg("所选用户密码重置成功!", "");	
+                        }
+                    },
+                    failure: function(response) {
+                        messageBox.alert('提示', '所选用户密码重置失败，请联系管理员！');
+                    }
+                });
+            }
+        });
     },
     saveUpdate: function(button) {
         var win = button.up('window');

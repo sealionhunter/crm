@@ -61,6 +61,15 @@ public interface UserInfoService {
     public Map<String, Object> deleteUser(String userIDs) throws CRMDBException;
 
     /**
+     * reset User's Password
+     * 
+     * @param userID
+     * @throws CRMDBException
+     *             in case of Hibernate Exception
+     */
+    public Map<String, Object> resetUserPass(String userID) throws CRMDBException;
+
+    /**
      * judge if UserName existed
      * 
      * @param userInfoDto
