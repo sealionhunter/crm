@@ -8,12 +8,15 @@
  */
 package com.ustcsoft.gs.crm.webui.customer.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.ustcsoft.gs.crm.webui.code.dto.CodeDto;
+import com.ustcsoft.gs.crm.webui.code.service.CodeService;
 import com.ustcsoft.gs.crm.webui.common.action.CRMAction;
 import com.ustcsoft.gs.crm.webui.common.constant.CRMConstant;
 import com.ustcsoft.gs.crm.webui.common.exception.CRMDBException;
@@ -48,6 +51,8 @@ public class CustomerListAction extends CRMAction {
 
     /** used for get class CustomerService */
     private CustomerService customerService = null;
+
+    private CodeService codeService = null;
 
     private boolean flag = true;
 
@@ -119,38 +124,64 @@ public class CustomerListAction extends CRMAction {
             map.putAll(getFieldErrors());
             map.put(CRMConstant.VALIDATE, false);
         } else if(flag) {
-            boolean mayRepeat = false;
-            String name = delCommonWord(customerDto.getCustomerName());
-            char[] chArray = name.toCharArray();
-            List<String> existNameList = customerService.getAllCustomerName(customerDto.getCustomerID());
+            List<CodeDto> codeDtoList = codeService.getComboBox(CustomerConstant.COMMON_WORD_CODE);
+            List<String> commonWord = new ArrayList<String>();
+            for (CodeDto dto : codeDtoList) {
+                commonWord.add(dto.getValue());
+            }
+            String cusName = removeCommonWord(customerDto.getCustomerName(), commonWord);
 
+            List<String> existNameList = customerService.getAllCustomerName(customerDto.getCustomerID());
             String mayRepeatedName = null;
             for (String n : existNameList) {
-                String existName = delCommonWord(n);
-                int matchedNum = 0;
-                for (char ch : chArray) {
-                    if (existName.indexOf(ch) != -1) {
-                        matchedNum++;
-                    }
-                }
-                if (matchedNum >= 3 || (chArray.length < 3 && chArray.length == matchedNum)) {
-                    mayRepeat = true;
+                String existName = removeCommonWord(n, commonWord);
+                if (checkRepeat(cusName, existName)) {
                     mayRepeatedName = n;
                     break;
                 }
             }
 
-            if (mayRepeat) {
-                String msgFormat = "客户【%s】和已存在的客户【%s】可能重复，是否重新填写客户姓名？";
-                addFieldError("CusotmerNameRepeat", String.format(msgFormat, customerDto.getCustomerName(), mayRepeatedName));
+            if (mayRepeatedName != null) {
+                addFieldError("CusotmerNameRepeat", String.format(this.getText("customerName.repeat"),
+                        customerDto.getCustomerName(), mayRepeatedName));
             }
 
             map.putAll(getFieldErrors());
         }
     }
 
-    private String delCommonWord(String name) {
-        for (String w : CustomerConstant.CUSTOMER_COMMON_WORD) {
+    public static boolean checkRepeat(String name, String other) {
+        String longer = name;
+        String shorter = other;
+        if (name.length() < other.length()) {
+            longer = other;
+            shorter = name;
+        }
+
+        if (shorter.length() >= 3) {
+            for (int i = 0;; i++) {
+                // avoid out of bounds
+                if (i + 3 > shorter.length()) {
+                    return false;
+                }
+
+                String subStr = shorter.substring(i, i + 3);
+                if (subStr.length() == 3) {
+                    if (longer.contains(subStr)) {
+                        return true;
+                    }
+                }
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public static String removeCommonWord(String name, List<String> commonWord) {
+        // remove word characters
+        name = name.replaceAll("\\w", "");
+        // remove common word
+        for (String w : commonWord) {
             if (name.contains(w)) {
                 name = name.replaceAll(w, "");
             }
@@ -252,4 +283,12 @@ public class CustomerListAction extends CRMAction {
         this.gonghai = gonghai;
     }
 
+
+    public CodeService getCodeService() {
+        return codeService;
+    }
+
+    public void setCodeService(CodeService codeService) {
+        this.codeService = codeService;
+    }
 }

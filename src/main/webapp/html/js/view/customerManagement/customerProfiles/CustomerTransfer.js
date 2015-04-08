@@ -4,7 +4,7 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTransfer', {
     id: 'customertransfer',
     title: '客戶转移',
     layout: 'border',
-    frame: false,
+//    frame: false,
     initComponent: function() {
         var me = this;
         this.store = Ext.create('CRM.store.customerManagement.customerProfiles.CustomerTransfer');
@@ -57,6 +57,7 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTransfer', {
             }), {
                 text: "客户经理",
                 flex: 1,
+                minWidth: 80,
                 dataIndex: 'holderName',
                 renderer: this.rendererValue,
                 sortable: true

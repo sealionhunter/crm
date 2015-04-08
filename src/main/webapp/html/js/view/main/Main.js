@@ -4,24 +4,32 @@ Ext.define('CRM.view.main.Main', {
     alias : 'widget.mainView',
     listeners: {
         resize : function(mainView) {
-            var scrollHeight = document.documentElement.scrollHeight,
-            scrollWidth = document.documentElement.scrollWidth,
-            minHeight = mainView.minHeight,
-            minWidth = mainView.minWidth,
-            height = mainView.height,
-            width = mainView.width;
-            if(minHeight > height || minWidth > width) {
-                          document.body.style.overflow = 'auto';
-            } else if(width >= scrollWidth && height === scrollHeight){
-                          document.body.style.overflow = 'hidden';
-            } else {
-                          document.body.style.overflow = 'auto';
+            var scrollHeight = document.documentElement.scrollHeight;
+            var scrollWidth = document.documentElement.scrollWidth;
+            var minHeight = mainView.minHeight;
+            var minWidth = mainView.minWidth;
+            var height = mainView.height;
+            var width = mainView.width;
+            if(minHeight >= height ) {
+                document.body.style.overflowY = 'auto';
+                if (minWidth < width)
+                    document.body.style.overflowX = 'hidden';
+            } 
+            if( minWidth >= width) {
+                document.body.style.overflowX = 'auto';
+                if (minHeight < height)
+                    document.body.style.overflowY = 'hidden';
             }
+//            if(width >= scrollWidth && height === scrollHeight){
+//                document.body.style.overflow = 'hidden';
+//            } else {
+//                document.body.style.overflow = 'auto';
+//            }
             mainView.doLayout();
         }
     },
-    minHeight: 600,
-    minWidth: 800,
+    minHeight: 630,
+    minWidth: 1100,
 //    autoScroll: true,
     items: [ {
         xtype: 'panel',

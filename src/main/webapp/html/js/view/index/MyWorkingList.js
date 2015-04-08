@@ -49,7 +49,7 @@ Ext.define('CRM.view.index.MyWorkingList', {
         }), {
             text: "主题",
             dataIndex: 'theme',
-            minWidth: 160,
+            minWidth: 150,
             sortable: true,
             flex: 2,
             align: 'left',
@@ -57,7 +57,7 @@ Ext.define('CRM.view.index.MyWorkingList', {
         }, {
             text: "客户",
             dataIndex: 'customerName',
-            minWidth: 80,
+//            minWidth: 80,
             flex: 1,
             align: 'left',
             sortable: true,
@@ -65,7 +65,7 @@ Ext.define('CRM.view.index.MyWorkingList', {
         }, {
             text: "优先级",
             dataIndex: 'priorityName',
-            minWidth: 80,
+//            minWidth: 80,
             sortable: true,
             flex: 1,
             align: 'left',
@@ -73,21 +73,21 @@ Ext.define('CRM.view.index.MyWorkingList', {
         }, {
             text: "开始时间",
             dataIndex: 'startTime',
-            minWidth: 120,
+//            minWidth: 120,
             flex: 1.5,
             align: 'center',
             sortable: true
         }, {
             text: "结束期限",
             dataIndex: 'endTime',
-            minWidth: 120,
+//            minWidth: 120,
             flex: 1.5,
             align: 'center',
             sortable: true
         }, {
             text: "完成情况",
             dataIndex: 'completionName',
-            minWidth: 80,
+//            minWidth: 80,
             flex: 1,
             align: 'left',
             sortable: true,
@@ -95,7 +95,7 @@ Ext.define('CRM.view.index.MyWorkingList', {
         }, {
             text: "工作类型",
             dataIndex: 'workTypeName',
-            minWidth: 120,
+//            minWidth: 120,
             flex: 1.5,
             align: 'left',
             sortable: true,

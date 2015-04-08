@@ -217,6 +217,7 @@
         class="com.ustcsoft.gs.crm.webui.customer.action.CustomerListAction"
         scope="prototype">
         <property name="customerService" ref="customerService"></property>
+        <property name="codeService" ref="codeService"></property>
     </bean>
         <bean id="customerCommonDao"
         class="com.ustcsoft.gs.crm.webui.customer.dao.impl.CustomerCommonDaoImpl">

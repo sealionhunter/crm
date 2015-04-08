@@ -86,7 +86,7 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
             combo.up('toolbar').down('combo[itemId=department]').hide();
             combo.up('toolbar').down('combo[itemId=projectTeam]').hide();
             combo.up('toolbar').down('combo[itemId=user]').hide();
-        } else if (value === 0) {
+        } else if (value === '00') {
             combo.up('toolbar').down('combo[itemId=department]').hide();
             combo.up('toolbar').down('combo[itemId=projectTeam]').hide();
             combo.up('toolbar').down('combo[itemId=user]').hide();
@@ -255,7 +255,7 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.CustomerTransfer'
         if (mode == '000100050001') {
             projectTeamID = 0;
         }
-        if (mode === 0) {
+        if (mode === '00') {
             searchFlag = 0;
         }
         store.on('beforeload', function(store, options) {

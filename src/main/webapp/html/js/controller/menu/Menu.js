@@ -59,14 +59,14 @@
                             text: '主页',
                             leaf: true
                         });
-                        if (GROUP_ID == 1) {
-                            var systemManageNode = treeStore.getNodeById(4);
-                            if (typeof (systemManageNode) == 'object') {
-//                                rootNode.removeAll();
-                                utils.removeAllChild.apply(rootNode);
-                                rootNode.insertChild(1, systemManageNode);
-                            }
-                        }
+//                        if (GROUP_ID == 1) {
+//                            var systemManageNode = treeStore.getNodeById(4);
+//                            if (typeof (systemManageNode) == 'object') {
+////                                rootNode.removeAll();
+//                                utils.removeAllChild.apply(rootNode);
+//                                rootNode.insertChild(1, systemManageNode);
+//                            }
+//                        }
                     } else {
                         Ext.getCmp('crmTreeMenu').down('toolbar[dock=top]').hide();
                         var systemManageNode = treeStore.getNodeById(4);

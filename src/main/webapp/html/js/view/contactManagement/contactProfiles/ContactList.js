@@ -27,28 +27,28 @@ Ext.define('CRM.view.contactManagement.contactProfiles.ContactList', {
             text: "姓名",
             dataIndex: 'contactName',
             sortable: true,
-            minWidth: 160,
-            flex: 2,
+//            minWidth: 160,
+            flex: 1,
             renderer: this.rendererValue
         }, {
             text: "联系人类型",
             dataIndex: 'contactTypeName',
-            minWidth: 160,
-            flex: 2,
+//            minWidth: 160,
+            flex: 1,
             sortable: true
         }, {
             text: "单位",
             dataIndex: 'company',
             sortable: true,
-            minWidth: 160,
-            flex: 2,
+//            minWidth: 160,
+            flex: 1,
             renderer: this.rendererValue
         }, {
             text: "部门",
             dataIndex: 'department',
             sortable: true,
-            minWidth: 160,
-            flex: 2,
+//            minWidth: 160,
+            flex: 1,
             renderer: this.rendererValue
         }, {
             text: "职务",
@@ -57,14 +57,14 @@ Ext.define('CRM.view.contactManagement.contactProfiles.ContactList', {
             renderer: this.rendererValue
         }, {
             text: "联系电话",
-            minWidth: 160,
+//            minWidth: 160,
             flex: 2,
             dataIndex: 'phoneNumber',
             sortable: true
         }, {
             text: "邮箱",
             dataIndex: 'email',
-            minWidth: 160,
+//            minWidth: 160,
             flex: 2,
             sortable: true
         }, {

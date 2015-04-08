@@ -4,9 +4,11 @@ public class CustomerConstant {
 
     public static final String MAXLENGTH_INVALID = "maxLength.invalid";
 
-    public static final String[] CUSTOMER_COMMON_WORD = new String[] {
-        "中国", "公司", "责任", "有限" , "股份",
-    };
+//    public static final String[] CUSTOMER_COMMON_WORD = new String[] {
+//        "中国", "公司", "责任", "有限" , "股份",
+//    };
+    public static final String COMMON_WORD_CODE = "00010010";
+
     public static final String COMPETITORINFOID = "competitorInfoId";
 
     public static final String COMPETITORINFOID_INVALID = "competitorInfoId.invalid";

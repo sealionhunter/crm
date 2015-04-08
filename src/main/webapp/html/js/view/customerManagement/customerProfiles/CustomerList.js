@@ -3,7 +3,6 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
     alias: 'widget.customerlist',
     title: '客户基本信息列表',
     id: 'customerlist',
-    minWidth: 120,
     store: 'customerManagement.customerProfiles.Customer',
     selModel: Ext.create('Ext.selection.CheckboxModel'),
     initComponent: function() {
@@ -31,49 +30,49 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
             dataIndex: 'customerName',
             sortable: true,
             renderer: this.rendererValue,
-            minWidth: 160,
+            minWidth: 150,
             flex: 2
         }, {
             text: "客户经理",
             dataIndex: 'holderName',
             sortable: true,
             renderer: this.rendererValue,
-            minWidth: 80,
+//            minWidth: 80,
             flex: 1
         }, {
             text: "客户状态",
             dataIndex: 'customerStatementName',
-            minWidth: 80,
+//            minWidth: 80,
             renderer: this.rendererValue,
             flex: 1
         }, {
             text: "注册资金",
             dataIndex: 'scaleName',
-            minWidth: 80,
+//            minWidth: 80,
             renderer: this.rendererValue,
             flex: 1
         }, {
             text: "市场名称",
             dataIndex: 'industryName',
             renderer: this.rendererValue,
-            minWidth: 80,
+//            minWidth: 80,
             flex: 1
         }, {
             text: "所有权",
             dataIndex: 'feeName',
-            minWidth: 80,
+//            minWidth: 80,
             renderer: this.rendererValue,
             sortable: true,
             flex: 1
         }, {
             text: "年产值(万元)",
             dataIndex: 'earningName',
-            minWidth: 80,
+//            minWidth: 80,
             renderer: this.rendererValue,
             align: 'right',
             flex: 1
         }, {
-            minWidth: 160,
+//            minWidth: 150,
             text: "标准地址",
             dataIndex: 'customerAddr',
             renderer: this.rendererValue,
