@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ustcsoft.gs.crm.webui.common.exception.CRMDBException;
+import com.ustcsoft.gs.crm.webui.customer.bean.CustomerBean;
 import com.ustcsoft.gs.crm.webui.customer.bean.CustomerSearchBean;
 import com.ustcsoft.gs.crm.webui.customer.dao.CustomerDao;
 import com.ustcsoft.gs.crm.webui.customer.dto.CustomerDto;
@@ -77,16 +78,9 @@ public interface CustomerService {
      */
     public boolean judgeCustomerName(CustomerDto customerDto) throws CRMDBException;
 
-    /**
-     * @return the customerDao
-     */
-    public CustomerDao getCustomerDao();
-
-    /**
-     * @param customerDao
-     *            the customerDao to set
-     */
-    public void setCustomerDao(CustomerDao customerDao);
-
     public Map<String, Object> receiveCustomer(int customerID, int userID);
+
+    public CustomerBean getCustomerById(int id) throws CRMDBException;
+    
+    public List<CustomerBean> findCustomersByIds(String ids) throws CRMDBException;
 }

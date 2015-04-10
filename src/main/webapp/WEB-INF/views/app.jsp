@@ -30,5 +30,15 @@
 <script type="text/javascript" src="app.js"></script>
 </head>
 <body>
+<div style="display:none;">
+    <!-- <form id="exportCustomerForm" action="/crm/exportCustomer.action">
+        <input type="hidden" id="customerID" name="customerID" />
+        <input type="hidden" id="customerIDList" name="customerIDList" />
+    </form> -->
+    <s:form id="exportCustomerForm" action="exportCustomer.action">
+        <input type="hidden" id="customerID" name="customerID" />
+        <input type="hidden" id="customerIDList" name="customerIDList" />
+    </s:form>
+</div>
 </body>
 </html>

@@ -8,6 +8,7 @@
  */
 package com.ustcsoft.gs.crm.webui.customer.dao.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -319,5 +320,71 @@ public class CustomerDaoImpl implements CustomerDao {
         dto.setHolder(userID);
         hibernateTemplate.update(dto);
         LOG.debug("method judgeCustomerName end");
+    }
+
+    @SuppressWarnings("unchecked")
+    public CustomerBean findCustomerById(int id) {
+        LOG.debug("method findCustomerById start.");
+        String hql = CustomerConstant.CUS_GET_ALL_HQL + CustomerConstant.CUS_GET_BY_ID;
+        List<Map<String, Object>> mapList = hibernateTemplate.find(hql, id);
+        CustomerBean bean = null;
+        if (mapList == null || mapList.isEmpty()) {
+            return bean;
+        } else {
+            bean = initCustomerBean(mapList.get(0));
+        }
+        LOG.debug("method findCustomerById end.");
+
+        return bean;
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<CustomerBean> findCustomerListByIds(String ids) {
+        LOG.debug("method findCustomerListByIds start.");
+        List<Map<String, Object>> list = null;
+        List<CustomerBean> beanList = new ArrayList<CustomerBean>();
+        if (ids != null && !ids.isEmpty()) {
+            String hql = CustomerConstant.CUS_GET_ALL_HQL + CustomerConstant.CUS_GET_IN_IDS + "(" + ids + ")";
+
+            list = hibernateTemplate.find(hql);
+            for (Map<String, Object> map : list) {
+                beanList.add(initCustomerBean(map));
+            }
+        }
+        LOG.debug("method findCustomerListByIds end.");
+        return beanList;
+    }
+    
+    private static CustomerBean initCustomerBean(Map<String, Object> map) {
+        CustomerBean bean = new CustomerBean();
+        bean.setBusiness1((String)map.get("business1"));
+        bean.setBusiness2((String)map.get("business2"));
+        bean.setBusiness3((String)map.get("business3"));
+        bean.setBusiness4((String)map.get("business4"));
+        bean.setBusinessUnit((String)map.get("businessUnit"));
+        bean.setCreateTime((String)map.get("createTime"));
+        bean.setCustomerAddr((String)map.get("customerAddr"));
+        bean.setCustomerID((int)map.get("customerID"));
+        bean.setCustomerName((String)map.get("customerName"));
+        bean.setCustomerStatement((String)map.get("customerStatement"));
+        bean.setCustomerStatementName((String)map.get("customerStatementName"));
+        bean.setCustomerType((String)map.get("customerType"));
+        bean.setCustomerTypeName((String)map.get("customerTypeName"));
+        bean.setDescriptions((String)map.get("descriptions"));
+        bean.setEarning((String)map.get("earning"));
+        bean.setFee((String)map.get("fee"));
+        bean.setFeeName((String)map.get("feeName"));
+        bean.setHolder((int)map.get("holder"));
+        bean.setHolderName((String)map.get("holderName"));
+        bean.setIndustry((String)map.get("industry"));
+        bean.setIndustryName((String)map.get("industryName"));
+        bean.setNumber((int)map.get("number"));
+        bean.setScale((String)map.get("scale"));
+        bean.setScaleName((String)map.get("scaleName"));
+        bean.setUpdateTime((String)map.get("updateTime"));
+        bean.setValueEvaluate((String)map.get("valueEvaluate"));
+        bean.setValueEvaluateName((String)map.get("valueEvaluateName"));
+        
+        return bean;
     }
 }

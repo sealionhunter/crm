@@ -850,6 +850,52 @@ Ext.define('CRM.store.commonStore', {
                 CRM.reload();
             }
         }
+    },
+    /**
+     * @private
+     * Called internally when a Proxy has completed a load request
+     */
+    onProxyLoad: function(operation) {
+        var me = this,
+            resultSet = operation.getResultSet(),
+            records = operation.getRecords(),
+            error = operation.getError(),
+            successful = operation.wasSuccessful();
+
+        if (me.isDestroyed) {
+            return;
+        }
+        if (error && eval(error.status) >= 400) {
+                Ext.get(Ext.query(".x-mask")).hide();
+                Ext.get(Ext.query(".x-mask-msg")).hide();
+                Ext.get(Ext.query(".x-css-shadow")).hide();
+                messageBox.alert('提示', '系统异常！');
+                return;
+        }
+        if (resultSet) {
+            me.totalCount = resultSet.total;
+        }
+
+        // Loading should be set to false before loading the records.
+        // loadRecords doesn't expose any hooks or events until refresh
+        // and datachanged, so by that time loading should be false
+        me.loading = false;
+        if (successful) {
+            me.loadRecords(records, operation);
+        }
+
+        if (me.hasListeners.load) {
+            me.fireEvent('load', me, records, successful);
+        }
+
+        //TODO: deprecate this event, it should always have been 'load' instead. 'load' is now documented, 'read' is not.
+        //People are definitely using this so can't deprecate safely until 2.x
+        if (me.hasListeners.read) {
+            me.fireEvent('read', me, records, successful);
+        }
+
+        //this is a callback that would have been passed to the 'read' function and is optional
+        Ext.callback(operation.callback, operation.scope || me, [records, operation, successful]);
     }
 });
 

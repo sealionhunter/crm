@@ -138,18 +138,26 @@ public class CustomerListAction extends CRMAction {
             String cusName = removeCommonWord(customerDto.getCustomerName(), commonWord);
 
             List<String> existNameList = customerService.getAllCustomerName(customerDto.getCustomerID());
-            String mayRepeatedName = null;
+            List<String> mayRepeatedNameList = new ArrayList<String>();
             for (String n : existNameList) {
                 String existName = removeCommonWord(n, commonWord);
                 if (checkRepeat(cusName, existName)) {
-                    mayRepeatedName = n;
-                    break;
+                    mayRepeatedNameList.add(n);
                 }
             }
 
-            if (mayRepeatedName != null) {
+            if (mayRepeatedNameList.size() > 0) {
+                StringBuilder msgParam = new StringBuilder();
+                for (int i = 0; i < mayRepeatedNameList.size(); i++) {
+                    if (i == 10) {
+                        msgParam.append("<br>").append("……");
+                        break;
+                    }
+                    msgParam.append("<br>【").append(mayRepeatedNameList.get(i)).append("】");
+                }
+
                 addFieldError("CusotmerNameRepeat", String.format(this.getText("customerName.repeat"),
-                        customerDto.getCustomerName(), mayRepeatedName));
+                        customerDto.getCustomerName(), msgParam.toString()));
             }
 
             map.putAll(getFieldErrors());
@@ -253,18 +261,6 @@ public class CustomerListAction extends CRMAction {
     public String updateCustomer() throws CRMDBException {
 
         LOG.debug("method updateCustomer start.");
-        /* TODO
-        try {
-            String uid = UUID.random().toString();
-            String attachFilePath = "customer/" + customerDto.getCustomerID + "/" + uid + "_" + attachFileName;
-            File dest = new File(CRMConstant.DOCUMENT_ROOT, attachFilePath);
-            FileUtils.copyFile(this.attach, dest);
-            customerDto.setAttach(attachFilePath);
-        } catch (Exception ex) {
-            LOG.error("File upload failed!", ex);
-            this.map.put("errorMessages", "File upload failed!");
-        }
-        */
         customerService.updateCustomer(customerDto);
         LOG.debug("method updateCustomer start.");
         return SUCCESS;

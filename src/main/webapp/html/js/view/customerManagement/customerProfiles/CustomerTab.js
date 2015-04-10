@@ -27,6 +27,12 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTab', {
             layout: 'fit',
             xtype: 'panel',
             border: false
+        }, {
+            title: '领导建议',
+            id: 'leaderadvicetab',
+            layout: 'fit',
+            xtype: 'panel',
+            border: false
         } ];
         this.callParent(arguments);
     }

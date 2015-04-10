@@ -188,7 +188,7 @@ public class CustomerConstant {
             + "or (select comB.value from CodeDto as comB where cus.valueEvaluate = comB.code) like:searchText "
             + "or cus.customerAddr like:searchText or cus.earning like:searchText or cus.descriptions like:searchText "
             //2015-3-29 15:33:53 modified start
-            + "cus.createTime as createTime, cus.updateTime as updateTime ,"
+            // + "cus.createTime as createTime, cus.updateTime as updateTime ,"
             //2015-3-29 15:33:53 modified end
             // add 20150308 start
             + "or cus.business1 like:searchText or cus.business2 like:searchText "
@@ -216,6 +216,10 @@ public class CustomerConstant {
             + "cus.customerType as customerType,cus.descriptions as descriptions,cus.earning as earning,cus.fee as fee,cus.holder as holder,"
             + "cus.industry as industry,cus.scale as scale , cus.valueEvaluate as valueEvaluate)"
             + "from CustomerDto as cus where cus.isAbolished = 0 ";
+    
+    public static final String CUS_GET_BY_ID = "and cus.customerID=?";
+
+    public static final String CUS_GET_IN_IDS = "and cus.customerID in ";
 
     public static final String CUS_CUSTOMERNAME_COUNT = "select count(*) from CustomerDto as cus where cus.isAbolished = 0 and cus.customerName = :customerName and cus.customerID != :customerID";
     public static final String COOP_PROJECTNAME_COUNT = "select count(*) from CoopResumeDto as coop where coop.isAbolished = 0 and coop.coopResumeID != :coopResumeID and coop.projectName = :projectName and customerID = :customerID ";
@@ -899,4 +903,39 @@ public class CustomerConstant {
     public static final String CONTRACTNAMEINVALID = "contractName.invalid";
     public static final String FILETEMPLATENAMEERROR = "fileTemplateNameError";
     public static final String FILETEMPLATENAMEINVALID = "fileTemplateName.invalid";
+
+    // leader advice
+    public static final String GET_LEADER_ADVICE_PREFIX_HQL = "select new Map("
+            + " ld.adviceID as adviceID,"
+            + " ld.customerID as customerID,"
+            + " (select cd.customerName from CustomerDto as cd where ld.customerID = cd.customerID and cd.isAbolished = 0) as customerName,"
+            + " ld.userID as userID,"
+            + " (select uiDto.realName from UserInfoDto as uiDto where ld.userID = uiDto.userID and uiDto.isAbolished = 0) as userName,"
+            + " ld.adviceContent as adviceContent,"
+            + " ld.hasRead as hasRead,"
+            + " ld.createTime as createTime,"
+            + " ld.updateTime as updateTime"
+            + " )"
+            + " from LeaderAdviceDto as ld";
+    public static final String GET_LEADER_ADVICE_LIST_HQL = GET_LEADER_ADVICE_PREFIX_HQL
+            + " where ld.isAbolished = 0"
+            + " and ld.customerID = :customerID";
+    public static final String GET_LEADER_ADVICE_TOTAL_HQL = "select count(*) from LeaderAdviceDto as ld"
+            + " where ld.isAbolished = 0"
+            + " and ld.customerID = :customerID";
+    public static final String LEADER_ADVICE_DEL_HQL = "update LeaderAdviceDto as ld set ld.updateTime=CONVERT(varchar(19), getdate(), 120),ld.isAbolished = 1 where ld.adviceID in ";
+    public static final String LEADER_ADVICE_QUERY_HQL = GET_LEADER_ADVICE_PREFIX_HQL 
+            + " where ld.isAbolished = 0"
+            + " and ld.customerID = :customerID"
+            + " and ("
+            + " (select user.realName from UserInfoDto as user where user.userID = ld.userID) like:searchText"
+            + " or ld.adviceContent like:searchText"
+            + " )";
+    public static final String LEADER_ADVICE_QUERY_TOTAL_HQL = "select count(*) from LeaderAdviceDto as ld"
+            + " where ld.isAbolished = 0"
+            + " and ld.customerID = :customerID"
+            + " and ("
+            + " (select user.realName from UserInfoDto as user where user.userID = ld.userID) like:searchText"
+            + " or ld.adviceContent like:searchText"
+            + " )";
 }

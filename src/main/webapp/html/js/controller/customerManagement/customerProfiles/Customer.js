@@ -25,6 +25,12 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer', {
             'customerlist button[action=customerSuperQueryBtn]': {
                 click: this.customerQuery
             },
+            'customerlist button[action=lookLeaderAdvice]': {
+                click: this.lookLeaderAdvice
+            },
+            'customerlist button[action=exportCustomer]': {
+                click: this.exportCustomer
+            },
             'customerlist button[action=customerLookResume]': {
                 click: this.customerLookResume
             },
@@ -244,9 +250,35 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer', {
             messageBox.alert("提示", "您搜索的值不符合规范，请重新输入！");
         }
     },
+    exportCustomer: function(button) {
+        var selection = button.up('toolbar').up('grid').getView().getSelectionModel().getSelection();
+        if (selection.length == 0) {
+        	return false;
+        }
+        var form = document.getElementById('exportCustomerForm');
+        var customerIDList = document.getElementById('customerIDList');
+        var customerID = document.getElementById('customerID');
+        if (selection.length == 1) {
+            customerID.value = selection[0].data.customerID;
+            customerIDList.value = "";
+        } else {
+            var customerIDArray = [];
+            for (var i = 0; i < selection.length; i++) {
+                customerIDArray.push(selection[i].data.customerID);
+            }
+            customerIDList.value = customerIDArray.join(',');
+            customerID.value = "";
+        }
+        form.submit();
+    },
     customerLookResume: function(button) {
         var record = button.up('toolbar').up('grid').getView().getSelectionModel().getSelection()[0];
         initController('customerManagement.customerProfiles.CustomerResume').viewInit(record);
+    },
+    lookLeaderAdvice: function(button) {
+        var record = button.up('toolbar').up('grid').getView().getSelectionModel().getSelection()[0];
+        alert(record.get('customerName'));
+        var win = Ext.create('CRM.view.customerManagement.customerProfiles.LeaderAdviceList');
     },
     customerDetail: function(button) {
         var record = button.up('toolbar').up('grid').getView().getSelectionModel().getSelection()[0];

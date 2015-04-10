@@ -1,4 +1,4 @@
-Ext.define('CRM.controller.menu.Menu', {
+﻿Ext.define('CRM.controller.menu.Menu', {
     extend: 'Ext.app.Controller',
     views: [ 'menu.Menu', 'main.Main' ],
     stores: [ 'systemManagement.authorizationManagement.AccessRightsTree' ],
@@ -151,8 +151,9 @@ Ext.define('CRM.controller.menu.Menu', {
 //            initController('salesManagement.eventFlow.EventFlow').viewInit(treeId);
         } else if (treeId == 45) {
             initController('systemManagement.menuManagement.MenuManage').viewInit();
-//        } else if (treeId == 51) {
+        } else if (treeId == 51) {
 //            initController('statistics.salesStatistics.SalesInit').viewInit(treeId);
+            initController('statistics.salesStatistics.SalesLineInit').viewInit(treeId);
 //        } else if (treeId == 61) {
 //            initController('salesManagement.transactionManagement.TransactionManagement').viewInit(treeId);
 //        } else if (treeId == 71) {
