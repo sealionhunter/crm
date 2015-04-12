@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 
 <!DOCTYPE struts PUBLIC
 
@@ -61,6 +61,40 @@
         <action name="receiveCustomerCommon" class="customerList"
             method="receiveCustomer">
             <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="exportCustomer" class="customerExport"
+            method="exportExcel">
+            <result name="success" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">excelStream</param>
+                <param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+                <param name="bufferSize">1024</param>
+            </result>
+        </action>
+        <!-- 领导建议 -->
+        <action name="getAllLeaderAdvice" class="leaderAdviceList"
+            method="getAllLeaderAdvice">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="addOrUpdateLeaderAdvice" class="leaderAdviceList"
+            method="updateLeaderAdvice">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="deleteLeaderAdvice" class="leaderAdviceList"
+            method="deleteLeaderAdvice">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
                 <param name="root">map</param>
             </result>
         </action>

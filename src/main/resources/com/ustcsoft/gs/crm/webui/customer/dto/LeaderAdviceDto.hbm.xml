@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+    <class name="com.ustcsoft.gs.crm.webui.customer.dto.LeaderAdviceDto"
+        table="LeaderAdvice">
+        <id column="adviceID" name="adviceID" type="int">
+            <generator class="native" />
+        </id>
+        <property name="customerID"></property>
+        <property name="userID"></property>
+        <property name="adviceContent"></property>
+        <property name="hasRead"></property>
+        <property name="isAbolished"></property>
+        <property name="createTime"></property>
+        <property name="updateTime"></property>
+    </class>
+</hibernate-mapping>

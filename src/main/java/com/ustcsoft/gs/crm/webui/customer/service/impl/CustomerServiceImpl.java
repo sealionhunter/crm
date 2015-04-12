@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ustcsoft.gs.crm.webui.common.constant.CRMConstant;
 import com.ustcsoft.gs.crm.webui.common.exception.CRMDBException;
 import com.ustcsoft.gs.crm.webui.common.util.CRMUtils;
+import com.ustcsoft.gs.crm.webui.customer.bean.CustomerBean;
 import com.ustcsoft.gs.crm.webui.customer.bean.CustomerSearchBean;
 import com.ustcsoft.gs.crm.webui.customer.dao.CustomerDao;
 import com.ustcsoft.gs.crm.webui.customer.dto.CustomerDto;
@@ -217,10 +218,38 @@ public class CustomerServiceImpl implements CustomerService {
         LOG.debug("method updateCustomer end.");
     }
 
+    @Override
+    public CustomerBean getCustomerById(int id) throws CRMDBException {
+        LOG.debug("method getCustomerById start.");
+        CustomerBean bean = null;
+        try {
+            bean = customerDao.findCustomerById(id);
+        } catch (DataAccessException e) {
+            LOG.error("DataAccessException occurs in method getCustomerById.", e);
+            throw new CRMDBException(e);
+        }
+        LOG.debug("method getCustomerById end.");
+        return bean;
+    }
+
+    @Override
+    public List<CustomerBean> findCustomersByIds(String ids)
+            throws CRMDBException {
+        LOG.debug("method getCustomerById start.");
+        List<CustomerBean> beanList = null;
+        try {
+            beanList = customerDao.findCustomerListByIds(ids);
+        } catch (DataAccessException e) {
+            LOG.error("DataAccessException occurs in method findCustomersByIds.", e);
+            throw new CRMDBException(e);
+        }
+        LOG.debug("method getCustomerById end.");
+        return beanList;
+    }
+
     /**
      * @return the customerDao
      */
-    @Override
     public CustomerDao getCustomerDao() {
         return customerDao;
     }
@@ -229,7 +258,6 @@ public class CustomerServiceImpl implements CustomerService {
      * @param customerDao
      *            the customerDao to set
      */
-    @Override
     public void setCustomerDao(CustomerDao customerDao) {
         this.customerDao = customerDao;
     }

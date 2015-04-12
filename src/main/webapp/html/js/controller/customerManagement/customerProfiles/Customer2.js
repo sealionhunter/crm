@@ -13,6 +13,9 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer2', {
             },
             'customertab panel[id=customerhistorytab]': {
                 render: this.onPanelRendered5
+            },
+            'customertab panel[id=leaderadvicetab]': {
+                render: this.onPanelRendered6
             }
         });
     },
@@ -35,5 +38,8 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer2', {
     },
     onPanelRendered5: function(panel) {
         initController('customerManagement.contactTrack.ContactHistory').viewInit(122, panel, this.record);
+    },
+    onPanelRendered6: function(panel) {
+        initController('customerManagement.customerProfiles.LeaderAdvice').viewInit(114, panel, this.record);
     }
 });

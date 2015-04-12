@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
     xmlns:tx="http://www.springframework.org/schema/tx"
@@ -75,6 +75,9 @@
 <!--                 <value> -->
 <!--                     com/ustcsoft/gs/crm/webui/customer/dto/ProposalOrContractDto.hbm.xml -->
 <!--                 </value> -->
+                <value>
+                    com/ustcsoft/gs/crm/webui/customer/dto/LeaderAdviceDto.hbm.xml
+                </value>
                 <value>
                     com/ustcsoft/gs/crm/webui/customer/dto/ContactTrackInfoDto.hbm.xml
                 </value>
@@ -219,7 +222,7 @@
         <property name="customerService" ref="customerService"></property>
         <property name="codeService" ref="codeService"></property>
     </bean>
-        <bean id="customerCommonDao"
+    <bean id="customerCommonDao"
         class="com.ustcsoft.gs.crm.webui.customer.dao.impl.CustomerCommonDaoImpl">
         <property name="hibernateTemplate">
             <ref bean="hibernateTemplate" />
@@ -228,6 +231,24 @@
     <bean id="customerCommonService"
         class="com.ustcsoft.gs.crm.webui.customer.service.impl.CustomerCommonServiceImpl">
         <property name="customerCommonDao" ref="customerCommonDao"></property>
+    </bean>
+    <!-- 领导建议 -->
+    <bean id="leaderAdviceDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.LeaderAdviceDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
+    <bean id="leaderAdviceService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.LeaderAdviceServiceImpl">
+        <property name="dao" ref="leaderAdviceDao"></property>
+    </bean>
+    <bean id="leaderAdviceList"
+        class="com.ustcsoft.gs.crm.webui.customer.action.LeaderAdviceAction">
+        <property name="service" ref="leaderAdviceService"></property>
+    </bean>
+    <bean id="customerExport"
+        class="com.ustcsoft.gs.crm.webui.customer.action.CustomerExportAction"
+        scope="prototype">
+        <property name="customerService" ref="customerService"></property>
     </bean>
 
     <!-- 文件模板 -->

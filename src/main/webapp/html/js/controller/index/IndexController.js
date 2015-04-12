@@ -418,14 +418,14 @@ Ext.define('CRM.controller.index.IndexController', {
                 store.each(function(item) {
                     var workID = item.get('workID');
                     var theme = item.get('theme');
-                    html = html + "<div style='padding-left:20px;'><h3>" + "<span style='color:blue;cursor:pointer;'" + "onclick=utils.showOneTask(this,'" + componentID + "'," + workID + ")>" + storelength
-                            + "、" + Ext.htmlEncode(theme) + "</span></h3></div>";
+                    html = html + "<div style='padding-left:20px;'><h4>" + "<span style='color:blue;cursor:pointer;'" + "onclick=utils.showOneTask(this,'" + componentID + "'," + workID + ")>" + storelength
+                            + "、" + Ext.htmlEncode(theme) + "</span></h4></div>";
                     storelength += 1;
                 });
                 if (store.getCount() == 0) {
                     html = "<div style='padding-left:20px;'><br>无通知信息。</div>";
                 } else if (store.getCount() < 6) {
-                    html = "<div><br>" + html + "</div>";
+                    html = "<div>" + html + "</div>";
                 } else {
                     html = "<marquee behavior=scroll direction=up scrollamount=2 scrolldelay=0 vspace=0 hspace=1 loop=-1 onmouseover=this.stop() onmouseout=this.start()>" + html + "</marquee>";
                 }

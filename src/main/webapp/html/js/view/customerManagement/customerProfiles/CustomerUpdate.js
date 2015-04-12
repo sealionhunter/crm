@@ -1,4 +1,4 @@
-Ext.define('CRM.view.customerManagement.customerProfiles.CustomerUpdate', {
+﻿Ext.define('CRM.view.customerManagement.customerProfiles.CustomerUpdate', {
     extend: 'Ext.window.Window',
     alias: 'widget.customerupdate',
     layout: 'fit',
@@ -31,11 +31,13 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerUpdate', {
                     blankText: '客户名称不能为空！',
                     xtype: 'textfield',
                     width: 530,
-                    maxLength: 50,
-                    maxLengthText: "客户名称为2-50个字符！",
-                    enforceMaxLength: true,
-                    minLength: 2,
-                    minLengthText: "客户名称为2-50个字符！",
+//                    maxLength: 50,
+//                    maxLengthText: "客户名称为2-50个字符！",
+//                    enforceMaxLength: true,
+//                    minLength: 2,
+//                    minLengthText: "客户名称为2-50个字符！",
+                    regex: /^[\u4e00-\u9fa5]{2,50}$/,
+                    regexText: "只能输入2-50位中文!", //正则表达式错误提示 
                     name: 'customerName',
                     itemId: 'customerName',
                     labelSeparator: redStar,

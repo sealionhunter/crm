@@ -14,6 +14,8 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Conta
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[CustomerInfo]') AND type in (N'U')) DROP TABLE [dbo].[CustomerInfo];
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[LeaderAdvice]') AND type in (N'U')) DROP TABLE [dbo].[LeaderAdvice];
+
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Department]') AND type in (N'U')) DROP TABLE [dbo].[Department];
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GroupManager]') AND type in (N'U')) DROP TABLE [dbo].[GroupManager];
@@ -135,6 +137,7 @@ INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf],
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (17, N'menu', 111, N'客户基本信息', 0, 1, 11);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (18, N'menu', 112, N'公海', 0, 1, 11);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (19, N'menu', 113, N'客户转移', 0, 1, 11);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (57, N'menu', 114, N'领导建议', 0, 1, 11);
 
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (20, N'menu', 121, N'客户联系', 0, 1, 12);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (21, N'menu', 122, N'客户联系历史', 0, 1, 12);
@@ -149,7 +152,7 @@ INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf],
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (28, N'operation', 1110, N'客户基本信息', 0, 0, -1);
 -- INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (29, N'operation', 11101, N'客户转移', 0, 1, 1110);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (30, N'operation', 11102, N'客户详情', 0, 1, 1110);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (31, N'operation', 11103, N'领导建议', 0, 1, 1110);
+-- INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (31, N'operation', 11103, N'领导建议', 0, 1, 1110);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (32, N'operation', 11104, N'添加客户', 0, 1, 1110);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (33, N'operation', 11105, N'编辑客户', 0, 1, 1110);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (34, N'operation', 11106, N'删除客户', 0, 1, 1110);
@@ -179,6 +182,12 @@ INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf],
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (50, N'operation', 21101, N'添加联系人', 0, 1, 2110);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (51, N'operation', 21102, N'编辑联系人', 0, 1, 2110);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (52, N'operation', 21103, N'删除联系人', 0, 1, 2110);
+
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (58, N'operation', 1140, N'领导建议', 0, 0, -1);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (59, N'operation', 11401, N'添加领导建议', 0, 1, 1140);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (60, N'operation', 11402, N'编辑领导建议', 0, 1, 1140);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (61, N'operation', 11403, N'删除领导建议', 0, 1, 1140);
+
 SET IDENTITY_INSERT [dbo].[Tree] OFF
 
 /****** Object:  Table [dbo].[ProjectTeam]    Script Date: 10/15/2013 14:45:11 ******/
@@ -292,6 +301,33 @@ CREATE TABLE [dbo].[CustomerInfo](
 PRIMARY KEY CLUSTERED 
 (
     [customerID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+END;
+
+SET ANSI_PADDING OFF
+
+/****** Object:  Table [dbo].[LeaderAdvice]    Script Date: 10/15/2013 14:45:12 ******/
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+SET ANSI_PADDING ON
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[LeaderAdvice]') AND type in (N'U'))
+BEGIN
+CREATE TABLE [dbo].[LeaderAdvice](
+    [adviceID] [int] IDENTITY(1,1) NOT NULL,
+    [customerID] [int] NOT NULL,
+    [userID] [int] NOT NULL,
+    [adviceContent] [nvarchar](1024) NOT NULL,
+    [hasRead] [bit] NOT NULL DEFAULT ((0)),
+    [isAbolished] [bit] NOT NULL DEFAULT ((0)),
+    [createTime] [datetime] NOT NULL,
+    [updateTime] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+    [adviceID] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 END;

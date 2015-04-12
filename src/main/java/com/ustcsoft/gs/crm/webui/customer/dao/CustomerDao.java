@@ -11,6 +11,7 @@ package com.ustcsoft.gs.crm.webui.customer.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.ustcsoft.gs.crm.webui.customer.bean.CustomerBean;
 import com.ustcsoft.gs.crm.webui.customer.bean.CustomerSearchBean;
 import com.ustcsoft.gs.crm.webui.customer.dto.CustomerDto;
 
@@ -105,4 +106,17 @@ public interface CustomerDao {
 
     public void receiveCustomer(int customerID, int userID);
 
+    /**
+     * get customer info by Id.
+     * @param id customer id
+     * @return custom info.
+     */
+    public CustomerBean findCustomerById(int id);
+
+    /**
+     * find customers' info where id in id list.
+     * @param ids id list
+     * @return customers' info
+     */
+    public List<CustomerBean> findCustomerListByIds(String ids);
 }

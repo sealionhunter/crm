@@ -122,7 +122,7 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
                 text: '领导建议',
                 id: 'customerLookResBtn',
                 disabled: true,
-                action: 'customerLookResume'
+                action: 'lookLeaderAdvice'
             }, {
                 hidden: true,
                 itemId: '11104',
