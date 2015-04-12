@@ -12,9 +12,6 @@ Ext.define('CRM.view.customerManagement.contactTrack.ReFeedbackList', {
     constrainHeader: true,
     layout: 'fit',
     initComponent: function() {
-//        this.chanceEventStore = Ext.create('CRM.store.salesManagement.salesEvent.SalesEventStore');
-//        this.chanceEventStoreByStatus = Ext.create('CRM.store.salesManagement.salesEvent.SalesEventStore');
-//        this.chanceEventStore.load();
         this.items = [ {
             xtype: 'form',
             defaults: {
@@ -36,10 +33,10 @@ Ext.define('CRM.view.customerManagement.contactTrack.ReFeedbackList', {
                 xtype: 'textfield',
                 hidden: true
             }, {
-                name: 'weContact',
-                xtype: 'textfield',
-                hidden: true
-            }, {
+//                name: 'weContact',
+//                xtype: 'textfield',
+//                hidden: true
+//            }, {
                 name: 'oppositeContact',
                 xtype: 'textfield',
                 hidden: true
@@ -151,127 +148,6 @@ Ext.define('CRM.view.customerManagement.contactTrack.ReFeedbackList', {
                 maxLength: 1024,
                 maxLengthText: "策略长度不能超过1024个字符！",
                 emptyText: '根据反馈信息指定相应的策略！'
-//            }, {
-//                layout: 'hbox',
-//                xtype: 'checkboxgroup',
-//                name: 'chanceType',
-//                id: 'chancetype1',
-//                fieldLabel: '机会状态',
-//                defaultValue: 0,
-//                items: [ {
-//                    width: 90,
-//                    name: 'chanceType',
-//                    boxLabel: '发现机会',
-//                    id: 'findchance1',
-//                    inputValue: 1,
-//                    hidden: false
-//                }, {
-//                    width: 90,
-//                    name: 'chanceType',
-//                    boxLabel: '验证机会',
-//                    id: 'checkchance1',
-//                    inputValue: 2,
-//                    hidden: false
-//                } ]
-//            }, {
-//                layout: 'hbox',
-//                xtype: 'textfield',
-//                name: 'eventName',
-//                fieldLabel: '事件名称',
-//                id: 'chancename1',
-//                queryMode: 'local',
-//                valueField: 'name',
-//                displayField: 'eventName',
-//                hidden: true,
-//                disabled: true,
-//                enforceMaxLength: true,
-//                maxLength: 50,
-//                labelSeparator: redStar,
-//                emptyText: '请输入',
-//                maxLengthText: "事件名称长度不能超过50个字符！",
-//                blankText: "事件名称不能为空！",
-//                allowBlank: false
-//            }, {
-//                xtype: 'combobox',
-//                name: 'eventName',
-//                fieldLabel: '机会事件',
-//                id: 'chanceevent1',
-//                queryMode: 'local',
-//                valueField: 'eventID',
-//                displayField: 'eventName',
-//                hidden: true,
-//                disabled: true,
-//                enforceMaxLength: true,
-//                maxLength: 50,
-//                labelSeparator: redStar,
-//                store: this.chanceEventStoreByStatus,
-//                emptyText: '请选择',
-//                editable: false,
-//                blankText: "机会事件不能为空！",
-//                allowBlank: false
-//            }, {
-//                layout: 'hbox',
-//                fieldLabel: '发现机会描述',
-//                xtype: 'textarea',
-//                name: 'findChanceContent',
-//                id: 'findchancecontent1',
-//                queryMode: 'local',
-//                valueField: 'name',
-//                displayField: 'demand',
-//                labelSeparator: redStar,
-//                height: 60,
-//                maxLength: 100,
-//                hidden: true,
-//                disabled: true,
-//                enforceMaxLength: true,
-//                emptyText: '请输入描述信息',
-//                maxLengthText: "描述长度不能超过100个字符！",
-//                blankText: "描述不能为空！",
-//                allowBlank: false
-//            }, {
-//                xtype: 'radiogroup',
-//                columns: 2,
-//                name: 'checkResult',
-//                fieldLabel: '验证结果',
-//                id: 'checkresult1',
-//                labelSeparator: redStar,
-//                hidden: true,
-//                disabled: true,
-//                width: 300,
-//                valueField: 'name',
-//                items: [ {
-//                    boxLabel: '成功',
-//                    name: 'checkResult',
-//                    itemId: 'success',
-//                    inputValue: true,
-//                    width: 90,
-//                    checked: true
-//                }, {
-//                    boxLabel: '失败',
-//                    itemId: 'failure',
-//                    name: 'checkResult',
-//                    width: 90,
-//                    inputValue: false
-//                } ]
-//            }, {
-//                layout: 'hbox',
-//                fieldLabel: '验证机会描述',
-//                xtype: 'textarea',
-//                name: 'checkChanceContent',
-//                id: 'checkchancecontent1',
-//                labelSeparator: redStar,
-//                queryMode: 'local',
-//                valueField: 'name',
-//                displayField: 'demand',
-//                height: 60,
-//                maxLength: 100,
-//                hidden: true,
-//                disabled: true,
-//                enforceMaxLength: true,
-//                emptyText: '请输入描述信息',
-//                maxLengthText: "验证机会描述长度不能超过100个字符！",
-//                blankText: "验证机会描述不能为空！",
-//                allowBlank: false
             }, {
                 xtype: 'textarea',
                 fieldLabel: '未联系原因',

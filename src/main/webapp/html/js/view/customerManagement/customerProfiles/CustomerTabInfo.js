@@ -54,7 +54,7 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTabInfo', {
                 labelWidth : 60,
                 width : 350
             }, {
-                name : 'customerStatement',
+                name : 'businessUnitName',
                 fieldLabel : '经营单元',
                 labelWidth : 60,
                 width : 350

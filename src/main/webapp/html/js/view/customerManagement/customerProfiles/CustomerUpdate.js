@@ -31,11 +31,6 @@
                     blankText: '客户名称不能为空！',
                     xtype: 'textfield',
                     width: 530,
-//                    maxLength: 50,
-//                    maxLengthText: "客户名称为2-50个字符！",
-//                    enforceMaxLength: true,
-//                    minLength: 2,
-//                    minLengthText: "客户名称为2-50个字符！",
                     regex: /^[\u4e00-\u9fa5]{2,50}$/,
                     regexText: "只能输入2-50位中文!", //正则表达式错误提示 
                     name: 'customerName',
@@ -98,7 +93,6 @@
                     margin: '0 0 0 25',
                     name: 'industry',
                     itemId: 'industry',
-                   // tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.value)]}</li>', '</tpl></ul>'),
                     store: Ext.getCmp('customerlist').industryStore,
                     editable: false,
                     displayField: 'value',
@@ -210,9 +204,7 @@
             }, {
                 layout: 'vbox',
                 items: [ {
-//                    cls: 'x-plain',
                     fieldLabel: '企业简介',
-//                    layout: 'fit',
                     xtype: 'textarea',
                     name: 'descriptions',
                     itemId: 'descriptions',
@@ -287,71 +279,6 @@
                   name: 'updateTime'
               }]
             }
-            /*
-            , {
-                xtype: 'tabpanel',
-                plain: true,
-                activeTab: 0,
-                width: 550,
-                defaults: {
-                    bodyStyle: 'padding:10px'
-                },
-                items: [ {
-                    cls: 'x-plain',
-                    title: '联通业务使用情况',
-                    layout: 'fit',
-                    xtype: 'textarea',
-                    name: 'business1',
-                    itemId: 'business1',
-                    enforceMaxLength : true,
-                    maxLength: 1024,
-                    maxLengthText: "联通业务使用情况长度不能超过1024个字符！",
-                    width: 550,
-                    height: 140,
-                    emptyText: "固网业务及月出账:\r\n\r\n\r\n移网业务及月出账:\r\n\r\n\r\n其它产品:"
-                }, {
-                    cls: 'x-plain',
-                    title: '竞争对手业务使用情况',
-                    layout: 'fit',
-                    xtype: 'textarea',
-                    name: 'business2',
-                    itemId: 'business2',
-                    enforceMaxLength : true,
-                    maxLength: 1024,
-                    maxLengthText: "竞争对手业务使用情况长度不能超过1024个字符！",
-                    width: 550,
-                    height: 140,
-                    emptyText: "固网业务及资费:\r\n\r\n\r\n移网业务及资费:\r\n\r\n\r\n其它特殊优惠政策:"
-                }, {
-                    cls: 'x-plain',
-                    title: '移动网络资源情况',
-                    layout: 'fit',
-                    xtype: 'textarea',
-                    name: 'business3',
-                    itemId: 'business3',
-                    enforceMaxLength : true,
-                    maxLength: 1024,
-                    maxLengthText: "竞争对手业务使用情况长度不能超过1024个字符！",
-                    width: 550,
-                    height: 140,
-                    emptyText: "3G:\r\n室外信号情况:\r\n\r\n室内信号情况:\r\n\r\n4G:\r\n室外信号情况:\r\n\r\n室内信号情况:"
-                }, {
-                    cls: 'x-plain',
-                    title: '固网资源情况',
-                    layout: 'fit',
-                    xtype: 'textarea',
-                    name: 'business4',
-                    itemId: 'business4',
-                    enforceMaxLength : true,
-                    maxLength: 1024,
-                    maxLengthText: "竞争对手业务使用情况长度不能超过1024个字符！",
-                    width: 550,
-                    height: 140,
-                    emptyText: "是否整体覆盖:\r\n\r\n\r\n联通接入方式:\r\n\r\n\r\n主干光纤是否进入:"
-                } ]
-            }
-            */
-            
             ]
         } ];
         this.buttons = [ {

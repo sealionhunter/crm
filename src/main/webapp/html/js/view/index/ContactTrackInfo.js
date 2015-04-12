@@ -57,11 +57,11 @@ Ext.define('CRM.view.index.contactTrackInfo', {
             }, {
                 layout: 'hbox',
                 items: [ {
-                    xtype: 'textfield',
-                    fieldLabel: '我方联系人',
-                    readOnly: true,
-                    name: 'weContactName'
-                }, {
+//                    xtype: 'textfield',
+//                    fieldLabel: '我方联系人',
+//                    readOnly: true,
+//                    name: 'weContactName'
+//                }, {
                     xtype: 'textfield',
                     fieldLabel: '对方联系人',
                     readOnly: true,

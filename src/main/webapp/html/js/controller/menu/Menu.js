@@ -78,9 +78,15 @@
                         utils.removeAllChild.apply(rootNode);
                         rootNode.insertChild(1, systemManageNode);
                     }
+                    // 删除联系人
                     rootNode.removeChild(treeStore.getNodeById(2));
+                    // 删除客户联系
                     if (typeof treeStore.getNodeById(1) !== 'undefined') {
                         treeStore.getNodeById(1).removeChild(treeStore.getNodeById(12));
+                    }
+                    // 删除领导建议
+                    if (typeof treeStore.getNodeById(11) !== 'undefined') {
+                        treeStore.getNodeById(11).removeChild(treeStore.getNodeById(114));
                     }
                     rootNode.cascadeBy(function(node) {
                         node.set('checked', null);

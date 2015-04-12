@@ -40,6 +40,13 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
 //            minWidth: 80,
             flex: 1
         }, {
+            text: "经营单元",
+            dataIndex: 'businessUnitName',
+//            minWidth: 80,
+            renderer: this.rendererValue,
+            sortable: true,
+            flex: 1
+        }, {
             text: "客户状态",
             dataIndex: 'customerStatementName',
 //            minWidth: 80,
@@ -56,13 +63,6 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
             dataIndex: 'industryName',
             renderer: this.rendererValue,
 //            minWidth: 80,
-            flex: 1
-        }, {
-            text: "所有权",
-            dataIndex: 'feeName',
-//            minWidth: 80,
-            renderer: this.rendererValue,
-            sortable: true,
             flex: 1
         }, {
             text: "年产值(万元)",

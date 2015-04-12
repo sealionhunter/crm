@@ -137,56 +137,54 @@ INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf],
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (17, N'menu', 111, N'客户基本信息', 0, 1, 11);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (18, N'menu', 112, N'公海', 0, 1, 11);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (19, N'menu', 113, N'客户转移', 0, 1, 11);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (57, N'menu', 114, N'领导建议', 0, 1, 11);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (20, N'menu', 114, N'领导建议', 0, 1, 11);
 
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (20, N'menu', 121, N'客户联系', 0, 1, 12);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (21, N'menu', 122, N'客户联系历史', 0, 1, 12);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (21, N'menu', 121, N'客户联系', 0, 1, 12);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (22, N'menu', 122, N'客户联系历史', 0, 1, 12);
 
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (22, N'menu', 211, N'联系人基本信息', 0, 1, 21);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (23, N'menu', 42, N'用户管理', 0, 1, 4);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (24, N'menu', 431, N'组织结构图', 0, 1, 43);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (25, N'menu', 432, N'部门管理', 0, 1, 43);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (26, N'menu', 433, N'团队管理', 0, 1, 43);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (27, N'menu', 441, N'Code管理', 0, 1, 44);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (23, N'menu', 211, N'联系人基本信息', 0, 1, 21);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (24, N'menu', 42, N'用户管理', 0, 1, 4);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (25, N'menu', 431, N'组织结构图', 0, 1, 43);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (26, N'menu', 432, N'部门管理', 0, 1, 43);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (27, N'menu', 433, N'团队管理', 0, 1, 43);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (28, N'menu', 441, N'Code管理', 0, 1, 44);
 
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (28, N'operation', 1110, N'客户基本信息', 0, 0, -1);
--- INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (29, N'operation', 11101, N'客户转移', 0, 1, 1110);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (29, N'operation', 1110, N'客户基本信息', 0, 0, -1);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (30, N'operation', 11102, N'客户详情', 0, 1, 1110);
--- INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (31, N'operation', 11103, N'领导建议', 0, 1, 1110);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (32, N'operation', 11104, N'添加客户', 0, 1, 1110);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (33, N'operation', 11105, N'编辑客户', 0, 1, 1110);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (34, N'operation', 11106, N'删除客户', 0, 1, 1110);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (53, N'operation', 11107, N'导出客户', 0, 1, 1110);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (31, N'operation', 11104, N'添加客户', 0, 1, 1110);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (32, N'operation', 11105, N'编辑客户', 0, 1, 1110);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (33, N'operation', 11106, N'删除客户', 0, 1, 1110);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (34, N'operation', 11107, N'导出客户', 0, 1, 1110);
 
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (35, N'operation', 1120, N'公海', 0, 0, -1);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (36, N'operation', 11201, N'添加公海客户', 0, 1, 1120);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (37, N'operation', 11202, N'编辑公海客户', 0, 1, 1120);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (38, N'operation', 11203, N'删除公海客户', 0, 1, 1120);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (54, N'operation', 11204, N'领取公海客户', 0, 1, 1120);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (55, N'operation', 11205, N'导出公海客户', 0, 1, 1120);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (56, N'operation', 11206, N'客户详情', 0, 1, 1120);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (39, N'operation', 11204, N'领取公海客户', 0, 1, 1120);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (40, N'operation', 11205, N'导出公海客户', 0, 1, 1120);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (41, N'operation', 11206, N'客户详情', 0, 1, 1120);
 
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (39, N'operation', 1210, N'客户联系', 0, 0, -1);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (40, N'operation', 12101, N'客户反馈', 0, 1, 1210);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (41, N'operation', 12102, N'添加客户联系', 0, 1, 1210);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (42, N'operation', 12103, N'编辑客户联系', 0, 1, 1210);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (43, N'operation', 12104, N'删除客户联系', 0, 1, 1210);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (42, N'operation', 1210, N'客户联系', 0, 0, -1);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (43, N'operation', 12101, N'客户反馈', 0, 1, 1210);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (44, N'operation', 12102, N'添加客户联系', 0, 1, 1210);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (45, N'operation', 12103, N'编辑客户联系', 0, 1, 1210);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (46, N'operation', 12104, N'删除客户联系', 0, 1, 1210);
 
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (44, N'operation', 1220, N'客户联系历史', 0, 0, -1);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (45, N'operation', 12201, N'重新反馈', 0, 1, 1220);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (46, N'operation', 12203, N'添加客户联系历史', 0, 1, 1220);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (47, N'operation', 12204, N'编辑客户联系历史', 0, 1, 1220);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (48, N'operation', 12202, N'删除客户联系历史', 0, 1, 1220);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (47, N'operation', 1220, N'客户联系历史', 0, 0, -1);
+-- INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (48, N'operation', 12201, N'重新反馈', 0, 1, 1220);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (49, N'operation', 12202, N'添加客户联系历史', 0, 1, 1220);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (50, N'operation', 12203, N'编辑客户联系历史', 0, 1, 1220);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (51, N'operation', 12204, N'删除客户联系历史', 0, 1, 1220);
 
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (49, N'operation', 2110, N'联系人基本信息', 0, 0, -1);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (50, N'operation', 21101, N'添加联系人', 0, 1, 2110);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (51, N'operation', 21102, N'编辑联系人', 0, 1, 2110);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (52, N'operation', 21103, N'删除联系人', 0, 1, 2110);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (52, N'operation', 2110, N'联系人基本信息', 0, 0, -1);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (53, N'operation', 21101, N'添加联系人', 0, 1, 2110);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (54, N'operation', 21102, N'编辑联系人', 0, 1, 2110);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (56, N'operation', 21103, N'删除联系人', 0, 1, 2110);
 
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (58, N'operation', 1140, N'领导建议', 0, 0, -1);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (59, N'operation', 11401, N'添加领导建议', 0, 1, 1140);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (60, N'operation', 11402, N'编辑领导建议', 0, 1, 1140);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (61, N'operation', 11403, N'删除领导建议', 0, 1, 1140);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (57, N'operation', 1140, N'领导建议', 0, 0, -1);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (58, N'operation', 11401, N'添加领导建议', 0, 1, 1140);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (59, N'operation', 11402, N'编辑领导建议', 0, 1, 1140);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (60, N'operation', 11403, N'删除领导建议', 0, 1, 1140);
 
 SET IDENTITY_INSERT [dbo].[Tree] OFF
 
@@ -514,29 +512,41 @@ INSERT [dbo].[Code] ([code], [value]) VALUES (N'00110004', N'完成优先级别'
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'00100001', N'团队状态');
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'00100002', N'技术职称');
 
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040001', N'蜀山分部');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040002', N'庐阳分部');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040003', N'包河分部');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040004', N'瑶海分部');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040005', N'经开分部');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040006', N'政务分部');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040007', N'滨湖分部');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040001', N'政要一部');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040002', N'政要二部');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040003', N'政要三部');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040004', N'交通物流一部');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040005', N'交通物流二部');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040006', N'公共事业部');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040007', N'金融部');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040008', N'商贸旅游传媒部');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040009', N'大企业一部');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040010', N'大企业二部');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040011', N'文教卫体部');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040012', N'商企中心庐阳分部');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040013', N'商企中心包河分部');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040014', N'商企中心蜀山分部');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040015', N'商企中心瑶海分部');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040016', N'商企中心滨湖分部');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100040017', N'商企中心双凤分部');
 
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'00030002', N'学历');
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'00030004', N'性别');
 
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100010001', N'潜在客户');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100010002', N'新客户');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100010003', N'初次拜访');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100010004', N'达成共识');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100010005', N'成交');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100010001', N'初次拜访');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100010002', N'跟进洽谈');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100010003', N'达成意向');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100010004', N'签订合同');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100010005', N'办理入网');
 
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100020001', N'大企业');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100020002', N'政企');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100020003', N'中小企业');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100020004', N'外资');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100020005', N'合资');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100020006', N'其他');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100020001', N'政企');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100020002', N'商企');
+--INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100020003', N'公共事业');
+--INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100020004', N'金融');
+--INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100020005', N'商贸旅游传媒');
+--INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100020006', N'大企业');
+--INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100020007', N'文教卫体');
+--INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100020008', N'交通物流');
 
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100030001', N'上市公司');
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100030002', N'国有公司');
@@ -617,25 +627,14 @@ INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100060001', N'高');
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100060002', N'一般');
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100060003', N'低');
 
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080001', N'农业');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080002', N'金融');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080003', N'能源');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080004', N'政府');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080005', N'媒体');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080006', N'机械');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080007', N'保险');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080008', N'制造');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080009', N'零售');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080010', N'非盈利机构');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080011', N'服装');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080012', N'IT');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080013', N'银行');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080014', N'通讯');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080015', N'建筑');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080016', N'生物技术');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080017', N'化学');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080018', N'电子');
-INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080019', N'其它');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080001', N'商务楼宇');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080002', N'宾馆酒店');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080003', N'工业园区');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080004', N'聚类市场');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080005', N'沿街商铺');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080006', N'建工市场');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080007', N'地方政府');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100080008', N'事业单位');
 
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100070001', N'决策人');
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100070002', N'关键人');

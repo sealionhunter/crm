@@ -324,13 +324,13 @@ public class WorkDaoImpl implements WorkDao {
         LOG.debug("method getContactTrackInfo start!");
 
         Map<String, Object> map = new HashMap<String, Object>();
-        Object[] taskValues = { userID, date };
-        String[] params = { "userID", "date" };
-        List<ContactTrackListBean> contactTrackList = hibernateTemplate.findByNamedParam(
-                CustomerConstant.GET_CONTACT_TO_NOTIFICATION_HQL, params, taskValues);
-        map.put(CRMConstant.ITEMS, contactTrackList);
-
-        LOG.debug("method getContactTrackInfo end!");
+//        Object[] taskValues = { userID, date };
+//        String[] params = { "userID", "date" };
+//        List<ContactTrackListBean> contactTrackList = hibernateTemplate.findByNamedParam(
+//                CustomerConstant.GET_CONTACT_TO_NOTIFICATION_HQL, params, taskValues);
+//        map.put(CRMConstant.ITEMS, contactTrackList);
+//
+//        LOG.debug("method getContactTrackInfo end!");
         return map;
     }
 

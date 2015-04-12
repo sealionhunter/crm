@@ -67,8 +67,6 @@ Ext.define('CRM.view.index.WorkUpdate', {
                     editable: false,
                     value: '0',
                     forceSelection: true
-//                    ,
-//                    tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.customerName)]}</li>', '</tpl></ul>')
                 }, {
                     xtype: 'combobox',
                     allowBlank: false,
@@ -84,9 +82,6 @@ Ext.define('CRM.view.index.WorkUpdate', {
                     forceSelection: true,
                     displayField: 'value',
                     valueField: 'code'
-//                        ,
-//                    tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.value)]}</li>', '</tpl></ul>')
-                // value : '01'
                 } ]
             }, {
                 layout: 'hbox',
@@ -104,8 +99,6 @@ Ext.define('CRM.view.index.WorkUpdate', {
                     forceSelection: true,
                     displayField: 'value',
                     valueField: 'code'
-//                        ,
-//                    tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.value)]}</li>', '</tpl></ul>')
                 }, {
                     xtype: 'combobox',
                     allowBlank: false,
@@ -121,8 +114,6 @@ Ext.define('CRM.view.index.WorkUpdate', {
                     forceSelection: true,
                     displayField: 'value',
                     valueField: 'code'
-//                        ,
-//                    tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.value)]}</li>', '</tpl></ul>')
                 } ]
             }, {
                 layout: 'hbox',
@@ -188,8 +179,6 @@ Ext.define('CRM.view.index.WorkUpdate', {
                     forceSelection: true,
                     displayField: 'realName',
                     valueField: 'userID'
-//                        ,
-//                    tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.realName)]}</li>', '</tpl></ul>')
                 } ]
             }, {
                 xtype: 'textarea',

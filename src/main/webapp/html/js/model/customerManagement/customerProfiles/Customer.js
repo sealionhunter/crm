@@ -83,6 +83,9 @@ Ext.define('CRM.model.customerManagement.customerProfiles.Customer', {
         name : 'businessUnit',
         type : 'string'
     }, {
+        name : 'businessUnitName',
+        type : 'string'
+    }, {
         name : 'number',
         type : 'string'
     }, {

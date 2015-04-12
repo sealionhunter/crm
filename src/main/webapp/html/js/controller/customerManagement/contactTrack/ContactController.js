@@ -45,9 +45,6 @@ Ext.define('CRM.controller.customerManagement.contactTrack.ContactController', {
             'contacttrackcontactfeedbacklist radiogroup[id=ifContact1]': {
                 change: this.isOrNotContact
             },
-//            'contacttrackcontactfeedbacklist checkboxgroup[id=chancetype]': {
-//                change: this.chanceTypeSelect
-//            },
             // 监听保存用户反馈信息的按钮
             'contacttrackcontactfeedbacklist button[id=feedBackSave]': {
                 click: this.saveAdd
@@ -72,24 +69,6 @@ Ext.define('CRM.controller.customerManagement.contactTrack.ContactController', {
             'contacttrackcontactlist combobox': {
                 select: this.comboChangeSelect
             },
-//            // 监听添加页面的客户选择下拉框
-//            'contactinfoadd combobox[name=customerID]': {
-//                select: this.customerchange
-//            },
-//            // 监听机会事件选择下拉框
-//            'contacttrackcontactfeedbacklist combobox[id=chanceevent]': {
-//                select: this.comboAllStatus
-//            },
-//            // 监听机会事件选择下拉框选择
-//            'contacttrackcontactfeedbacklist combobox[id=chanceevent]': {
-//                focus: this.comboStatusSelect
-//            },
-//            'contactinfoadd combobox[id=oppositeContact]': {
-//                focus: this.addContact
-//            },
-//            'contactinfoadd combobox[id=customer]': {
-//                focus: this.addCustomer
-//            },
             'contactinfoadd textfield': {
                 blur: utils.trimSpace
             },
@@ -146,13 +125,11 @@ Ext.define('CRM.controller.customerManagement.contactTrack.ContactController', {
             };
             Ext.apply(store.proxy.extraParams, new_params);
         });
-        if (contactTrackList.cutomerContactStore.getCount() == 0) {
-            contactTrackList.cutomerContactStore.load({
-                params: {
-                    customerID: customerID
-                }
-            });
-        }
+        contactTrackList.cutomerContactStore.load({
+            params: {
+                customerID: customerID
+            }
+        });
         utils.loadPageOne(store);
         return contactTrackBody;
     },
@@ -167,58 +144,10 @@ Ext.define('CRM.controller.customerManagement.contactTrack.ContactController', {
         feedBack.down('form').getForm().loadRecord(records);
     },
 
-    // 机会类型复选框
-    chanceTypeSelect: function() {
-        var findChance = Ext.getCmp('findchance');
-        var checkChance = Ext.getCmp('checkchance');
-        Ext.getCmp('findchancecontent').setVisible(findChance.checked);
-        Ext.getCmp('findchancecontent').setDisabled(!findChance.checked);
-        Ext.getCmp('checkchancecontent').setVisible(checkChance.checked);
-        Ext.getCmp('checkchancecontent').setDisabled(!checkChance.checked);
-        Ext.getCmp('chancename').setVisible(findChance.checked);
-        Ext.getCmp('chancename').setDisabled(!findChance.checked);
-        Ext.getCmp('chanceevent').setVisible(checkChance.checked && !findChance.checked);
-        Ext.getCmp('chanceevent').setDisabled(!checkChance.checked || findChance.checked);
-        Ext.getCmp('checkresult').setVisible(checkChance.checked);
-        Ext.getCmp('checkresult').setDisabled(!checkChance.checked);
-    },
-//    eventID: 0,
-//    // 机会事件
-//    comboAllStatus: function(combo, index) {
-//        combo.up('window').chanceEventStoreByStatus.removeAll();
-//        Ext.getCmp('chanceevent').reset();
-//    },
-//    // 机会事件筛选
-//    comboStatusSelect: function(combo, eOpts) {
-//        var me = this;
-//        var list = Ext.getCmp('contacttrackcontactlist');
-//        if (typeof (list) == 'undefined') {
-//            list = Ext.widget('contacttrackcontactlist');
-//        }
-//        var selection = list.getView().getSelectionModel().getSelection()[0];
-//        combo.up('window').chanceEventStoreByStatus.removeAll();
-//        combo.up('window').chanceEventStore.each(function(record) {
-//            if (record.get('status') == 1 && selection.get('customerID') == record.get('customerID')
-//                    && !record.get('isAbolished')) {
-//                combo.up('window').chanceEventStoreByStatus.add(record);
-//                me.eventID = record.get('eventID');
-//            }
-//        });
-//        if (combo.up('window').chanceEventStoreByStatus.getCount() == 0) {
-//            messageBox.alert("提示", "该客户没有已发现机会记录，请先添加为机会！");
-//            Ext.getCmp('chanceevent').setReadOnly(true);
-//            Ext.getCmp('chanceevent').setHideTrigger(false);
-//        } else {
-//            Ext.getCmp('chanceevent').setReadOnly(false);
-//        }
-//    },
-
     // 添加编辑信息的保存方法以及客户反馈页面的保存按钮
     saveAdd: function(button) {
         var me = this;
         var submitFlag = 0;
-//        var findChance = Ext.getCmp('findchance');
-//        var checkChance = Ext.getCmp('checkchance');
 
         if (button.id == 'infoadd') {
             submitFlag = 1;
@@ -231,36 +160,15 @@ Ext.define('CRM.controller.customerManagement.contactTrack.ContactController', {
         var form = win.down('form');
         function setVal(fieldId, val) {
             if (fieldId != 'validate') {
-//                if (fieldId == "chancename") {
-//                    form.down('[id=' + fieldId + ']').markInvalid(val);
-//                } else {
-                    form.down('[name=' + fieldId + ']').markInvalid(val);
-//                }
+                form.down('[name=' + fieldId + ']').markInvalid(val);
             }
         }
 
         if (form.getForm().isValid()) {
             var form = button.up('window').down('form');
-//            var createTimeField = form.down('hiddenfield[name=createTime]');
-//            var updateTimeField = form.down('hiddenfield[name=updateTime]');
-//
-//            var now = Ext.util.Format.date(new Date(), 'Y-m-d H:i:s');
-//            // create contact : set updateTime to blank
-//            if (form.down('hiddenfield[name=contactID]').getValue() === '') {
-//                createTimeField.setValue(now);
-//                updateTimeField.setValue('');
-//            } else {
-//                // update contact
-//                updateTimeField.setValue(now);
-//            }
 
             var values = form.getValues();
 
-//            if (submitFlag == 2) {
-//                if (findChance.checked && checkChance.checked) {
-//                    values.chanceType = 3;
-//                }
-//            }
             var record = form.getRecord();
             var list = Ext.getCmp("contacttrackcontactlist") || '';
             var store = null;
@@ -311,48 +219,12 @@ Ext.define('CRM.controller.customerManagement.contactTrack.ContactController', {
     // 列表页面添加按钮方法
     addContactWin: function() {
         var view = Ext.widget('contactinfoadd');
-//        view.down('#oppositeContact').forceSelection = true;
-//        view.down('#oppositeContact').setReadOnly(true);
         view.setTitle('添加客户联系信息');
         Ext.getCmp('clearInfo').setText('清空');
 
         var customerID = this.record.get('customerID');
         view.down('#customerID').setValue(customerID);
-        var customerName = this.record.get('customerName');
-        view.down('#customerName').setValue(customerName);
     },
-//    addCustomer: function() {
-//        if (Ext.getCmp('customer').store.count() == 0) {
-//            messageBox.alert("提示", "无客户，请先添加客户！");
-//            Ext.getCmp('customer').setReadOnly(true);
-//        } else {
-//            Ext.getCmp('customer').setReadOnly(false);
-//            Ext.getCmp('oppositeContact').forceSelection = false;
-//        }
-//    },
-//    // 添加页面的客户选择下拉框
-//    customerchange: function(combo, record, index) {
-//        combo.up('window').cutomerContactStoreByCustomer.removeAll();
-//        combo.up('window').down('#oppositeContact').reset();
-//        Ext.getCmp('oppositeContact').setReadOnly(false);
-//    },
-//    addContact: function(combo, eOpts) {
-//        combo.store.removeAll();
-//        if (combo.up('window').down('#customer_ID').value == null) {
-//            messageBox.alert("提示", "请先选择客户！");
-//            return;
-//        } else {
-//            combo.up('window').cutomerContactStore.each(function(record) {
-//                if (record.get('customerID') == combo.up('window').down('#customer_ID').getValue()) {
-//                    combo.up('window').cutomerContactStoreByCustomer.add(record);
-//                }
-//            });
-//        }
-//        if (combo.store.count() == 0) {
-//            Ext.getCmp('oppositeContact').setReadOnly(true);
-//            messageBox.alert("提示", "该客户没有联系人，请追加联系人！");
-//        }
-//    },
 
     // 添加、编辑以及客户反馈页面的清空或重置按钮方法
     clear: function(button) {
@@ -363,7 +235,6 @@ Ext.define('CRM.controller.customerManagement.contactTrack.ContactController', {
             }, 100);
         } else {
             var view = Ext.getCmp('contactinfoadd');
-//            view.cutomerContactStoreByCustomer.load();
             var list = Ext.getCmp('contacttrackcontactlist');
             var selection = list.getView().getSelectionModel().getSelection()[0];
             win.down('form').getForm().loadRecord(selection);
@@ -387,7 +258,6 @@ Ext.define('CRM.controller.customerManagement.contactTrack.ContactController', {
             view.setTitle('编辑客户联系信息');
             var list = Ext.getCmp('contacttrackcontactlist');
             var record = list.getView().getSelectionModel().getSelection()[0];
-//            view.cutomerContactStoreByCustomer.load();
             view.down('form').getForm().loadRecord(record);
         }
     },
@@ -424,7 +294,6 @@ Ext.define('CRM.controller.customerManagement.contactTrack.ContactController', {
         var realityDateEnd = Ext.getCmp('realityDateEnd');
         var userFeedbackInformation = Ext.getCmp('userFeedbackInformation');
         var strategy = Ext.getCmp('strategy');
-//        var chanceType = Ext.getCmp('chancetype');
         var notContantReason = Ext.getCmp('notContantReason');
         var list = Ext.getCmp('contacttrackcontactlist');
         if (typeof (list) == 'undefined') {
@@ -434,8 +303,6 @@ Ext.define('CRM.controller.customerManagement.contactTrack.ContactController', {
         win.down('form').getForm().loadRecord(record1);
         // 清除无效提示信息
         win.down('form').getForm().clearInvalid();
-//        chanceType.setDisabled(!value);
-//        chanceType.setVisible(value);
         realityDateBegin.setDisabled(!value);
         realityDateBegin.setVisible(value);
         realityDateEnd.setDisabled(!value);

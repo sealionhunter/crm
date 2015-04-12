@@ -23,6 +23,8 @@ public class CustomerBean extends CustomerDto {
 
     private String holderName = null;
 
+    private String businessUnitName = null;
+
     /**
      * @return the industryName
      */
@@ -126,6 +128,14 @@ public class CustomerBean extends CustomerDto {
      */
     public void setHolderName(String holderName) {
         this.holderName = holderName;
+    }
+
+    public String getBusinessUnitName() {
+        return businessUnitName;
+    }
+
+    public void setBusinessUnitName(String businessUnitName) {
+        this.businessUnitName = businessUnitName;
     }
 
 }

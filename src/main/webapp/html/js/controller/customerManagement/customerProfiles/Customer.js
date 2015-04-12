@@ -299,9 +299,6 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer', {
             }
         });
     },
-//    customerTransfer: function(button) {
-//        initController('customerManagement.customerProfiles.CustomerTransfer').viewInit('show');
-//    },
     deleteCustomer: function(button) {
         var grid = button.up('grid');
         utils.delRecordsCheck(grid, 'deleteCustomer.action', 'customerID');
