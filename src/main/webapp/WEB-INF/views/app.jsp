@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <!-- <meta http-equiv="x-ua-compatible" content="ie=7" /> -->
-<title>USTC_CRM</title>
+<title>USI_CRM</title>
 <style type="text/css">
 </style>
 <link rel="Shortcut Icon" href="html/img/favicon.ico" />
