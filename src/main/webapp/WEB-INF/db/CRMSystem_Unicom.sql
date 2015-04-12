@@ -640,6 +640,12 @@ INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100070001', N'决策人');
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100070002', N'关键人');
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100070003', N'相关人员');
 
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'002000010001', N'柱状图');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'002000010002', N'饼状图');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'002000020001', N'客户类型');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'002000020002', N'经营单元');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'002000020003', N'市场名称');
+
 /****** Object:  Table [dbo].[ActionGroup]    Script Date: 10/15/2013 14:45:14 ******/
 SET ANSI_NULLS ON
 

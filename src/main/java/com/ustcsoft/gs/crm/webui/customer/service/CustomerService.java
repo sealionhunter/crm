@@ -83,4 +83,6 @@ public interface CustomerService {
     public CustomerBean getCustomerById(int id) throws CRMDBException;
     
     public List<CustomerBean> findCustomersByIds(String ids) throws CRMDBException;
+
+    public Map<String, Object> getCustomerCount(String statisticsType, int userID);
 }

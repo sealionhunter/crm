@@ -8,11 +8,10 @@
  */
 package com.ustcsoft.gs.crm.webui.customer.action;
 
-import java.util.ArrayList;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -59,6 +58,8 @@ public class CustomerListAction extends CRMAction {
     private boolean flag = true;
 
     private boolean gonghai = false;
+    
+    private String statisticsType = null;
 
     private int customerID;
 
@@ -203,6 +204,10 @@ public class CustomerListAction extends CRMAction {
         return name;
     }
 
+    public String getCustomerCount() throws CRMDBException {
+        map = customerService.getCustomerCount(statisticsType, userID);
+        return SUCCESS;
+    }
     /**
      * Query and get customer.
      * 
@@ -281,6 +286,13 @@ public class CustomerListAction extends CRMAction {
         this.customerService = customerService;
     }
 
+    public String getStatisticsType() {
+        return statisticsType;
+    }
+    
+    public void setStatisticsType(String statisticsType) {
+        this.statisticsType = statisticsType;
+    }
     public boolean isFlag() {
         return flag;
     }

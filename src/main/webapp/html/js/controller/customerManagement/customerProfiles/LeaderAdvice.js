@@ -23,6 +23,9 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.LeaderAdvice', {
             'leaderadvicelist button[action=queryBtn]': {
                 click: this.leaderAdviceQuery
             },
+            'leaderadvicelist button[action=viewLeaderAdvice]': {
+                click: this.viewLeaderAdvice
+            },
             'leaderadviceupdate button[action=addOrUpdateLeaderAdvice]': {
                 click: this.addOrUpdateLeaderAdvice
             },
@@ -48,12 +51,15 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.LeaderAdvice', {
 
         var leaderAdviceList = Ext.getCmp('leaderadvicelist');
         utils.authorizationControl(treeId, leaderAdviceList);
+
+        // load user combox
+//        leaderAdviceList.userStore.load({
+//            params: {
+//                userID: USER_ID
+//            }
+//        });
+
         // load page
-        leaderAdviceList.userStore.load({
-            params: {
-                userID: USER_ID
-            }
-        });
         if (typeof record !== 'undefined') {
             this.record = record;
             var store  = leaderAdviceList.getStore();
@@ -82,6 +88,11 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.LeaderAdvice', {
     showEditWin: function(button) {
         var grid = button.up('grid');
         var checkRecord = grid.getSelectionModel().getSelection();
+        // 不能编辑别人添加的领导建议
+        if(USER_ID != checkRecord[0].get('userID')) {
+            messageBox.alert("提示", '不能编辑【' + checkRecord[0].get('userName') + '】的领导建议！');
+            return;
+        }
         var view = Ext.widget('leaderadviceupdate');
         view.setTitle('编辑领导建议信息');
         view.down('[action=resetLeaderAdvice]').setText('重置');
@@ -90,6 +101,16 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.LeaderAdvice', {
     },
     showDelWin: function(button) {
         var grid = button.up('grid');
+        // check delete
+        var checkRecord = grid.getSelectionModel().getSelection();
+        // 不能删除别人添加的领导建议
+        for(var i = 0; i < checkRecord.length; i++) {
+            var record = checkRecord[i];
+            if (record.get('userID') != USER_ID) {
+                messageBox.alert('提示', '删除的领导建议中包含【' + record.get('userName') + '】添加的建议，无法删除！');
+                return;
+            }
+        }
         utils.delRecordsCheck(grid, 'deleteLeaderAdvice.action', 'adviceID');
     },
     addOrUpdateLeaderAdvice: function(button) {
@@ -119,6 +140,8 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.LeaderAdvice', {
         var listGrid = Ext.getCmp('leaderadvicelist');
         listGrid.down('[action=showDelWin]').setDisabled(selections.length == 0);
         listGrid.down('[action=showEditWin]').setDisabled(selections.length != 1);
+        listGrid.down('[action=viewLeaderAdvice]').setDisabled(selections.length != 1);
+
     },
     leaderAdviceQuery: function(button) {
 //        alert("leaderAdviceQuery");
@@ -145,5 +168,10 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.LeaderAdvice', {
         } else {
             messageBox.alert("提示", "您搜索的值不符合规范，请重新输入！");
         }
+    },
+    viewLeaderAdvice: function(button) {
+        var grid = button.up('grid');
+        var checkRecord = grid.getSelectionModel().getSelection();
+        messageBox.alert("领导建议内容", checkRecord[0].get('adviceContent'));
     }
 });

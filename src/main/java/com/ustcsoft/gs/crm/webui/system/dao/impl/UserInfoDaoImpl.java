@@ -168,21 +168,21 @@ public class UserInfoDaoImpl implements UserInfoDao {
 //        List<Integer> list4 = null;
 //        list4 = hibernateTemplate.findByNamedParam(SystemConstant.QUERY_IN_SALES, "userID", userID);
 
-        List<Integer> list5 = null;
-        list5 = hibernateTemplate.findByNamedParam(SystemConstant.QUERY_IN_CONTACTTRACK, "userID",
-                userID);
+//        List<Integer> list5 = null;
+//        list5 = hibernateTemplate.findByNamedParam(SystemConstant.QUERY_IN_CONTACTTRACK, "userID",
+//                userID);
 
         List<Integer> result = new ArrayList<Integer>();
         result.addAll(list1);
         result.addAll(list2);
         result.addAll(list3);
 //        result.addAll(list4);
-        result.addAll(list5);
+//        result.addAll(list5);
         map.put("list1", list1);
         map.put("list2", list2);
         map.put("list3", list3);
 //        map.put("list4", list4);
-        map.put("list5", list5);
+//        map.put("list5", list5);
         map.put("result", result);
         map.put("userID", userID);
 

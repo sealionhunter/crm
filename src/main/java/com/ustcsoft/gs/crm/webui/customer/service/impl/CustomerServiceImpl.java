@@ -124,15 +124,15 @@ public class CustomerServiceImpl implements CustomerService {
     public Map<String, Object> deleteCustomer(String customerIDs) throws CRMDBException {
         LOG.debug("method deleteCustomer start.");
         try {
-            Map<String, Object> map = checkDelete(customerIDs);
-            if (map.isEmpty()) {
+//            Map<String, Object> map = checkDelete(customerIDs);
+//            if (map.isEmpty()) {
                 customerIDs = CRMConstant.LEFT_PARENTHESIS + customerIDs
                         + CRMConstant.RIGHT_PARENTHESIS;
                 customerDao.deleteCustomer(customerIDs);
-            } else {
-                LOG.debug("method deleteCustomer end.");
-                return map;
-            }
+//            } else {
+//                LOG.debug("method deleteCustomer end.");
+//                return map;
+//            }
         } catch (DataAccessException e) {
             LOG.error("DataAccessException occurs in method deleteCustomer.", e);
             throw new CRMDBException(e);
@@ -141,25 +141,25 @@ public class CustomerServiceImpl implements CustomerService {
         return new HashMap<String, Object>();
     }
 
-    /**
-     * check delete IDs
-     * 
-     * @param customerIDs
-     * @return map
-     */
-    private Map<String, Object> checkDelete(String customerIDs) {
-        LOG.debug("method checkDelete start.");
-        Map<String, Object> map = new HashMap<String, Object>();
-        Integer[] IDs = CRMUtils.getDeleteIds(customerIDs);
-        List<String> table = null;
-        StringBuffer errorMsg = new StringBuffer();
-        String customerName = null;
-        for (int i : IDs) {
-            table = new ArrayList<String>();
-            Map<String, Object> iMap = customerDao.getUsingCnt(i);
-            if ((Long) iMap.get("ContactTrackInfoDto") > 0) {
-                table.add("客户联系模块");
-            }
+//    /**
+//     * check delete IDs
+//     * 
+//     * @param customerIDs
+//     * @return map
+//     */
+//    private Map<String, Object> checkDelete(String customerIDs) {
+//        LOG.debug("method checkDelete start.");
+//        Map<String, Object> map = new HashMap<String, Object>();
+//        Integer[] IDs = CRMUtils.getDeleteIds(customerIDs);
+//        List<String> table = null;
+//        StringBuffer errorMsg = new StringBuffer();
+//        String customerName = null;
+//        for (int i : IDs) {
+//            table = new ArrayList<String>();
+//            Map<String, Object> iMap = customerDao.getUsingCnt(i);
+//            if ((Long) iMap.get("ContactTrackInfoDto") > 0) {
+//                table.add("客户联系模块");
+//            }
 //            if ((Long) iMap.get("OrderDto_1") > 0) {
 //                table.add("订单模块");
 //            }
@@ -172,23 +172,23 @@ public class CustomerServiceImpl implements CustomerService {
 //            if (isActivityMember(i)) {
 //                table.add("营销活动模块");
 //            }
-            if (!table.isEmpty()) {
-                customerName = customerDao.getCusNameByID(i);
-                break;
-            }
-        }
-        for (String s : table) {
-            errorMsg.append(s);
-            errorMsg.append("、");
-        }
-        if (errorMsg.length() > 0) {
-            String errorMessage = errorMsg.substring(0, errorMsg.length() - 1);
-            errorMessage = customerName + "在" + errorMessage + "使用，无法删除！";
-            map.put("errorMessage", errorMessage);
-        }
-        LOG.debug("method checkDelete end.");
-        return map;
-    }
+//            if (!table.isEmpty()) {
+//                customerName = customerDao.getCusNameByID(i);
+//                break;
+//            }
+//        }
+//        for (String s : table) {
+//            errorMsg.append(s);
+//            errorMsg.append("、");
+//        }
+//        if (errorMsg.length() > 0) {
+//            String errorMessage = errorMsg.substring(0, errorMsg.length() - 1);
+//            errorMessage = customerName + "在" + errorMessage + "使用，无法删除！";
+//            map.put("errorMessage", errorMessage);
+//        }
+//        LOG.debug("method checkDelete end.");
+//        return map;
+//    }
 
     /**
      * update or save the customer.
@@ -331,6 +331,12 @@ public class CustomerServiceImpl implements CustomerService {
         } else {
             customerDao.receiveCustomer(customerID, userID);
         }
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> getCustomerCount(String statisticsType, int userID) {
+        Map<String, Object> map = customerDao.getCustomerCount(statisticsType, userID);
         return map;
     }
 

@@ -290,7 +290,7 @@ public class WorkServiceImpl implements WorkService {
         try {
             map = workDao.getCustomerUpdatedStatus(userID, date);
         } catch (DataAccessException e) {
-            LOG.debug("DataAccessException occurs in method getContactTrackInfo!", e);
+            LOG.error("DataAccessException occurs in method getContactTrackInfo!", e);
             throw new CRMDBException(e);
         }
         LOG.debug("method getCustomerUpdatedStatus end!");

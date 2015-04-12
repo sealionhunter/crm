@@ -84,4 +84,5 @@ public class ContractDto {
     public void setFileTemplateName(String fileTemplateName) {
         this.fileTemplateName = fileTemplateName;
     }
+
 }

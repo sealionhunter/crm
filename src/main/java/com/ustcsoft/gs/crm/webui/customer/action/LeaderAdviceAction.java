@@ -6,6 +6,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.ustcsoft.gs.crm.webui.common.action.CRMAction;
 import com.ustcsoft.gs.crm.webui.common.constant.CRMConstant;
+import com.ustcsoft.gs.crm.webui.common.exception.CRMDBException;
 import com.ustcsoft.gs.crm.webui.common.util.CRMUtils;
 import com.ustcsoft.gs.crm.webui.customer.bean.LeaderAdviceSearchBean;
 import com.ustcsoft.gs.crm.webui.customer.dto.LeaderAdviceDto;
@@ -35,18 +36,18 @@ public class LeaderAdviceAction extends CRMAction {
         }
     }
 
-    public String updateLeaderAdvice() {
+    public String updateLeaderAdvice() throws CRMDBException {
         service.addOrUpdateLeaderAdvice(leaderAdviceDto, this.userID);
         return SUCCESS;
     }
 
-    public String deleteLeaderAdvice() {
+    public String deleteLeaderAdvice() throws CRMDBException {
         service.deleteLeaderAdvice(super.jsonString);
         map = new HashMap<String, Object>();
         return SUCCESS;
     }
 
-    public String getAllLeaderAdvice() {
+    public String getAllLeaderAdvice() throws CRMDBException {
         LeaderAdviceSearchBean searchBean = null;
         // query leader advice
         if (super.searchFlag == 1) {

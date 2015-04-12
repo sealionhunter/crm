@@ -20,15 +20,14 @@ Ext.define('CRM.controller.statistics.sourceStatistics.SourceStatistics', {
         }
         Ext.getCmp('centercard').insert(1, sourceStatistics);
         Ext.getCmp('centercard').getLayout().setActiveItem(sourceStatistics);
-        // utils.authorizationControl(treeId,sourceStatistics);
         return sourceStatistics;
     },
     openok: function(button) {
-        var win = Ext.widget('sourcestatisticscolumnchart');
-        win.show();
-    },
-    openPieChart: function(button) {
-        var win = Ext.widget('sourcestatisticspiechart');
-        win.show();
+        var panel = button.up('panel');
+        panel.store.load({
+            params: {
+                statisticsType: button.up('panel').down('#statisticsTypeCombox').getValue()
+            }
+        });
     }
 });

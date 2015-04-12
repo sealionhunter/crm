@@ -72,7 +72,7 @@
 //                    displayField: 'realName',
 //                    valueField: 'userID'
                     xtype: 'textfield',
-                    fieldLabel: '领导名',
+                    fieldLabel: '领导',
                     name: 'userName',
                     itemId: 'userName',
                     margin: '0 0 0 25',

@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.ustcsoft.gs.crm.webui.common.constant.CRMConstant;
-import com.ustcsoft.gs.crm.webui.common.exception.CRMDBException;
 import com.ustcsoft.gs.crm.webui.common.util.PagingHibernateCallback;
 import com.ustcsoft.gs.crm.webui.customer.bean.LeaderAdviceSearchBean;
 import com.ustcsoft.gs.crm.webui.customer.constant.CustomerConstant;
@@ -39,7 +38,7 @@ public class LeaderAdviceDaoImpl implements LeaderAdviceDao {
 
     @Override
     public Map<String, Object> getAllLeaderAdvice(int searchFlag, LeaderAdviceSearchBean searchBean, int page, int limit, int userID,
-            int customerID) throws CRMDBException {
+            int customerID) {
         Map<String, Object> map = new HashMap<String, Object>(); 
         List<?> leaderAdviceList = hibernateTemplate.executeFind(new PagingHibernateCallback(
                 CustomerConstant.GET_LEADER_ADVICE_LIST_HQL, page, CustomerConstant.CUSTOMER_ID,

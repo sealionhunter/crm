@@ -9,7 +9,7 @@ Ext.define('CRM.view.customerManagement.customerProfiles.LeaderAdviceList', {
     },
     initComponent: function() {
         me = this;
-        this.userStore = Ext.create('CRM.store.customerManagement.customerProfiles.User');
+//        this.userStore = Ext.create('CRM.store.customerManagement.customerProfiles.User');
 
         this.columns = [ Ext.create('Ext.grid.RowNumberer', {
             text: '序号',
@@ -19,7 +19,7 @@ Ext.define('CRM.view.customerManagement.customerProfiles.LeaderAdviceList', {
                 return (page - 1) * pageSize + rowIndex + 1;
             }
         }), {
-            text: "领导名",
+            text: "领导",
             dataIndex: 'userName',
             sortable: true,
             minWidth: 160,
@@ -38,7 +38,7 @@ Ext.define('CRM.view.customerManagement.customerProfiles.LeaderAdviceList', {
             text: "建议内容",
             dataIndex: 'adviceContent',
             minWidth: 160,
-            flex: 2,
+            flex: 4,
             sortable: true
         }, {
             fieldLabel: '创建时间',
@@ -73,6 +73,10 @@ Ext.define('CRM.view.customerManagement.customerProfiles.LeaderAdviceList', {
             , {
                 // 添加填充符
                 xtype: "tbfill"
+            }, {
+                xtype: 'button',
+                text: '查看建议',
+                action : 'viewLeaderAdvice'
             }, {
                 xtype: 'button',
                 text: '添加',

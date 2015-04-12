@@ -189,9 +189,11 @@ public class IndexConstant {
     public static final String EDIT_TEAMWORK = "update WorkDto as WD set WD.isAbolished = 'true' where WD.teamFlag = ? ";
     public static final String GET_CUSTOMER_UPDATED_STATUS = "select new com.ustcsoft.gs.crm.webui.index.bean.CustomerUpdatedStatusBean("
             + " cus.customerName, cus.updateTime) "
+//            + " cus.customerName, DATEDIFF(day, cus.updateTime, GETDATE()) as days)"
             + " from CustomerDto cus"
             + " where cus.holder = :userID"
             + " and cus.isAbolished = 0"
-            + " and cus.updateTime <= CONVERT(varchar(19), getdate() - 10, 120)"
-            + " and cus.updateTime >= CONVERT(varchar(19), getdate() - 90, 120)";
+            + " and DATEDIFF(day, cus.updateTime, GETDATE()) >= 1"
+            + " and cus.updateTime >= CONVERT(varchar(19), GETDATE() - 90, 120)"
+            + " order by cus.updateTime asc";
 }

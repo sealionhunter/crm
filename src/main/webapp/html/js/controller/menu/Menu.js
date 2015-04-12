@@ -159,7 +159,7 @@
             initController('systemManagement.menuManagement.MenuManage').viewInit();
         } else if (treeId == 51) {
 //            initController('statistics.salesStatistics.SalesInit').viewInit(treeId);
-            initController('statistics.salesStatistics.SalesLineInit').viewInit(treeId);
+            initController('statistics.sourceStatistics.SourceStatistics').viewInit(treeId);
 //        } else if (treeId == 61) {
 //            initController('salesManagement.transactionManagement.TransactionManagement').viewInit(treeId);
 //        } else if (treeId == 71) {

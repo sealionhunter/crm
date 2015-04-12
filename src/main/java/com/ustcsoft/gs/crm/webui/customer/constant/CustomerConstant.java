@@ -168,6 +168,12 @@ public class CustomerConstant {
 
     public static final String CUS_WORK_DEL_HQL = "update WorkDto as work set work.isAbolished = 1 where work.customerID in";
 
+    public static final String CUS_CONTACT_DEL_HQL = "update ContactInfoDto as work set work.isAbolished = 1 where work.customerID in";
+
+    public static final String CUS_CONTACTTRACK_DEL_HQL = "update ContactTrackInfoDto as work set work.isAbolished = 1 where work.customerID in";
+
+    public static final String CUS_LEADER_DEL_HQL = "update LeaderAdviceDto as work set work.isAbolished = 1 where work.customerID in";
+
     public static final String CUS_COURSE_DEL_HQL = "update SourceInfoDto as sid set sid.isAbolished = 1 where sid.customerID in";
 
     public static final String CUS_CONTACT_SELECT_DEL_HQL = "delete from ContactSelectDto csd where csd.flag=1 and csd.objectID in";
@@ -917,7 +923,8 @@ public class CustomerConstant {
             + " from LeaderAdviceDto as ld";
     public static final String GET_LEADER_ADVICE_LIST_HQL = GET_LEADER_ADVICE_PREFIX_HQL
             + " where ld.isAbolished = 0"
-            + " and ld.customerID = :customerID";
+            + " and ld.customerID = :customerID"
+            + " order by ld.updateTime desc";
     public static final String GET_LEADER_ADVICE_TOTAL_HQL = "select count(*) from LeaderAdviceDto as ld"
             + " where ld.isAbolished = 0"
             + " and ld.customerID = :customerID";

@@ -119,4 +119,6 @@ public interface CustomerDao {
      * @return customers' info
      */
     public List<CustomerBean> findCustomerListByIds(String ids);
+
+    public Map<String, Object> getCustomerCount(String statisticsType, int userID);
 }

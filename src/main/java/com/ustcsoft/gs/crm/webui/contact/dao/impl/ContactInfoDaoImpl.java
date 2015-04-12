@@ -22,7 +22,6 @@ import com.ustcsoft.gs.crm.webui.contact.dao.ContactInfoDao;
 import com.ustcsoft.gs.crm.webui.contact.dto.ContactInfoDto;
 import com.ustcsoft.gs.crm.webui.contact.dto.FamilyDto;
 import com.ustcsoft.gs.crm.webui.contact.dto.SocialDto;
-import com.ustcsoft.gs.crm.webui.customer.dto.ContactSelectDto;
 
 public class ContactInfoDaoImpl extends CRMUtils implements ContactInfoDao {
     private static Log LOG = LogFactory.getLog(ContactInfoDaoImpl.class);
@@ -199,28 +198,16 @@ public class ContactInfoDaoImpl extends CRMUtils implements ContactInfoDao {
     public final void deleteContact(final String contactIDs) {
         LOG.debug("method deleteContact  start!");
         hibernateTemplate.bulkUpdate(ContactConstant.CONTACT_DELETE + contactIDs);
+        hibernateTemplate.bulkUpdate("update FamilyDto contact set contact.isAbolished = 1  where contact.contactID in" + contactIDs);
+
+        hibernateTemplate.bulkUpdate("update ContactTrackInfoDto contact set contact.isAbolished = 1  where contact.oppositeContact in" + contactIDs);
+
+        hibernateTemplate.bulkUpdate("update SocialDto contact set contact.isAbolished = 1  where contact.contactID in" + contactIDs);
         String substr = contactIDs.substring(1, contactIDs.length() - 1);
         String contactID = (substr.split(","))[0].trim();
         ContactInfoDto dto = hibernateTemplate.get(ContactInfoDto.class, Integer.parseInt(contactID));
         CRMUtils.setCustomerUpdateTime(hibernateTemplate, dto.getCustomerID());
         LOG.debug("method deleteContact end!");
-    }
-
-    /**
-     * delete ContactInfo to check
-     * 
-     * @param contactIDs
-     *            will be check contactIDs
-     * 
-     */
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<ContactSelectDto> deleteContactCheck(final String contactIDs) {
-        LOG.debug("method deleteContactCheck  start!");
-        List<ContactSelectDto> list = null;
-        list = hibernateTemplate.find(ContactConstant.CONTACT_DELETE_CHECK + contactIDs);
-        LOG.debug("method deleteContactCheck end!");
-        return list;
     }
 
     /**
