@@ -1,5 +1,3 @@
-
--- Database: "webUI2008"
 CREATE DATABASE $(db_name)
 	ON (NAME=$(db_name), FILENAME='$(db_path)\$(db_name).mdf')
 	LOG ON (NAME=$(db_name)Log, FILENAME='$(db_path)\$(db_name).ldf');
@@ -10,6 +8,7 @@ ALTER DATABASE $(db_name) SET READ_COMMITTED_SNAPSHOT ON;
 ALTER DATABASE $(db_name) SET ALLOW_SNAPSHOT_ISOLATION ON;
 ALTER DATABASE $(db_name) SET RECURSIVE_TRIGGERS ON;
 ALTER DATABASE $(db_name) SET RECOVERY SIMPLE;
+ALTER DATABASE $(db_name) SET AUTO_CLOSE OFF;
 GO
 
 EXEC sp_addlogin $(db_user), $(db_password), $(db_name);

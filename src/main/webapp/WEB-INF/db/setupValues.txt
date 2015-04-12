@@ -1,7 +1,12 @@
 -- Environment parameters for sqlcmd
+db_path="f:\crm\db"
+db_name=crm
+db_user=crm_user
+db_password=crm_password
 unicode=N
 collate=Latin1_General_BIN2
 unicode_id=N
 collate_id=Latin1_General_CI_AS
 max=max
 source_rdn_len=4000
+dn_len=256
