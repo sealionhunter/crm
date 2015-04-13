@@ -399,16 +399,16 @@ Ext.define('CRM.controller.index.IndexController', {
         var divName = 'show' + componentID;
         var domshow = Ext.get(divName).dom;
         var taskFlag;
-        if (divName == 'showinformTask') {
-            // display contact 
-            taskFlag = 1;
-        } else {
-            taskFlag = 0;
-        }
+//        if (divName == 'showinformTask') {
+//            // display contact 
+//            taskFlag = 1;
+//        } else {
+//            taskFlag = 0;
+//        }
         var store = Ext.getCmp(componentID).store;
         store.load({
             params: {
-                searchFlag: taskFlag,
+                searchFlag: 0,
                 date: Ext.util.Format.date(new Date(), 'Y-m-d H:i:s'),
                 userID: USER_ID
             },
@@ -418,7 +418,7 @@ Ext.define('CRM.controller.index.IndexController', {
                 store.each(function(item) {
                     var workID = item.get('workID');
                     var theme = item.get('theme');
-                    html = html + "<div style='padding-left:20px;'><h4>" + "<span style='color:blue;cursor:pointer;'" + "onclick=utils.showOneTask(this,'" + componentID + "'," + workID + ")>" + storelength
+                    html = html + "<div style='padding-left:20px;'><h4>" + "<span style='color:blue;'>" + storelength
                             + "、" + Ext.htmlEncode(theme) + "</span></h4></div>";
                     storelength += 1;
                 });
@@ -490,7 +490,8 @@ Ext.define('CRM.controller.index.IndexController', {
         var me = this;
         var db = Ext.DomHelper;
         var tplHtml = '<div style="padding-left:20px;"><h4>'
-            + '<span style="color:blue;">{index}、客户【 {customerName}】长时间未更新信息，{days}天后将客户放入公海。</span>'
+//            + '<span style="color:blue;">{index}、客户【 {customerName}】长时间未更新信息，{days}天后将客户放入公海。</span>'
+            + '<span style="color:blue;">{index}、客户【 {customerName}】已经{days}天未更新。</span>'
             + '</h4></div>';
         var tpl = db.createTemplate(tplHtml);
         tpl.compile(); // The performance is great
@@ -559,12 +560,12 @@ Ext.define('CRM.controller.index.IndexController', {
         return Ext.DomHelper.append(el, html);
     },
     formatDays: function(days) {
-        if (days <= 3) {
-            return '<span style="color:red;">' + days + '</span>';
-        } else if (days <= 10) {
-            return '<span style="color:orange;">' + days + '</span>';
-        } else {
+        if (days <= 30) {
             return '<span style="color:blue;">' + days + '</span>';
+        } else if (days <= 60) {
+            return '<span style="color:yellow;">' + days + '</span>';
+        } else {
+            return '<span style="color:red;">' + days + '</span>';
         }
     }
 });

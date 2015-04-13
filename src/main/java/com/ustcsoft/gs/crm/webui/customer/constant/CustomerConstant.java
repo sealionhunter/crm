@@ -168,6 +168,12 @@ public class CustomerConstant {
 
     public static final String CUS_WORK_DEL_HQL = "update WorkDto as work set work.isAbolished = 1 where work.customerID in";
 
+    public static final String CUS_CONTACT_DEL_HQL = "update ContactInfoDto as work set work.isAbolished = 1 where work.customerID in";
+
+    public static final String CUS_CONTACTTRACK_DEL_HQL = "update ContactTrackInfoDto as work set work.isAbolished = 1 where work.customerID in";
+
+    public static final String CUS_LEADER_DEL_HQL = "update LeaderAdviceDto as work set work.isAbolished = 1 where work.customerID in";
+
     public static final String CUS_COURSE_DEL_HQL = "update SourceInfoDto as sid set sid.isAbolished = 1 where sid.customerID in";
 
     public static final String CUS_CONTACT_SELECT_DEL_HQL = "delete from ContactSelectDto csd where csd.flag=1 and csd.objectID in";
@@ -185,11 +191,9 @@ public class CustomerConstant {
             + "or (select comB.value from CodeDto as comB where cus.customerType = comB.code) like:searchText "
             + "or (select comB.value from CodeDto as comB where cus.fee = comB.code) like:searchText "
             + "or (select comB.value from CodeDto as comB where cus.customerStatement = comB.code) like:searchText "
+            + "or (select comB.value from CodeDto as comB where cus.businessUnit = comB.code) like:searchText "
             + "or (select comB.value from CodeDto as comB where cus.valueEvaluate = comB.code) like:searchText "
             + "or cus.customerAddr like:searchText or cus.earning like:searchText or cus.descriptions like:searchText "
-            //2015-3-29 15:33:53 modified start
-            // + "cus.createTime as createTime, cus.updateTime as updateTime ,"
-            //2015-3-29 15:33:53 modified end
             // add 20150308 start
             + "or cus.business1 like:searchText or cus.business2 like:searchText "
             + "or cus.business3 like:searchText or cus.business4 like:searchText) ";
@@ -203,6 +207,7 @@ public class CustomerConstant {
             + "(select comB.value from CodeDto as comB where comB.code = cus.customerStatement) as customerStatementName, "
             + "(select comB.value from CodeDto as comB where comB.code = cus.valueEvaluate) as valueEvaluateName, "
             + "(select comB.value from CodeDto as comB where comB.code = cus.fee) as feeName, "
+            + "(select comB.value from CodeDto as comB where comB.code = cus.businessUnit) as businessUnitName, "
             + "(select user.realName from UserInfoDto as user where user.userID = cus.holder) as holderName,"
             // add 20150308 start
             + "cus.business1 as business1 ,cus.business2 as business2 ,"
@@ -283,13 +288,13 @@ public class CustomerConstant {
     public static final String CONTACTHISTORY_SEARCH_OBJECT = "contactHistorySearchObject";
     public static final String CONTACTHISTORY_OPPOSITE_CONTACT = "oppositeContact";
     public static final String CONTACTHISTORY_CUSTOMER_NAME = "customerName";
-    public static final String CONTACTHISTORY_WE_CONTACT = "weContact";
+//    public static final String CONTACTHISTORY_WE_CONTACT = "weContact";
     public static final String CONTACTHISTORY_SEARCH_FLAG = "searchFlag";
     public static final String CONTACTHISTORY_SEARCH_FLAG_INVALID = "searchFlag.invalid";
     public static final String CONTACTHISTORY_MAXDATE_SEARCH_INVALID = "maxDateSearch.invalid";
     public static final String CONTACTHISTORY_MINDATE_SEARCH_INVALID = "minDateSearch.invalid";
     public static final String CONTACTHISTORY_OPPOSITE_CONTACT_INVALID = "contactHistoryOppositeContact.invalid";
-    public static final String CONTACTHISTORY_WE_CONTACT_INVALID = "contactHistoryWeContact.invalid";
+//    public static final String CONTACTHISTORY_WE_CONTACT_INVALID = "contactHistoryWeContact.invalid";
     public static final String CONTACTHISTORY_CUSTOMER_INVALID = "contactHistoryCustomer.invalid";
     public static final String CONTACTHISTORY_SEARCH_TEXT_INVALID = "contactHistorySearchText.invalid";
     public static final String CONTACTHISTORY_JSON_ERROR = "json.error";
@@ -299,7 +304,7 @@ public class CustomerConstant {
             + " (select cd.customerName from CustomerDto as cd where conT.customerID = cd.customerID and cd.isAbolished = 0) as customerName,"
             + " conT.contactTheme as contactTheme,"
             + " conT.weContact as weContact,"
-            + "(select uiDto.realName from UserInfoDto as uiDto where conT.weContact = uiDto.userID and uiDto.isAbolished = 0) as weContactName,"
+//            + "(select uiDto.realName from UserInfoDto as uiDto where conT.weContact = uiDto.userID and uiDto.isAbolished = 0) as weContactName,"
             + " conT.oppositeContact as oppositeContact,"
             + " conT.contactWay as contactWay,"
             + " conT.contactType as contactType,"
@@ -334,14 +339,14 @@ public class CustomerConstant {
             + " and conT.customerID = :customerID";
 //            + " and conT.customerID in (select cd.customerID from CustomerDto as cd where cd.customerID = conT.customerID and cd.isAbolished = 0 and cd.holder in (:userID))";
     public static final String CONTACTHISTORY_SIMPLE_HQL = " and ((select cd.customerName from CustomerDto as cd where conT.customerID = cd.customerID)like :searchText "
-            + " or (select uiDto.realName from UserInfoDto as uiDto where conT.weContact = uiDto.userID) like :searchText "
+//            + " or (select uiDto.realName from UserInfoDto as uiDto where conT.weContact = uiDto.userID) like :searchText "
             + " or (select ci.contactName from ContactInfoDto as ci where conT.oppositeContact = ci.contactID)like :searchText"
             + " or convert(varchar(20),conT.realityDateBegin,120) like :searchText or convert(varchar(20),conT.realityDateEnd,120) like :searchText "
             + " or conT.contactType in (select cod.code from CodeDto as cod where cod.value like :searchText)"
             + " or conT.contactWay in (select cod.code from CodeDto as cod where cod.value like :searchText)"
             + " or (select cod.value from CodeDto as cod where (conT.ifContact = 1 and cod.code='000600030001') or (conT.ifContact = 0 and cod.code='000600030002')) like :searchText)";
     public static final String CONTACTHISTORY_CUSTOMERSEARCH = " and (select cd.customerName from CustomerDto as cd where conT.customerID = cd.customerID) like :customerName ";
-    public static final String CONTACTHISTORY_WECONTACTSEARCH = " and (select uiDto.realName from UserInfoDto as uiDto where conT.weContact = uiDto.userID ) like :weContact ";
+//    public static final String CONTACTHISTORY_WECONTACTSEARCH = " and (select uiDto.realName from UserInfoDto as uiDto where conT.weContact = uiDto.userID ) like :weContact ";
     public static final String CONTACTHISTORY_OPPOSITESEARCH = " and (select ci.contactName from ContactInfoDto as ci where conT.oppositeContact = ci.contactID)like :oppositeContact ";
     public static final String CONTACTHISTORY_DATESTARTSEARCH = " and conT.realityDateBegin >= :searchDateStart ";
     public static final String CONTACTHISTORY_DATEENDSEARCH = " and conT.realityDateBegin < DATEADD( day , 1, :searchDateEnd ) ";
@@ -355,7 +360,7 @@ public class CustomerConstant {
 //            + " and conT.customerID in (select cd.customerID from CustomerDto as cd where cd.customerID = conT.customerID and cd.isAbolished = 0 and cd.holder in (:userID))";
 + " and conT.customerID = :customerID";
     public static final String CONTACTTRACK_CUSTOMER_SEARCH_HQL = " and (select cd.customerName from CustomerDto as cd where conT.customerID = cd.customerID) like :customerName ";
-    public static final String CONTACTTRACK_WECONTACT_SEARCH_HQL = " and (select uiDto.realName from UserInfoDto as uiDto where conT.weContact = uiDto.userID ) like :weContact ";
+//    public static final String CONTACTTRACK_WECONTACT_SEARCH_HQL = " and (select uiDto.realName from UserInfoDto as uiDto where conT.weContact = uiDto.userID ) like :weContact ";
     public static final String CONTACTTRACK_OPPOSITECONTACT_SEARCH_HQL = " and (select ci.contactName from ContactInfoDto as ci where conT.oppositeContact = ci.contactID)like :oppositeContact ";
     public static final String CONTACTTRACK_CONTACTDATESTART_SEARCH_HQL = " and conT.planDateBegin >= :planDateMin ";
     public static final String CONTACTTRACK_CONTACTDATEEND_SEARCH_HQL = " and conT.planDateBegin < DATEADD( day , 1, :planDateMax )  ";
@@ -363,7 +368,7 @@ public class CustomerConstant {
     public static final String CONTACTTRACK_CONTACTTYPE_SEARCH_HQL = " and conT.contactType in (:contactType) ";
 
     public static final String CONTACT_SIMPLE_HQL = " and ((select cd.customerName from CustomerDto as cd where conT.customerID = cd.customerID and cd.isAbolished = 0)like :searchText "
-            + "or (select uiDto.realName from UserInfoDto as uiDto where conT.weContact = uiDto.userID ) like :searchText "
+//            + "or (select uiDto.realName from UserInfoDto as uiDto where conT.weContact = uiDto.userID ) like :searchText "
             + "or (select ci.contactName from ContactInfoDto as ci where conT.oppositeContact = ci.contactID  and ci.isAbolished = 0)like :searchText"
             + " or convert(varchar(20),conT.planDateBegin,120) like :searchText"
             + " or conT.contactType in (select cod.code from CodeDto as cod"
@@ -375,10 +380,9 @@ public class CustomerConstant {
             + " conT.contactID as contactID,"
             + " conT.customerID as customerID,"
             + " (select cd.customerName from CustomerDto as cd where conT.customerID = cd.customerID and cd.isAbolished = 0) as customerName,"
-            // weContact is user id.
             + " conT.contactTheme as contactTheme,"
-            + " conT.weContact as weContact,"
-            + " (select uiDto.realName from UserInfoDto as uiDto where conT.weContact = uiDto.userID and uiDto.isAbolished = 0) as weContactName,"
+//            + " conT.weContact as weContact,"
+//            + " (select uiDto.realName from UserInfoDto as uiDto where conT.weContact = uiDto.userID and uiDto.isAbolished = 0) as weContactName,"
             + " conT.oppositeContact as oppositeContact,"
             + " (select ci.contactName from ContactInfoDto as ci where conT.oppositeContact = ci.contactID and ci.isAbolished = 0) as oppositeContactName,"
             + " conT.contactWay as contactWay,"
@@ -400,12 +404,12 @@ public class CustomerConstant {
             + " and conT.notContantReason is null"
             + " and conT.customerID = :customerID";
 
-    public static final String GET_CONTACT_TO_NOTIFICATION_HQL = GET_CONTACTTRACK_PREFIX_HQL
-            + " where conT.isAbolished = 0"
-            + " and conT.realityDateBegin is null"
-            + " and conT.notContantReason is null"
-            + " and conT.weContact = :userID"
-            + " and conT.planDateBegin >= :date";
+//    public static final String GET_CONTACT_TO_NOTIFICATION_HQL = GET_CONTACTTRACK_PREFIX_HQL
+//            + " where conT.isAbolished = 0"
+//            + " and conT.realityDateBegin is null"
+//            + " and conT.notContantReason is null"
+//            + " and conT.weContact = :userID"
+//            + " and conT.planDateBegin >= :date";
 
     public static final String GETNUMOFCONTACTTRACK_HQL = "update ContactTrackInfoDto as conT set conT.isAbolished = 'true'"
             + " where conT.contactID in ";
@@ -919,7 +923,8 @@ public class CustomerConstant {
             + " from LeaderAdviceDto as ld";
     public static final String GET_LEADER_ADVICE_LIST_HQL = GET_LEADER_ADVICE_PREFIX_HQL
             + " where ld.isAbolished = 0"
-            + " and ld.customerID = :customerID";
+            + " and ld.customerID = :customerID"
+            + " order by ld.updateTime desc";
     public static final String GET_LEADER_ADVICE_TOTAL_HQL = "select count(*) from LeaderAdviceDto as ld"
             + " where ld.isAbolished = 0"
             + " and ld.customerID = :customerID";

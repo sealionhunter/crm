@@ -63,6 +63,17 @@
             <result type="json">
                 <param name="root">map</param>
             </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="getCustomerCount" class="customerList" method="getCustomerCount">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
         </action>
         <action name="exportCustomer" class="customerExport"
             method="exportExcel">

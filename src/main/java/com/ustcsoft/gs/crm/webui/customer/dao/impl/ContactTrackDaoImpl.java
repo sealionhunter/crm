@@ -84,7 +84,7 @@ public class ContactTrackDaoImpl implements ContactTrackDao {
         } else {
             contactTrackSearchBean.setCustomerID(customerID);
 //            String customerName = contactTrackSearchBean.getCustomerName();
-            String weContact = contactTrackSearchBean.getWeContact();
+//            String weContact = contactTrackSearchBean.getWeContact();
             String oppositeContact = contactTrackSearchBean.getOppositeContact();
             String contactWay = contactTrackSearchBean.getContactWay();
             String planDateMin = contactTrackSearchBean.getPlanDateMin();
@@ -96,10 +96,10 @@ public class ContactTrackDaoImpl implements ContactTrackDao {
 //                str.append(CustomerConstant.CONTACTTRACK_CUSTOMER_SEARCH_HQL);
 //                contactTrackSearchBean.setCustomerName(CRMUtils.trimSearch(customerName));
 //            }
-            if (!(weContact == null || CRMConstant.SPACE.equals(weContact))) {
-                str.append(CustomerConstant.CONTACTTRACK_WECONTACT_SEARCH_HQL);
-                contactTrackSearchBean.setWeContact(CRMUtils.trimSearch(weContact));
-            }
+//            if (!(weContact == null || CRMConstant.SPACE.equals(weContact))) {
+//                str.append(CustomerConstant.CONTACTTRACK_WECONTACT_SEARCH_HQL);
+//                contactTrackSearchBean.setWeContact(CRMUtils.trimSearch(weContact));
+//            }
             if (!(oppositeContact == null || CRMConstant.SPACE.equals(oppositeContact))) {
                 str.append(CustomerConstant.CONTACTTRACK_OPPOSITECONTACT_SEARCH_HQL);
                 contactTrackSearchBean.setOppositeContact(CRMUtils.trimSearch(oppositeContact));

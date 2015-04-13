@@ -26,9 +26,9 @@ Ext.define('CRM.view.customerManagement.contactTrack.ContactHistoryDetail', {
         }, {
             fieldLabel: '客户',
             name: 'customerName'
-        }, {
-            fieldLabel: '我方联系人',
-            name: 'weContactName'
+//        }, {
+//            fieldLabel: '我方联系人',
+//            name: 'weContactName'
         }, {
             fieldLabel: '对方联系人',
             name: 'oppositeContactName'

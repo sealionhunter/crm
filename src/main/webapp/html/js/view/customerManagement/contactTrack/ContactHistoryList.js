@@ -17,6 +17,7 @@ Ext.define('CRM.view.customerManagement.contactTrack.ContactHistoryList', {
     },
     initComponent: function() {
         var me = this;
+        this.cutomerContactStore = Ext.create('CRM.store.customerManagement.order.OrderCutomerContactStore');
         this.contactTypeMemoryStore = Ext.create('CRM.store.code.Code');
         this.contactWayMemoryStore = Ext.create('CRM.store.code.Code');
         this.ifContactMemoryStore = Ext.create('CRM.store.code.Code');
@@ -33,7 +34,6 @@ Ext.define('CRM.view.customerManagement.contactTrack.ContactHistoryList', {
                 name: 'searchText',
                 selectOnFocus: true,
                 width: 150,
-//                labelWidth: 50,
                 maxLength: 1024,
                 enforceMaxLength: true,
                 vtype: 'search',
@@ -64,9 +64,24 @@ Ext.define('CRM.view.customerManagement.contactTrack.ContactHistoryList', {
                 disabled: true
             }, {
                 xtype: 'button',
-                text: '删除',
+                text: '添加',
                 hidden: true,
                 itemId: '12202',
+                id: 'addContactHistory',
+                action: 'addContactHistory'
+            }, {
+                xtype: 'button',
+                text: '编辑',
+                hidden: true,
+                itemId: '12203',
+                id: 'editContactHistory',
+                action: 'editContactHistory',
+                disabled: true
+            }, {
+                xtype: 'button',
+                text: '删除',
+                hidden: true,
+                itemId: '12204',
                 id: 'deleteContactHistory',
                 action: 'deleteContactHistory',
                 disabled: true
@@ -89,16 +104,16 @@ Ext.define('CRM.view.customerManagement.contactTrack.ContactHistoryList', {
                 maxLength: 50,
                 enforceMaxLength: true,
                 maxLengthText: '客户长度不能超过50个字符！'
-            }, {
-                xtype: 'textfield',
-                id: 'contactHistoryWeContactSearch',
-                name: 'weContact',
-                labelWidth: 65,
-                width: 180,
-                fieldLabel: '我方联系人',
-                maxLength: 20,
-                enforceMaxLength: true,
-                maxLengthText: '我方联系人长度不能超过20个字符！'
+//            }, {
+//                xtype: 'textfield',
+//                id: 'contactHistoryWeContactSearch',
+//                name: 'weContact',
+//                labelWidth: 65,
+//                width: 180,
+//                fieldLabel: '我方联系人',
+//                maxLength: 20,
+//                enforceMaxLength: true,
+//                maxLengthText: '我方联系人长度不能超过20个字符！'
             }, {
                 xtype: 'textfield',
                 id: 'contactHistoryOppositeContactSearch',
@@ -123,8 +138,6 @@ Ext.define('CRM.view.customerManagement.contactTrack.ContactHistoryList', {
                 labelWidth: 30,
                 width: 145,
                 name: 'contactType'
-//                    ,
-//                tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">' + '{[Ext.htmlEncode(values.value)]}</li>', '</tpl></ul>')
             }, {
                 xtype: 'combo',
                 id: 'contactHistoryWaySearch',
@@ -139,8 +152,6 @@ Ext.define('CRM.view.customerManagement.contactTrack.ContactHistoryList', {
                 width: 170,
                 fieldLabel: "联系方式",
                 name: 'contactWay'
-//                    ,
-//                tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">' + '{[Ext.htmlEncode(values.value)]}</li>', '</tpl></ul>')
             }, {
                 xtype: 'combo',
                 id: 'contactHistoryIfcontactSearch',
@@ -155,8 +166,6 @@ Ext.define('CRM.view.customerManagement.contactTrack.ContactHistoryList', {
                 labelWidth: 55,
                 width: 170,
                 name: 'ifContact'
-//                    ,
-//                tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">' + '{[Ext.htmlEncode(values.value)]}</li>', '</tpl></ul>')
             }, {
                 xtype: 'panel',
                 layout: 'column',
@@ -225,22 +234,22 @@ Ext.define('CRM.view.customerManagement.contactTrack.ContactHistoryList', {
             align: 'left',
             flex: 1,
             renderer: this.rendererValue
-        },  {
-            header: "客户",
-            dataIndex: 'customerName',
-            minWidth: 80,
-            sortable: true,
-            align: 'left',
-            flex: 1,
-            renderer: this.rendererValue
-        }, {
-            header: "我方联系人",
-            dataIndex: 'weContactName',
-            minWidth: 80,
-            sortable: true,
-            align: 'left',
-            flex: 1,
-            renderer: this.rendererValue
+//        },  {
+//            header: "客户",
+//            dataIndex: 'customerName',
+//            minWidth: 80,
+//            sortable: true,
+//            align: 'left',
+//            flex: 1,
+//            renderer: this.rendererValue
+//        }, {
+//            header: "我方联系人",
+//            dataIndex: 'weContactName',
+//            minWidth: 80,
+//            sortable: true,
+//            align: 'left',
+//            flex: 1,
+//            renderer: this.rendererValue
         }, {
             header: "对方联系人",
             dataIndex: 'oppositeContactName',

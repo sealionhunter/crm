@@ -10,8 +10,8 @@ import com.ustcsoft.gs.crm.webui.customer.dto.ContactTrackInfoDto;
 public class ContactTrackListBean extends ContactTrackInfoDto {
     /** used for storing contactWayName */
     private String contactWayName = null;
-    /** used for storing weContactName */
-    private String weContactName = null;
+//    /** used for storing weContactName */
+//    private String weContactName = null;
     /** used for storing oppositeContactName */
     private String oppositeContactName = null;
     /** used for storing contactTypeName */
@@ -182,20 +182,20 @@ public class ContactTrackListBean extends ContactTrackInfoDto {
 //        this.flowStatus = flowStatus;
 //    }
 
-    /**
-     * 
-     * @return weContactName
-     */
-    public String getWeContactName() {
-        return weContactName;
-    }
-
-    /**
-     * 
-     * @param weContactName
-     */
-    public void setWeContactName(String weContactName) {
-        this.weContactName = weContactName;
-    }
+//    /**
+//     * 
+//     * @return weContactName
+//     */
+//    public String getWeContactName() {
+//        return weContactName;
+//    }
+//
+//    /**
+//     * 
+//     * @param weContactName
+//     */
+//    public void setWeContactName(String weContactName) {
+//        this.weContactName = weContactName;
+//    }
 
 }

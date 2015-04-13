@@ -291,25 +291,24 @@ public class WorkDaoImpl implements WorkDao {
         Map<String, Object> map = new HashMap<String, Object>();
         List<WorkDto> workDtos = null;
         Object[] taskValues = { userID, date };
-        StringBuffer stringBuffer = new StringBuffer(IndexConstant.WORK_TASK_HQL_MAP);
+        // get my task and team task
         if (searchFlag == 0) {
-            LOG.debug("method get important task start!");
-            stringBuffer.append(IndexConstant.WORK_IMPORTANT_TASK_HQL);
-            workDtos = hibernateTemplate.findByNamedParam(stringBuffer.toString(),
+            String importantTaskHql = IndexConstant.WORK_TASK_HQL_MAP + IndexConstant.WORK_IMPORTANT_TASK_HQL;
+            String informTaskHql = IndexConstant.WORK_TASK_HQL_MAP + IndexConstant.WORK_INFORM_TASK_HQL;
+            workDtos = new ArrayList<WorkDto>();
+
+            List<WorkDto> list = hibernateTemplate.findByNamedParam(importantTaskHql,
                     IndexConstant.PARAMNAMES, taskValues);
-            LOG.debug("method get important task end!");
-        }
-//        else if (searchFlag == 1) {
-//            LOG.debug("method get inform task start!");
-//            stringBuffer.append(IndexConstant.WORK_INFORM_TASK_HQL);
-//            workDtos = hibernateTemplate.findByNamedParam(stringBuffer.toString(),
-//                    IndexConstant.PARAMNAMES, taskValues);
-//            LOG.debug("method get inform task end!");
-//        }
-        else {
-            stringBuffer.append(IndexConstant.WORK_INFORM_MESSAGE_HQL);
-            workDtos = hibernateTemplate.executeFind(new PagingHibernateCallback(stringBuffer
-                    .toString(), page, CRMConstant.USER_ID, userID, limit));
+            workDtos.addAll(list);
+
+            list = hibernateTemplate.findByNamedParam(informTaskHql,
+                    IndexConstant.PARAMNAMES, taskValues);
+            workDtos.addAll(list);
+        } else {
+            String informMessageHql = IndexConstant.WORK_TASK_HQL_MAP
+                    + IndexConstant.WORK_INFORM_MESSAGE_HQL;
+            workDtos = hibernateTemplate.executeFind(new PagingHibernateCallback(informMessageHql,
+                    page, CRMConstant.USER_ID, userID, limit));
         }
         long total = getMessageTotal(userID);
         map.put(CRMConstant.TOTAL, total);
@@ -324,13 +323,13 @@ public class WorkDaoImpl implements WorkDao {
         LOG.debug("method getContactTrackInfo start!");
 
         Map<String, Object> map = new HashMap<String, Object>();
-        Object[] taskValues = { userID, date };
-        String[] params = { "userID", "date" };
-        List<ContactTrackListBean> contactTrackList = hibernateTemplate.findByNamedParam(
-                CustomerConstant.GET_CONTACT_TO_NOTIFICATION_HQL, params, taskValues);
-        map.put(CRMConstant.ITEMS, contactTrackList);
-
-        LOG.debug("method getContactTrackInfo end!");
+//        Object[] taskValues = { userID, date };
+//        String[] params = { "userID", "date" };
+//        List<ContactTrackListBean> contactTrackList = hibernateTemplate.findByNamedParam(
+//                CustomerConstant.GET_CONTACT_TO_NOTIFICATION_HQL, params, taskValues);
+//        map.put(CRMConstant.ITEMS, contactTrackList);
+//
+//        LOG.debug("method getContactTrackInfo end!");
         return map;
     }
 

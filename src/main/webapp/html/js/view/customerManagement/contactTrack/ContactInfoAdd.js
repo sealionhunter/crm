@@ -10,21 +10,6 @@ Ext.define('CRM.view.customerManagement.contactTrack.ContactInfoAdd', {
     constrainHeader: true,
     modal: true,
     initComponent: function() {
-//        this.customerStore = Ext.create('CRM.store.customerManagement.customerProfiles.CustomerName');
-//        this.cutomerContactStore = Ext.create('CRM.store.customerManagement.order.OrderCutomerContactStore');
-//        this.cutomerContactStoreByCustomer = Ext.create('CRM.store.customerManagement.order.OrderCutomerContactStore');
-        this.weContactStore = Ext.create('CRM.store.customerManagement.customerProfiles.User');
-        this.weContactStore.load({
-            params: {
-                userID: USER_ID
-            }
-        });
-//        this.customerStore.load({
-//            params: {
-//                customerFlag: 0,
-//                userID: USER_ID
-//            }
-//        });
         this.items = [ {
             xtype: 'form',
             defaults: {
@@ -47,44 +32,45 @@ Ext.define('CRM.view.customerManagement.contactTrack.ContactInfoAdd', {
                     labelSeparator: redStar,
                     enforceMaxLength: true,
                     maxLengthText: "主题长度不能超过50个字符！"
-                } ]
-            }, {
-                layout: 'hbox',
-                items: [ {
+                }, {
                     name: 'contactID',
                     id: 'contactID',
                     xtype: 'hiddenfield'
                 }, {
                     name: 'customerID',
                     itemId: 'customerID',
-                    xtype: 'textfield',
-                    hidden: true
+                    xtype: 'hiddenfield'
+                 }, {
+                    fieldLabel: '创建时间',
+                    xtype: 'hiddenfield',
+                    name: 'createTime'
                 }, {
-                    name: 'customerName',
-                    xtype: 'textfield',
-                    fieldLabel: '客户',
-                    itemId: 'customerName',
-                    readOnly: true
-//                }, {
-//                    xtype: 'combobox',
-//                    fieldLabel: '客户',
-//                    labelSeparator: redStar,
-//                    id: 'customer',
-//                    name: 'customerID',
-//                    itemId: 'customer_ID',
-//                    store: this.customerStore,
-//                    queryMode: 'local',
-//                    displayField: 'customerName',
-//                    valueField: 'customerID',
-//                    emptyText: '请选择',
-//                    allowBlank: false,
-//                    blankText: '客户不能为空！',
-//                    editable: false
-                }, {
+                    fieldLabel: '更新时间',
+                    xtype: 'hiddenfield',
+                    name: 'updateTime'
+                } ]
+            }, {
+                layout: 'hbox',
+                items: [ {
+                    xtype: 'combobox',
+                    fieldLabel: '对方联系人',
+                    id: 'oppositeContact',
+                    name: 'oppositeContact',
+                    itemId: 'oppositeContact',
+                    queryMode: 'local',
+                    displayField: 'contactName',
+                    valueField: 'contactID',
+                    emptyText: '请选择',
+                    labelSeparator: redStar,
+                    store: Ext.getCmp('contacttrackcontactlist').cutomerContactStore,
+                    blankText: "对方联系人不能为空！",
+                    editable: false,
+                    allowBlank: false
+                } , {
                     xtype: 'combobox',
                     fieldLabel: '类型',
                     labelSeparator: redStar,
-                    id: 'contactType',
+//                    id: 'contactType',
                     name: 'contactType',
                     store: Ext.getCmp('contacttrackcontactlist').contactTypeStore,
                     queryMode: 'local',
@@ -95,40 +81,7 @@ Ext.define('CRM.view.customerManagement.contactTrack.ContactInfoAdd', {
                     editable: false,
                     allowBlank: false,
                     blankText: '类型不能为空！'
-                } ]
-            }, {
-                layout: 'hbox',
-                items: [ {
-                    xtype: 'combobox',
-                    fieldLabel: '我方联系人',
-                    id: 'weContact',
-                    name: 'weContact',
-                    queryMode: 'local',
-                    displayField: 'realName',
-                    valueField: 'userID',
-                    emptyText: '请选择',
-                    labelSeparator: redStar,
-                    store: this.weContactStore,
-                    blankText: "我方联系人不能为空！",
-                    editable: false,
-                    allowBlank: false
-                }, {
-                    xtype: 'combobox',
-                    fieldLabel: '对方联系人',
-                    id: 'oppositeContact',
-                    name: 'oppositeContact',
-                    itemId: 'oppositeContact',
-                    queryMode: 'local',
-                    displayField: 'contactName',
-                    valueField: 'contactID',
-                    margin: '0 0 0 25',
-                    emptyText: '请选择',
-                    labelSeparator: redStar,
-                    store: Ext.getCmp('contacttrackcontactlist').cutomerContactStore,
-                    blankText: "对方联系人不能为空！",
-                    editable: false,
-                    allowBlank: false
-                } ]
+                }]
             }, {
                 layout: 'hbox',
                 items: [ {
@@ -183,14 +136,6 @@ Ext.define('CRM.view.customerManagement.contactTrack.ContactInfoAdd', {
                 enforceMaxLength: true,
                 maxLengthText: "备注长度不能超过1024个字符！",
                 name: 'remarks'
-            }, {
-                fieldLabel: '创建时间',
-                xtype: 'hiddenfield',
-                name: 'createTime'
-            }, {
-                fieldLabel: '更新时间',
-                xtype: 'hiddenfield',
-                name: 'updateTime'
             } ]
         } ];
         this.buttons = [ {

@@ -26,10 +26,10 @@ Ext.define('CRM.view.customerManagement.contactTrack.ContactTrackDetail', {
             xtype: 'displayfield',
             fieldLabel: '客户',
             name: 'customerName'
-        }, {
-            xtype: 'displayfield',
-            fieldLabel: '我方联系人',
-            name: 'weContactName'
+//        }, {
+//            xtype: 'displayfield',
+//            fieldLabel: '我方联系人',
+//            name: 'weContactName'
         }, {
             xtype: 'displayfield',
             fieldLabel: '对方联系人',

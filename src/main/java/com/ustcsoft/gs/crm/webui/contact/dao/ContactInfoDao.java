@@ -10,7 +10,6 @@ import com.ustcsoft.gs.crm.webui.contact.bean.ContactSearchBean;
 import com.ustcsoft.gs.crm.webui.contact.dto.ContactInfoDto;
 import com.ustcsoft.gs.crm.webui.contact.dto.FamilyDto;
 import com.ustcsoft.gs.crm.webui.contact.dto.SocialDto;
-import com.ustcsoft.gs.crm.webui.customer.dto.ContactSelectDto;
 
 /**
  * @author xuzhen
@@ -68,15 +67,6 @@ public interface ContactInfoDao {
      * 
      */
     public void deleteContact(String contactIDs) throws DataAccessException;
-
-    /**
-     * delete Contact record to check
-     * 
-     * @param contactIDs
-     *            will be check contactIDs
-     * 
-     */
-    public List<ContactSelectDto> deleteContactCheck(String contactIDs);
 
     /**
      * find ContactInfo by contactID

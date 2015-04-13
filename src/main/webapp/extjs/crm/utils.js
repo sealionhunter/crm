@@ -686,6 +686,14 @@ CRM.Utils.prototype = {
 
     backToCustomer : function() {
         Ext.getCmp('centercard').getLayout().setActiveItem('customerinfo');
+    },
+    getDate : function (day) {
+        var dd = new Date();
+        day = parseInt(day, 10);
+        if (!isNaN(day)) {
+            dd.setDate(dd.getDate() + day);
+        }
+        return dd;
     }
     // Added for EXTJS 4.2 end 20150302
 };
@@ -729,47 +737,25 @@ Ext.apply(Ext.form.field.VTypes, {
         var endDate = null, endDateCmp = null;
         var validStatus = true, date = field.parseDate(val);
         if (date) {
-            if (field.xtype == 'datefield') {
-                if (field.dateRange) {
-                    if (!Ext.isEmpty(field.dateRange.begin)) {
-                        beginDateCmp = Ext.getCmp(field.dateRange.begin);
-                        beginDate = beginDateCmp.getValue();
-                    }
-                    if (!Ext.isEmpty(field.dateRange.end)) {
-                        endDateCmp = Ext.getCmp(field.dateRange.end);
-                        endDate = endDateCmp.getValue();
-                    }
+            if (field.dateRange) {
+                if (!Ext.isEmpty(field.dateRange.begin)) {
+                    beginDateCmp = Ext.getCmp(field.dateRange.begin);
+                    beginDate = beginDateCmp.getValue();
                 }
-                if (!Ext.isEmpty(beginDate) && !Ext.isEmpty(endDate)) {
-                    validStatus = beginDate <= endDate;
-                    if (validStatus) {
-                        beginDateCmp.clearInvalid();
-                        endDateCmp.clearInvalid();
-                    }
+                if (!Ext.isEmpty(field.dateRange.end)) {
+                    endDateCmp = Ext.getCmp(field.dateRange.end);
+                    endDate = endDateCmp.getValue();
                 }
-                return validStatus;
-            } else {
-                if (field.dateRange) {
-                    if (!Ext.isEmpty(field.dateRange.begin)) {
-                        beginDateCmp = Ext.getCmp(field.dateRange.begin);
-                        beginDate = beginDateCmp.getValue();
-                    }
-                    if (!Ext.isEmpty(field.dateRange.end)) {
-                        endDateCmp = Ext.getCmp(field.dateRange.end);
-                        endDate = endDateCmp.getValue();
-                    }
+            }
+            if (!Ext.isEmpty(beginDate) && !Ext.isEmpty(endDate)) {
+                validStatus = beginDate <= endDate;
+                if (validStatus) {
+//                    beginDateCmp.clearInvalid();
+//                    endDateCmp.clearInvalid();
                 }
-                if (!Ext.isEmpty(beginDate) && !Ext.isEmpty(endDate)) {
-                    validStatus = beginDate <= endDate;
-                    if (validStatus) {
-                        beginDateCmp.clearInvalid();
-                        endDateCmp.clearInvalid();
-                    }
-                }
-                return validStatus;
             }
         }
-        return true;
+        return validStatus;
     },
     dateRangeText: '开始日期不能大于结束日期，请重新选择！',
     numberRange: function(val, field) {
@@ -791,8 +777,8 @@ Ext.apply(Ext.form.field.VTypes, {
         if (!Ext.isEmpty(minNumber) && !Ext.isEmpty(maxNumber)) {
             validStatus = minNumber <= maxNumber;
             if (validStatus) {
-                minNumberCmp.clearInvalid();
-                maxNumberCmp.clearInvalid();
+//                minNumberCmp.clearInvalid();
+//                maxNumberCmp.clearInvalid();
             }
         }
         return validStatus;

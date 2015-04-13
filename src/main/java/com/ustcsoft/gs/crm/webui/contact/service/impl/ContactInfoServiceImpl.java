@@ -113,33 +113,8 @@ public class ContactInfoServiceImpl implements ContactInfoService {
     public Map<String, Object> deleteContact(final String contactIDs) throws CRMDBException {
         LOG.debug("method delete contact record start!");
         Map<String, Object> map = new HashMap<String, Object>();
-//        List<ContactSelectDto> list = null;
-//        ContactInfoDto contactInfo = null;
-//        StringBuffer errorMsg = new StringBuffer();
         try {
-//             list = contactInfoDao.deleteContactCheck(CRMUtils.getStringForDelete(contactIDs));
-//            if (list.size() == 0) {
-                contactInfoDao.deleteContact(CRMUtils.getStringForDelete(contactIDs));
-//            } else {
-//                String[] contactID = contactIDs.split(",");
-//                outFor: for (int i = 0; i < contactID.length; i++) {
-//                    for (int j = 0; j < list.size(); j++) {
-//                        if (Integer.parseInt(contactID[i].trim()) == list.get(j).getContactID()) {
-//                            contactInfo = contactInfoDao.findByID(list.get(j).getContactID());
-//                            if (list.get(j).getFlag() == 1) {
-//                                errorMsg.append(contactInfo.getContactName());
-//                                errorMsg.append("正在被客户档案模块使用，");
-//                            } else {
-//                                errorMsg.append(contactInfo.getContactName());
-//                                errorMsg.append("正在被合作伙伴模块使用，");
-//                            }
-//                            break outFor;
-//                        }
-//                    }
-//                }
-//                errorMsg.append("无法删除！");
-//                map.put("errorMessage", errorMsg.toString());
-//            }
+            contactInfoDao.deleteContact(CRMUtils.getStringForDelete(contactIDs));
             LOG.debug("method delete contact record end!");
 
         } catch (DataAccessException e) {

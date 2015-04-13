@@ -79,7 +79,7 @@ public class ContactHistoryDaoImpl implements ContactHistoryDao {
         } else {
             // super search
             final String customerName = contactHistorySearchBean.getCustomerName();
-            final String weContact = contactHistorySearchBean.getWeContact();
+//            final String weContact = contactHistorySearchBean.getWeContact();
             final String oppositeContact = contactHistorySearchBean.getOppositeContact();
             final String contactType = contactHistorySearchBean.getContactType();
             final String contactWay = contactHistorySearchBean.getContactWay();
@@ -94,9 +94,9 @@ public class ContactHistoryDaoImpl implements ContactHistoryDao {
             if (!(customerName == null || CRMConstant.DOUBLE_PER_CENT.equals(customerName))) {
                 searchHqlWhere.append(CustomerConstant.CONTACTHISTORY_CUSTOMERSEARCH);
             }
-            if (!(weContact == null || CRMConstant.DOUBLE_PER_CENT.equals(weContact))) {
-                searchHqlWhere.append(CustomerConstant.CONTACTHISTORY_WECONTACTSEARCH);
-            }
+//            if (!(weContact == null || CRMConstant.DOUBLE_PER_CENT.equals(weContact))) {
+//                searchHqlWhere.append(CustomerConstant.CONTACTHISTORY_WECONTACTSEARCH);
+//            }
             if (!(oppositeContact == null || CRMConstant.DOUBLE_PER_CENT.equals(oppositeContact))) {
                 searchHqlWhere.append(CustomerConstant.CONTACTHISTORY_OPPOSITESEARCH);
             }

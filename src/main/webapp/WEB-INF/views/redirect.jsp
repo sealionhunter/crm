@@ -9,7 +9,7 @@
 <script>
 	window.location.reload();
 </script>
-<title>USTC_CRM</title>
+<title>USI_CRM</title>
 </head>
 <body>
 </body>

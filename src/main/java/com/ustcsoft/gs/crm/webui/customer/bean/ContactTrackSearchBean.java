@@ -19,8 +19,8 @@ public class ContactTrackSearchBean {
     /** storage the search value of oppositeContact */
     private String oppositeContact = null;
 
-    /** storage the search value of weContact */
-    private String weContact = null;
+//    /** storage the search value of weContact */
+//    private String weContact = null;
 
     /** storage the search value of contactWay */
     private String contactWay = null;
@@ -80,21 +80,21 @@ public class ContactTrackSearchBean {
     public void setOppositeContact(String oppositeContact) {
         this.oppositeContact = oppositeContact.trim();
     }
-
-    /**
-     * @return the weContact
-     */
-    public String getWeContact() {
-        return weContact;
-    }
-
-    /**
-     * @param weContact
-     *            the weContact to set
-     */
-    public void setWeContact(String weContact) {
-        this.weContact = weContact.trim();
-    }
+//
+//    /**
+//     * @return the weContact
+//     */
+//    public String getWeContact() {
+//        return weContact;
+//    }
+//
+//    /**
+//     * @param weContact
+//     *            the weContact to set
+//     */
+//    public void setWeContact(String weContact) {
+//        this.weContact = weContact.trim();
+//    }
 
     /**
      * @return the contactWay

@@ -4,7 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.ustcsoft.gs.crm.webui.index.constant.IndexConstant;
+import com.ustcsoft.gs.crm.webui.common.util.CRMUtils;
+
 
 public class CustomerUpdatedStatusBean {
     private int days = 0;
@@ -29,14 +30,16 @@ public class CustomerUpdatedStatusBean {
     public CustomerUpdatedStatusBean() {
     }
 
-    public CustomerUpdatedStatusBean(String customerName,
-            String updateTime) {
+    public CustomerUpdatedStatusBean(String customerName, Long days) {
+            this.customerName = customerName;
+            this.days = days.intValue();
+    }
+
+    public CustomerUpdatedStatusBean(String customerName, String updateTime) {
         try {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            long interval = new Date().getTime() - formatter.parse(updateTime).getTime();
-            int days = IndexConstant.MAX_DAYS_TO_NOTIIFY 
-                    -(int) (interval / IndexConstant.MILLIS_OF_ONE_DAY) ;
-            this.days = days + 1;
+            SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date update = f.parse(updateTime);
+            this.days = CRMUtils.getBetweenDays(update, new Date());
             this.customerName = customerName;
         } catch (ParseException e) {
             throw new RuntimeException("parse date error.", e);

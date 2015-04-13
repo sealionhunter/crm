@@ -86,10 +86,10 @@ public class ContactHistoryAction extends CRMAction {
                 addFieldError(CustomerConstant.CONTACTHISTORY_CUSTOMER_NAME,
                         this.getText(CustomerConstant.CONTACTHISTORY_CUSTOMER_INVALID));
             }
-            if (contactHistorySearchBean.getWeContact().length() > 50) {
-                addFieldError(CustomerConstant.CONTACTHISTORY_WE_CONTACT,
-                        this.getText(CustomerConstant.CONTACTHISTORY_WE_CONTACT_INVALID));
-            }
+//            if (contactHistorySearchBean.getWeContact().length() > 50) {
+//                addFieldError(CustomerConstant.CONTACTHISTORY_WE_CONTACT,
+//                        this.getText(CustomerConstant.CONTACTHISTORY_WE_CONTACT_INVALID));
+//            }
             if (contactHistorySearchBean.getOppositeContact().length() > 50) {
                 addFieldError(CustomerConstant.CONTACTHISTORY_OPPOSITE_CONTACT,
                         this.getText(CustomerConstant.CONTACTHISTORY_OPPOSITE_CONTACT_INVALID));

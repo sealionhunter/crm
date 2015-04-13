@@ -13,8 +13,8 @@ public class ContactHistorySearchBean {
     /** storage the search value of customer */
     private String customerName = null;
 
-    /** storage the search value of weContact */
-    private String weContact = null;
+//    /** storage the search value of weContact */
+//    private String weContact = null;
 
     /** storage the search value of oppositeContact */
     private String oppositeContact = null;
@@ -81,20 +81,20 @@ public class ContactHistorySearchBean {
         this.customerName = CRMUtils.trimSearch(customerName);
     }
 
-    /**
-     * @return the weContact
-     */
-    public String getWeContact() {
-        return weContact;
-    }
-
-    /**
-     * @param weContact
-     *            the weContact to set
-     */
-    public void setWeContact(String weContact) {
-        this.weContact = CRMUtils.trimSearch(weContact);
-    }
+//    /**
+//     * @return the weContact
+//     */
+//    public String getWeContact() {
+//        return weContact;
+//    }
+//
+//    /**
+//     * @param weContact
+//     *            the weContact to set
+//     */
+//    public void setWeContact(String weContact) {
+//        this.weContact = CRMUtils.trimSearch(weContact);
+//    }
 
     /**
      * @return the oppositeContact

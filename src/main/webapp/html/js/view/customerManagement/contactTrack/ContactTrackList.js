@@ -29,18 +29,18 @@ Ext.define('CRM.view.customerManagement.contactTrack.ContactTrackList', {
             flex: 1,
             minWidth: 100,
             renderer: this.rendererValue
-        }, {
-            header: '客户',
-            dataIndex: 'customerName',
-            flex: 1,
-            minWidth: 100,
-            renderer: this.rendererValue
-        }, {
-            header: '我方联系人',
-            dataIndex: 'weContactName',
-            flex: 1,
-            minWidth: 100,
-            renderer: this.rendererValue
+//        }, {
+//            header: '客户',
+//            dataIndex: 'customerName',
+//            flex: 1,
+//            minWidth: 100,
+//            renderer: this.rendererValue
+//        }, {
+//            header: '我方联系人',
+//            dataIndex: 'weContactName',
+//            flex: 1,
+//            minWidth: 100,
+//            renderer: this.rendererValue
         }, {
             header: '对方联系人',
             dataIndex: 'oppositeContactName',
@@ -141,18 +141,18 @@ Ext.define('CRM.view.customerManagement.contactTrack.ContactTrackList', {
                 maxLengthText: "客户长度不能超过50个字节！",
                 vtype: 'search',
                 selectOnFocus: true
-            }, {
-                name: 'weContact',
-                itemId: 'we',
-                labelWidth: 65,
-                xtype: 'textfield',
-                width: 180,
-                maxLength: 20,
-                enforceMaxLength: true,
-                maxLengthText: "我方联系人长度不能超过20个字节！",
-                fieldLabel: '我方联系人',
-                vtype: 'search',
-                selectOnFocus: true
+//            }, {
+//                name: 'weContact',
+//                itemId: 'we',
+//                labelWidth: 65,
+//                xtype: 'textfield',
+//                width: 180,
+//                maxLength: 20,
+//                enforceMaxLength: true,
+//                maxLengthText: "我方联系人长度不能超过20个字节！",
+//                fieldLabel: '我方联系人',
+//                vtype: 'search',
+//                selectOnFocus: true
             }, {
                 fieldLabel: '对方联系人',
                 itemId: 'opposite',

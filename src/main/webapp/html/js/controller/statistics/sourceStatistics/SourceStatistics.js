@@ -20,15 +20,25 @@ Ext.define('CRM.controller.statistics.sourceStatistics.SourceStatistics', {
         }
         Ext.getCmp('centercard').insert(1, sourceStatistics);
         Ext.getCmp('centercard').getLayout().setActiveItem(sourceStatistics);
-        // utils.authorizationControl(treeId,sourceStatistics);
+        sourceStatistics.store.load({
+            params: {
+                statisticsType: '002000020001'
+            }
+        })
         return sourceStatistics;
     },
     openok: function(button) {
-        var win = Ext.widget('sourcestatisticscolumnchart');
-        win.show();
-    },
-    openPieChart: function(button) {
-        var win = Ext.widget('sourcestatisticspiechart');
-        win.show();
+        var panel = button.up('panel');
+        var type = button.up('panel').down('#statisticsCombox').getValue();
+        if (type === '002000010001') {
+            Ext.getCmp('statisticscard').getLayout().setActiveItem('columncard');
+        } else {
+            Ext.getCmp('statisticscard').getLayout().setActiveItem('piecard');
+        }
+        panel.store.load({
+            params: {
+                statisticsType: button.up('panel').down('#statisticsTypeCombox').getValue()
+            }
+        });
     }
 });

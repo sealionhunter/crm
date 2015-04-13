@@ -283,4 +283,23 @@ public class CRMUtils {
         dto.setUpdateTime(currentTimeAsString());
         ht.saveOrUpdate(dto);
     }
+
+    public static int getBetweenDays(Date d1, Date d2) {
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            d1 = formatter.parse(formatter.format(d1));
+            d2 = formatter.parse(formatter.format(d2));
+
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(d1);
+            long time1 = cal.getTimeInMillis();
+            cal.setTime(d2);
+            long time2 = cal.getTimeInMillis();
+            long betweenDays = (time2 - time1) / (1000 * 3600 * 24);
+
+            return (int) Math.abs(betweenDays);
+        } catch (Exception e) {
+            throw new RuntimeException("parse date error.", e);
+        }
+    }
 }

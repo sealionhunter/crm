@@ -84,10 +84,10 @@ public class ContactTrackAction extends CRMAction {
             if ("".equalsIgnoreCase(contactTrackListBean.getContactType())) {
                 addFieldError("contactType", this.getText("contContactType.invalid"));
             }
-            // 我方联系人输入检查
-            if (contactTrackListBean.getWeContact() == 0) {
-                addFieldError("weContact", this.getText("contWeContact.invalid"));
-            }
+//            // 我方联系人输入检查
+//            if (contactTrackListBean.getWeContact() == 0) {
+//                addFieldError("weContact", this.getText("contWeContact.invalid"));
+//            }
             // 对方联系人选择检查
             if (contactTrackListBean.getOppositeContact() == 0) {
                 addFieldError("oppositeContact", this.getText("contOppositeContact.invalid"));

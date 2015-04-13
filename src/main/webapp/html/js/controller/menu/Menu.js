@@ -78,9 +78,15 @@
                         utils.removeAllChild.apply(rootNode);
                         rootNode.insertChild(1, systemManageNode);
                     }
+                    // 删除联系人
                     rootNode.removeChild(treeStore.getNodeById(2));
+                    // 删除客户联系
                     if (typeof treeStore.getNodeById(1) !== 'undefined') {
                         treeStore.getNodeById(1).removeChild(treeStore.getNodeById(12));
+                    }
+                    // 删除领导建议
+                    if (typeof treeStore.getNodeById(11) !== 'undefined') {
+                        treeStore.getNodeById(11).removeChild(treeStore.getNodeById(114));
                     }
                     rootNode.cascadeBy(function(node) {
                         node.set('checked', null);
@@ -153,7 +159,7 @@
             initController('systemManagement.menuManagement.MenuManage').viewInit();
         } else if (treeId == 51) {
 //            initController('statistics.salesStatistics.SalesInit').viewInit(treeId);
-            initController('statistics.salesStatistics.SalesLineInit').viewInit(treeId);
+            initController('statistics.sourceStatistics.SourceStatistics').viewInit(treeId);
 //        } else if (treeId == 61) {
 //            initController('salesManagement.transactionManagement.TransactionManagement').viewInit(treeId);
 //        } else if (treeId == 71) {
