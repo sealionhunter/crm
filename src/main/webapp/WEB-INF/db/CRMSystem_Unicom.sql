@@ -129,7 +129,7 @@ INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf],
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (9, N'menu', 15, N'订单', 0, 0, 6);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (10, N'menu', 16, N'建议书与合同', 0, 0, 1);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (11, N'menu', 21, N'联系人档案', 0, 0, 2);
-INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (12, N'menu', 51, N'客户状态统计', 0, 1, 5);
+INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (12, N'menu', 51, N'客户信息统计', 0, 1, 5);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (13, N'menu', 41, N'角色管理', 0, 1, 4);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (14, N'menu', 43, N'组织管理', 0, 0, 4);
 INSERT [dbo].[Tree] ([treeID], [flag], [id], [treeName], [isExpanded], [isLeaf], [fatherID]) VALUES (15, N'menu', 44, N'Master管理', 0, 0, 4);
@@ -288,7 +288,7 @@ CREATE TABLE [dbo].[CustomerInfo](
     [isAbolished] [bit] NOT NULL DEFAULT ((0)),
     [descriptions] [nvarchar](1024) NULL,
     [business1] [nvarchar](1024) NULL,
-    [unicomNumber] [int] NULL,
+    [oldHolder] [int] NULL,
     [business2] [nvarchar](1024) NULL,
     [business3] [nvarchar](1024) NULL,
     [business4] [nvarchar](1024) NULL,

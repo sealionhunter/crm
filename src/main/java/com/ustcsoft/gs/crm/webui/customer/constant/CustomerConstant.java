@@ -4,9 +4,6 @@ public class CustomerConstant {
 
     public static final String MAXLENGTH_INVALID = "maxLength.invalid";
 
-//    public static final String[] CUSTOMER_COMMON_WORD = new String[] {
-//        "中国", "公司", "责任", "有限" , "股份",
-//    };
     public static final String COMMON_WORD_CODE = "00010010";
 
     public static final String COMPETITORINFOID = "competitorInfoId";
@@ -212,7 +209,7 @@ public class CustomerConstant {
             // add 20150308 start
             + "cus.business1 as business1 ,cus.business2 as business2 ,"
             + "cus.business3 as business3 ,cus.business4 as business4 ,"
-            + "cus.businessUnit as businessUnit ,cus.number as number ,"
+            + "cus.businessUnit as businessUnit ,cus.number as number, cus.oldHolder as oldHolder ,"
             // add 20150308 end
             //2015-3-29 15:33:53 modified start
             + "cus.createTime as createTime, cus.updateTime as updateTime ,"

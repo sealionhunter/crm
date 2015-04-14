@@ -54,6 +54,7 @@ public class LoginAction extends CRMAction {
             session.put("realName", userInfo.getRealName());
             session.put("departmentID", userInfo.getDepartmentID());
             session.put("projectTeamID", userInfo.getProjectTeamID());
+            session.put("contactInterval", userInfo.getContactInterval());
         }
         map.put("userInfo", userInfo);
         LOG.debug("method login end!");

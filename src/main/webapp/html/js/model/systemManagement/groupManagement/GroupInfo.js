@@ -34,6 +34,9 @@ Ext.define('CRM.model.systemManagement.groupManagement.GroupInfo', {
         name: 'jobTitle',
         type: 'string'
     }, {
+        name: 'contactInterval',
+        type: 'int'
+    }, {
         name: 'email',
         type: 'string'
     }, {

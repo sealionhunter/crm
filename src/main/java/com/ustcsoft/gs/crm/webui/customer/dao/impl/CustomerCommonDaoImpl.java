@@ -30,6 +30,7 @@ public class CustomerCommonDaoImpl implements CustomerCommonDao {
                 .find(FREEABLE_CUSTOMER);
 
         for (CustomerDto dto : list) {
+            dto.setOldHolder(dto.getHolder());
             dto.setHolder(0);
             hibernateTemplate.update(dto);;
             LOG.info("free customer " + dto.getCustomerName());

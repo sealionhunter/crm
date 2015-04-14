@@ -31,6 +31,9 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer', {
             'customerlist button[action=exportCustomer]': {
                 click: this.exportCustomer
             },
+            'customerlist button[action=exportCustomerCommon]': {
+                click: this.exportCustomer
+            },
             'customerlist button[action=customerLookResume]': {
                 click: this.customerLookResume
             },
@@ -103,8 +106,10 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer', {
         });
         if (isGonghai) {
             customerlist.setTitle("公海");
+            customerlist.columns[2].hide();
         } else {
             customerlist.setTitle("客户基本信息列表");
+            customerlist.columns[2].show();
         }
         utils.loadPageOne(store);
         this.loadUser(customerlist.userStore);
@@ -129,7 +134,7 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer', {
         function setVal(id, index) {
             list.down('#' + id).hide();
         }
-        var actionIds = isGonghai ? ['11102','11103','11104','11105','11106','11107'] : ['11201','11202','11203','11204','11205','11206'];
+        var actionIds = isGonghai ? ['11102','11104','11105','11106','11107'] : ['11201','11202','11203','11204','11205','11206'];
         Ext.each(actionIds, setVal);
         utils.authorizationControl(treeId, list);
     },
@@ -173,13 +178,15 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer', {
     changeBtnType: function(sm, selections) {
         if (this.isGonghai) {
             Ext.getCmp('customerCommonDelBtn').setDisabled(selections.length == 0);
+            Ext.getCmp('exportCustomerCommonBtn').setDisabled(selections.length == 0);
             Ext.getCmp('customerCommonReceiveBtn').setDisabled(selections.length != 1);
             Ext.getCmp('customerCommonEditBtn').setDisabled(selections.length != 1);
             Ext.getCmp('customerCommonDetailBtn').setDisabled(selections.length != 1);
         } else {
             Ext.getCmp('customerDelBtn').setDisabled(selections.length == 0);
+            Ext.getCmp('exportCustomerBtn').setDisabled(selections.length == 0);
             Ext.getCmp('customerEditBtn').setDisabled(selections.length != 1);
-            Ext.getCmp('customerLookResBtn').setDisabled(selections.length != 1);
+//            Ext.getCmp('customerLookResBtn').setDisabled(selections.length != 1);
             Ext.getCmp('customerDetailBtn').setDisabled(selections.length != 1);
         }
 //        if (selections.length != 1) {
@@ -318,6 +325,10 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer', {
     receiveCustomerCommon: function(button) {
         var selection = button.up("panel").getView().getSelectionModel().getSelection()[0];
         if (selection === undefined) {
+            return;
+        }
+        if (selection.get("oldHolder") == USER_ID) {
+            messageBox.alert('提示', '不能领取自己释放的客户！');
             return;
         }
         var customerID = selection.get("customerID");

@@ -39,7 +39,7 @@ Ext.define('CRM.view.statistics.sourceStatistics.SourceStatistics', {
                     type : 'Numeric',
                     position : 'left',
                     fields : [ 'count' ],
-                    title : '个数',
+//                    title : '个数',
                     grid : true,
                     minimum : 0
                 }, {
@@ -54,7 +54,7 @@ Ext.define('CRM.view.statistics.sourceStatistics.SourceStatistics', {
                     highlight : true,
                     tips : {
                         trackMouse : true,
-                        width : 80,
+                        width : 140,
                         height : 28,
                         renderer : function(storeItem, item) {
                             this.setTitle(storeItem.get('name') + ': ' + storeItem.get('count'));
@@ -117,7 +117,7 @@ Ext.define('CRM.view.statistics.sourceStatistics.SourceStatistics', {
             name : 'statisticsCombox',
             labelWidth : 60,
             width : 200,
-            fieldLabel : '统计方式',
+            fieldLabel : '图形选择',
             store : this.statisticsStore,
             displayField : 'value',
             valueField : 'code',
@@ -131,7 +131,7 @@ Ext.define('CRM.view.statistics.sourceStatistics.SourceStatistics', {
             name : 'statisticsTypeCombox',
             labelWidth : 60,
             width : 200,
-            fieldLabel : '图形选择',
+            fieldLabel : '统计方式',
             store : this.statisticsTypeStore,
             displayField : 'value',
             valueField : 'code',

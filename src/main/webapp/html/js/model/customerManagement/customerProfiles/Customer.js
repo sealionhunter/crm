@@ -10,6 +10,9 @@ Ext.define('CRM.model.customerManagement.customerProfiles.Customer', {
         name : 'holder',
         type : 'int'
     }, {
+        name : 'oldHolder',
+        type : 'int'
+    }, {
         name : 'holderName',
         type : 'string'
     }, {
