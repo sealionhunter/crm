@@ -11,7 +11,9 @@ package com.ustcsoft.gs.crm.webui.customer.action;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -64,6 +66,30 @@ public class CustomerListAction extends CRMAction {
     private int customerID;
 
     private File attach;
+    public File getAttach() {
+        return attach;
+    }
+
+    public void setAttach(File attach) {
+        this.attach = attach;
+    }
+
+    public String getAttachFileName() {
+        return attachFileName;
+    }
+
+    public void setAttachFileName(String attachFileName) {
+        this.attachFileName = attachFileName;
+    }
+
+    public String getAttachContentType() {
+        return attachContentType;
+    }
+
+    public void setAttachContentType(String attachContentType) {
+        this.attachContentType = attachContentType;
+    }
+
     private String attachFileName;
     private String attachContentType;
 
@@ -74,6 +100,7 @@ public class CustomerListAction extends CRMAction {
      *             in case of Hibernate errors
      */
     public void validateUpdateCustomer() throws CRMDBException {
+        if (true) return;
 
         customerDto = (CustomerDto) CRMUtils.jsonToBean(super.jsonString, CustomerDto.class);
         if (StringUtils.isBlank(customerDto.getCustomerAddr())) {
@@ -266,6 +293,15 @@ public class CustomerListAction extends CRMAction {
     public String updateCustomer() throws CRMDBException {
 
         LOG.debug("method updateCustomer start.");
+        try {
+            String uuid = UUID.randomUUID().toString();
+            String destFileName = "customer/" + uuid + "/" + attachFileName;
+            File destFile = new File(CRMConstant.DOCUMENT_ROOT, destFileName);
+            FileUtils.copyFile(attach, destFile);
+            customerDto.setAttachPath(destFileName);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
         customerService.updateCustomer(customerDto);
         LOG.debug("method updateCustomer start.");
         return SUCCESS;

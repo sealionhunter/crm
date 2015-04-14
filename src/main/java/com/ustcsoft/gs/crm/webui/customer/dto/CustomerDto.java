@@ -25,6 +25,9 @@ public class CustomerDto {
     private String businessUnit = null;
     private int number = 0;
     private int unicomNumber = 0;
+    
+    private String attachPath = null;
+    
     public String getBusinessUnit() {
         return businessUnit;
     }
@@ -290,5 +293,13 @@ public class CustomerDto {
 
     public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getAttachPath() {
+        return attachPath;
+    }
+
+    public void setAttachPath(String attachPath) {
+        this.attachPath = attachPath;
     }
 }

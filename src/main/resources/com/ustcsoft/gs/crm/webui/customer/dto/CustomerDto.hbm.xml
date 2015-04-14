@@ -29,5 +29,6 @@
         <property name="unicomNumber"></property>
         <property name="createTime"></property>
         <property name="updateTime"></property>
+        <property name="attachPath"></property>
     </class>
 </hibernate-mapping>

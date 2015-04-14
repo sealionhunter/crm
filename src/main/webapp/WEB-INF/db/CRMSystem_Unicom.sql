@@ -296,6 +296,8 @@ CREATE TABLE [dbo].[CustomerInfo](
     [createTime] [datetime] NOT NULL,
     [updateTime] [datetime] NULL,
     -- 2015-3-29 13:23:12 modified end.
+    
+    [attachPath] [nvarchar](1024) NULL,
 PRIMARY KEY CLUSTERED 
 (
     [customerID] ASC
