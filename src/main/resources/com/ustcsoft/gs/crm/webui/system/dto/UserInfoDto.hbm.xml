@@ -2,28 +2,29 @@
 <!DOCTYPE hibernate-mapping PUBLIC 
 "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
-<hibernate-mapping  >
-	<class name="com.ustcsoft.gs.crm.webui.system.dto.UserInfoDto"
-		table="UserInfo" >
-		<id column="userID" name="userID" type="int" >
-			<generator class="native" />
-		</id>
-		<property name="groupID"></property>
-		<property name="jobID"></property>
-		<property name="password"></property>
-		<property name="userName"></property>
-		<property name="realName"></property>
-		<property name="company"></property> 
-		<property name="departmentID"></property>
-		<property name="projectTeamID"></property>    
-		<property name="job"></property>    
-		<property name="jobTitle"></property>    	
-		<property name="email"></property>    
-		<property name="mobile"></property>      
-		<property name="officePhone"></property>  
-		<property name="education"></property>  
-		<property name="entryTime"></property>  
-		<property name="descriptions"></property>  
-		<property name="isAbolished"></property>              
-	</class>
+<hibernate-mapping>
+    <class name="com.ustcsoft.gs.crm.webui.system.dto.UserInfoDto"
+        table="UserInfo">
+        <id column="userID" name="userID" type="int">
+            <generator class="native" />
+        </id>
+        <property name="groupID"></property>
+        <property name="jobID"></property>
+        <property name="password"></property>
+        <property name="userName"></property>
+        <property name="realName"></property>
+        <property name="company"></property>
+        <property name="departmentID"></property>
+        <property name="projectTeamID"></property>
+        <property name="job"></property>
+        <property name="jobTitle"></property>
+        <property name="email"></property>
+        <property name="mobile"></property>
+        <property name="officePhone"></property>
+        <property name="education"></property>
+        <property name="entryTime"></property>
+        <property name="descriptions"></property>
+        <property name="isAbolished"></property>
+        <property name="contactInterval"></property>
+    </class>
 </hibernate-mapping>

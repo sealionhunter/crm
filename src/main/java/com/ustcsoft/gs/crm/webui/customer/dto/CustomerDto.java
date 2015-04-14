@@ -24,7 +24,7 @@ public class CustomerDto {
 
     private String businessUnit = null;
     private int number = 0;
-    private int unicomNumber = 0;
+    private int oldHolder = 0;
     public String getBusinessUnit() {
         return businessUnit;
     }
@@ -41,12 +41,12 @@ public class CustomerDto {
         this.number = number;
     }
 
-    public int getUnicomNumber() {
-        return unicomNumber;
+    public int getOldHolder() {
+        return oldHolder;
     }
 
-    public void setUnicomNumber(int unicomNumber) {
-        this.unicomNumber = unicomNumber;
+    public void setOldHolder(int oldHolder) {
+        this.oldHolder = oldHolder;
     }
 
     /**

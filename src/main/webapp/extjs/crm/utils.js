@@ -30,6 +30,12 @@ var box = Ext.create('Ext.window.MessageBox', {
         no: '取消'
     }
 });
+var boxForCustomer = Ext.create('Ext.window.MessageBox', {
+    buttonText: {
+        yes: '确定',
+        no: '忽略'
+    }
+});
 var messageBox = Ext.create('Ext.window.MessageBox', {
     buttonText: {
         ok: '确定'
@@ -114,11 +120,19 @@ CRM.Utils.prototype = {
                     }
                     var responseText = Ext.decode(response.responseText) || '';
                     if (responseText.CusotmerNameRepeat) {
-                        box.confirm('提示', responseText.CusotmerNameRepeat, function showResult(btn) {
-                            if (btn === 'no') {
-                                me.updateRecord(button, 'updateCustomer.action', 'customerlist', false);
-                            }
-                        });
+                        if (GROUP_ID == 1 || GROUP_ID == 2) {
+                            boxForCustomer.confirm('提示', '【' + record.get('customerName')
+                                    + '】和下列已存在的客户名称可能重复，请重新填写或者忽略该提示！'
+                                    + responseText.CusotmerNameRepeat, function showResult(btn) {
+                                if (btn === 'no') {
+                                    me.updateRecord(button, 'updateCustomer.action', 'customerlist', false);
+                                }
+                            });
+                        } else {
+                            messageBox.alert('提示', '【' + record.get('customerName')
+                                    + '】和下列已存在的客户名称可能重复，请重新填写或者咨询管理员添加！'
+                                    + responseText.CusotmerNameRepeat);
+                        }
                         return;
                     }
                     if (responseText.validate == false) {
@@ -691,7 +705,7 @@ CRM.Utils.prototype = {
         var dd = new Date();
         day = parseInt(day, 10);
         if (!isNaN(day)) {
-            dd.setDate(dd.getDate() + day);
+            dd.setDate(dd.getDate() - day);
         }
         return dd;
     }

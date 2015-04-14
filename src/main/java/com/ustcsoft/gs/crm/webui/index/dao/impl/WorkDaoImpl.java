@@ -436,8 +436,7 @@ public class WorkDaoImpl implements WorkDao {
         Map<String, Object> map = new HashMap<String, Object>();
         String[] params = { "userID" };
         Object[] paramValues = { userID };
-        List<CustomerUpdatedStatusBean> list = new ArrayList<CustomerUpdatedStatusBean>();
-        list = hibernateTemplate.findByNamedParam(IndexConstant.GET_CUSTOMER_UPDATED_STATUS,
+        List<CustomerUpdatedStatusBean> list = hibernateTemplate.findByNamedParam(IndexConstant.GET_CUSTOMER_UPDATED_STATUS,
                 params, paramValues);
         map.put(CRMConstant.ITEMS, list);
 

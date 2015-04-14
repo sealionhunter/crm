@@ -108,6 +108,8 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
                 hidden: true,
                 itemId: '11107',
                 text: '导出客户信息',
+                id: 'exportCustomerBtn',
+                disabled: true,
                 action: 'exportCustomer'
             }, {
                 text: '客户详情',
@@ -117,13 +119,13 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
                 disabled: true,
                 action: 'customerDetail'
             }, {
-                itemId: '11103',
-                hidden: true,
-                text: '领导建议',
-                id: 'customerLookResBtn',
-                disabled: true,
-                action: 'lookLeaderAdvice'
-            }, {
+//                itemId: '11103',
+//                hidden: true,
+//                text: '领导建议',
+//                id: 'customerLookResBtn',
+//                disabled: true,
+//                action: 'lookLeaderAdvice'
+//            }, {
                 hidden: true,
                 itemId: '11104',
                 text: '添加',
@@ -146,6 +148,8 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerList', {
                 hidden: true,
                 itemId: '11205',
                 text: '导出客户信息',
+                id: 'exportCustomerCommonBtn',
+                disabled: true,
                 action: 'exportCustomerCommon'
             }, {
                 text: '客户详情',
