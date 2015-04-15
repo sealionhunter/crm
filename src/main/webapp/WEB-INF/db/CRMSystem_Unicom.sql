@@ -430,6 +430,7 @@ CREATE TABLE [dbo].[ContactInfo](
     [descriptions] [nvarchar](1024) NULL,
     [customerID] [int] NOT NULL,
     [contactType] [varchar](12) NOT NULL,
+    [photoPath] [nvarchar](1024) NULL,
     -- 2015-3-29 13:23:12 modified start.
     [createTime] [datetime] NOT NULL,
     [updateTime] [datetime] NULL,

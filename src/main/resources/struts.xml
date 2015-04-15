@@ -165,6 +165,9 @@
         </action>
         <action name="addOrUpdateProposalOrContract" class="proposalOrContract"
             method="addOrUpdateProposalOrContract">
+            <interceptor-ref name="login">
+                <param name="params.acceptParamNames">jsonString,familyInfo,socialInfo,familyID,socialID,attach*</param>
+            </interceptor-ref>
             <result name="success" type="json">
                 <param name="root">map</param>
             </result>

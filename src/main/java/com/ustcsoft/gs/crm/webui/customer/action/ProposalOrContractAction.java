@@ -1,11 +1,15 @@
 package com.ustcsoft.gs.crm.webui.customer.action;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import net.sf.json.JSONObject;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.interceptor.ServletRequestAware;
@@ -35,6 +39,11 @@ public class ProposalOrContractAction extends CRMAction implements ServletReques
     private HttpServletRequest request;
     /** statement contractService */
     private ProposalOrContractService proposalOrContractService = null;
+
+    private File attach;
+    private String attachFileName;
+    private String attachContentType;
+    
     private String filePath = "";
     private boolean success = false;
     private int type;
@@ -112,7 +121,30 @@ public class ProposalOrContractAction extends CRMAction implements ServletReques
         LOG.debug("method addOrUpdateProposalOrContract start!");
         ProposalOrContractDto contract = (ProposalOrContractDto) CRMUtils.jsonToBean(jsonString,
                 ProposalOrContractDto.class);
+        String oldPhotoPath = null;
+        if (attach != null) {
+            try {
+                String uuid = UUID.randomUUID().toString();
+                String destFileName = "contact/" + uuid + "_" + attachFileName;
+                File destFile = new File(CRMConstant.DOCUMENT_ROOT, destFileName);
+                FileUtils.copyFile(attach, destFile);
+                oldPhotoPath = contract.getPhotoPath();
+                contract.setPhotoPath(destFileName);
+            } catch (Exception ex) {
+                LOG.error("file upload fail.", ex);
+                map.put("fileUpload", this.getText("fileupload.fail"));
+            }
+        }
+        
         proposalOrContractService.addOrUpdateProposalOrContract(contract);
+
+        if (oldPhotoPath != null) {
+            try {
+                FileUtils.forceDeleteOnExit(new File(CRMConstant.DOCUMENT_ROOT, oldPhotoPath));
+            } catch (IOException e) {
+                LOG.warn("file delete fail", e);
+            }
+        }
         LOG.debug("method addOrUpdateProposalOrContract end!");
         return SUCCESS;
     }
@@ -124,6 +156,7 @@ public class ProposalOrContractAction extends CRMAction implements ServletReques
      */
     public void validateAddOrUpdateProposalOrContract() throws CRMDBException {
         LOG.debug("method validateAddOrUpdateProposalOrContract started!");
+        map.put("success", true);
         ProposalOrContractDto cod = (ProposalOrContractDto) CRMUtils.jsonToBean(jsonString,
                 ProposalOrContractDto.class);
         if (!proposalOrContractService.checkProposalOrContractName(cod)) {
@@ -291,6 +324,30 @@ public class ProposalOrContractAction extends CRMAction implements ServletReques
      */
     public void setType(final int type) {
         this.type = type;
+    }
+
+    public File getAttach() {
+        return attach;
+    }
+
+    public void setAttach(File attach) {
+        this.attach = attach;
+    }
+
+    public String getAttachFileName() {
+        return attachFileName;
+    }
+
+    public void setAttachFileName(String attachFileName) {
+        this.attachFileName = attachFileName;
+    }
+
+    public String getAttachContentType() {
+        return attachContentType;
+    }
+
+    public void setAttachContentType(String attachContentType) {
+        this.attachContentType = attachContentType;
     }
 
 }

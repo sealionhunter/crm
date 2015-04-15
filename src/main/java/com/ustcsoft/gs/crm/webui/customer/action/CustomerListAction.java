@@ -9,6 +9,7 @@
 package com.ustcsoft.gs.crm.webui.customer.action;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -18,7 +19,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.ustcsoft.gs.crm.webui.code.dto.CodeDto;
 import com.ustcsoft.gs.crm.webui.code.service.CodeService;
 import com.ustcsoft.gs.crm.webui.common.action.CRMAction;
@@ -293,17 +293,31 @@ public class CustomerListAction extends CRMAction {
     public String updateCustomer() throws CRMDBException {
 
         LOG.debug("method updateCustomer start.");
-        try {
-            String uuid = UUID.randomUUID().toString();
-            String destFileName = "customer/" + uuid + "/" + attachFileName;
-            File destFile = new File(CRMConstant.DOCUMENT_ROOT, destFileName);
-            FileUtils.copyFile(attach, destFile);
-            customerDto.setAttachPath(destFileName);
-        } catch (Exception ex) {
-            LOG.error("file upload fail.", ex);
-            map.put("fileUpload", this.getText("fileupload.fail"));
+        
+        String oldAttachPath = null;
+        if (attach != null) {
+            try {
+                String uuid = UUID.randomUUID().toString();
+                String destFileName = "customer/" + uuid + "_" + attachFileName;
+                File destFile = new File(CRMConstant.DOCUMENT_ROOT, destFileName);
+                FileUtils.copyFile(attach, destFile);
+                oldAttachPath = customerDto.getAttachPath();
+                customerDto.setAttachPath(destFileName);
+            } catch (Exception ex) {
+                LOG.error("file upload fail.", ex);
+                map.put("fileUpload", this.getText("fileupload.fail"));
+            }
         }
         customerService.updateCustomer(customerDto);
+
+        if (oldAttachPath != null) {
+            try {
+                FileUtils.forceDeleteOnExit(new File(CRMConstant.DOCUMENT_ROOT, oldAttachPath));
+            } catch (IOException e) {
+                LOG.warn("file delete fail", e);
+            }
+        }
+        
         LOG.debug("method updateCustomer start.");
         return SUCCESS;
     }

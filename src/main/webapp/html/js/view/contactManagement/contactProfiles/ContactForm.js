@@ -184,6 +184,18 @@ Ext.define('CRM.view.contactManagement.contactProfiles.ContactForm', {
                             xtype: 'hiddenfield',
                             name: 'updateTime'
                         } ]
+                    }, {
+                        columnWidth: 1,
+                        border: false,
+                        layout: 'anchor',
+                        items: [ {
+                            fieldLabel: '照片',
+                            xtype: 'fileuploadfield',
+                            name: 'attach',
+                            itemId: 'attach',
+                            buttonText: '选择照片',
+                            emptyText: "请选择需要上传的附件!"
+                        } ]
                     } ]
                 },
                 // ==============================================================================================

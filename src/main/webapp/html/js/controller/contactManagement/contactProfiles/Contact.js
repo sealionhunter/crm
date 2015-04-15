@@ -358,7 +358,7 @@ Ext.define('CRM.controller.contactManagement.contactProfiles.Contact', {
         var contactID = form.down('#contactID').getValue();
 //        var customerID = form.down('#customerID').getValue();
         if (form.getForm().isValid()) {
-            var form = button.up('window').down('form');
+//            var form = button.up('window').down('form');
 //            var createTimeField = form.down('hiddenfield[name=createTime]');
 //            var updateTimeField = form.down('hiddenfield[name=updateTime]');
 //
@@ -412,7 +412,7 @@ Ext.define('CRM.controller.contactManagement.contactProfiles.Contact', {
                 socialIDs[i] = record.get('socialID');
                 i++;
             });
-            Ext.Ajax.request({
+            form.getForm().submit({
                 url: 'updateContact.action',
                 method: 'POST',
                 params: {

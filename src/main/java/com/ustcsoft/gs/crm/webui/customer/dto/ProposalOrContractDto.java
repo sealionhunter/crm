@@ -17,6 +17,8 @@ public class ProposalOrContractDto {
     private boolean isAbolished;
     private int type;
 
+    private String photoPath = null;
+
     /**
      * @return proposalOrContractID
      */
@@ -201,6 +203,14 @@ public class ProposalOrContractDto {
      */
     public void setType(int type) {
         this.type = type;
+    }
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
     }
 
 }
