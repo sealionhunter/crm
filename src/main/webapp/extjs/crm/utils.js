@@ -169,7 +169,7 @@ CRM.Utils.prototype = {
 				failure : failure
 			};
 			if (form.isUpload) {
-				form.getForm().submit(options)
+				form.getForm().submit(options);
 			} else {
 				Ext.Ajax.request(options);
 			}

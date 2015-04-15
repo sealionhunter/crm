@@ -18,6 +18,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.ustcsoft.gs.crm.webui.code.dto.CodeDto;
 import com.ustcsoft.gs.crm.webui.code.service.CodeService;
 import com.ustcsoft.gs.crm.webui.common.action.CRMAction;
@@ -100,9 +101,8 @@ public class CustomerListAction extends CRMAction {
      *             in case of Hibernate errors
      */
     public void validateUpdateCustomer() throws CRMDBException {
-        if (true) return;
-
         customerDto = (CustomerDto) CRMUtils.jsonToBean(super.jsonString, CustomerDto.class);
+        map.put("success", true);
         if (StringUtils.isBlank(customerDto.getCustomerAddr())) {
             addFieldError(CustomerConstant.CUSTOMER_ADDR, this.getText("customerAddr.invalid"));
         } else if (customerDto.getCustomerAddr().length() > 50) {
@@ -300,7 +300,8 @@ public class CustomerListAction extends CRMAction {
             FileUtils.copyFile(attach, destFile);
             customerDto.setAttachPath(destFileName);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            LOG.error("file upload fail.", ex);
+            map.put("fileUpload", this.getText("fileupload.fail"));
         }
         customerService.updateCustomer(customerDto);
         LOG.debug("method updateCustomer start.");

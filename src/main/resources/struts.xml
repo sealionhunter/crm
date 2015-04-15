@@ -47,8 +47,8 @@
         </action>
         <action name="updateCustomer" class="customerList"
             method="updateCustomer">
-            <interceptor-ref name="basicStack"/>
-            <interceptor-ref name="fileUpload">
+            <interceptor-ref name="login">
+                <param name="params.acceptParamNames">jsonString, attach*</param>
             </interceptor-ref>
             <result name="success" type="json">
                 <param name="root">map</param>
