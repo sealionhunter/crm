@@ -196,4 +196,9 @@ public class IndexConstant {
             + " and DATEDIFF(day, cus.updateTime, GETDATE()) >= 1"
             + " and cus.updateTime >= CONVERT(varchar(19), GETDATE() - 90, 120)"
             + " order by cus.updateTime asc";
+    public static final String GET_CUSTOMER_UPDATED_STATUS_COUNT =  "select count(*) from CustomerDto cus"
+            + " where cus.holder = :userID"
+            + " and cus.isAbolished = 0"
+            + " and DATEDIFF(day, cus.updateTime, GETDATE()) >= 1"
+            + " and cus.updateTime >= CONVERT(varchar(19), GETDATE() - 90, 120)";
 }

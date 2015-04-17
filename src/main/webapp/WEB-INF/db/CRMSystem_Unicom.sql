@@ -16,6 +16,8 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Custo
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[LeaderAdvice]') AND type in (N'U')) DROP TABLE [dbo].[LeaderAdvice];
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Business]') AND type in (N'U')) DROP TABLE [dbo].[LeaderAdvice];
+
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Department]') AND type in (N'U')) DROP TABLE [dbo].[Department];
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GroupManager]') AND type in (N'U')) DROP TABLE [dbo].[GroupManager];
@@ -87,6 +89,7 @@ CREATE TABLE [dbo].[UserInfo](
     [entryTime] [date] NULL,
     [descriptions] [nvarchar](1024) NULL,
     [isAbolished] [bit] NOT NULL DEFAULT ((0)),
+    [contactInterval] int NOT NULL DEFAULT ((1)),
 PRIMARY KEY CLUSTERED 
 (
     [userID] ASC
@@ -94,8 +97,8 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 END;
 
-INSERT [dbo].[UserInfo] ([groupID], [jobID], [userName], [password], [realName], [company], [departmentID], [projectTeamID], [job], [jobTitle], [email], [mobile], [officePhone], [education], [entryTime], [descriptions], [isAbolished]) VALUES ( 0, N'123', N'aaa', N'ZwsUcorZkCrsujLiL6T2vQ==', N'系统管理员', N'中国联通合肥分公司', 1, 0, N'', N'', N'dummary@unicom.com', N'', N'', N'', CAST(0xAE370B00 AS Date), N'', 0);
-INSERT [dbo].[UserInfo] ([groupID], [jobID], [userName], [password], [realName], [company], [departmentID], [projectTeamID], [job], [jobTitle], [email], [mobile], [officePhone], [education], [entryTime], [descriptions], [isAbolished]) VALUES ( 1, N'123', N'crm', N'ZwsUcorZkCrsujLiL6T2vQ==', N'超级管理员', N'中国联通合肥分公司', 1, 0, N'', N'', N'dummary@unicom.com', N'', N'', N'', CAST(0x7E360B00 AS Date), N'', 0);
+INSERT [dbo].[UserInfo] ([groupID], [jobID], [userName], [password], [realName], [company], [departmentID], [projectTeamID], [job], [jobTitle], [email], [mobile], [officePhone], [education], [entryTime], [descriptions], [isAbolished], [contactInterval]) VALUES ( 0, N'123', N'aaa', N'ZwsUcorZkCrsujLiL6T2vQ==', N'系统管理员', N'中国联通合肥分公司', 1, 0, N'', N'', N'dummary@unicom.com', N'', N'', N'', CAST(0xAE370B00 AS Date), N'', 0, 1);
+INSERT [dbo].[UserInfo] ([groupID], [jobID], [userName], [password], [realName], [company], [departmentID], [projectTeamID], [job], [jobTitle], [email], [mobile], [officePhone], [education], [entryTime], [descriptions], [isAbolished], [contactInterval]) VALUES ( 1, N'123', N'crm', N'ZwsUcorZkCrsujLiL6T2vQ==', N'超级管理员', N'中国联通合肥分公司', 1, 0, N'', N'', N'dummary@unicom.com', N'', N'', N'', CAST(0x7E360B00 AS Date), N'', 0, 1);
 
 
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Tree]') AND type in (N'U'))
@@ -332,6 +335,37 @@ END;
 
 SET ANSI_PADDING OFF
 
+
+/****** Object:  Table [dbo].[Business]    Script Date: 10/15/2013 14:45:12 ******/
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+SET ANSI_PADDING ON
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Business]') AND type in (N'U'))
+BEGIN
+CREATE TABLE [dbo].[Business](
+    [businessId] [int] IDENTITY(1,1) NOT NULL,
+    [customerID] [int] NOT NULL,
+    [businessType] [nvarchar](12) NOT NULL,
+    [contractYear] [int] NOT NULL,
+    [contractNumber] [int] NOT NULL,
+    [contractMoney] [decimal](18, 2) NOT NULL,
+    [isAbolished] [bit] NOT NULL DEFAULT ((0)),
+    [startDate] [date] NOT NULL,
+    [descriptions] [nvarchar](1024) NULL,
+    [createTime] [datetime] NOT NULL,
+    [updateTime] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+    [businessId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+END;
+
+SET ANSI_PADDING OFF
+
 /****** Object:  Table [dbo].[ContactTrackInfo]    Script Date: 10/15/2013 14:45:13 ******/
 SET ANSI_NULLS ON
 
@@ -499,6 +533,7 @@ INSERT [dbo].[Code] ([code], [value]) VALUES (N'00010007', N'联系人类别');
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'00010008', N'市场名称');
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'00010009', N'注册资金');
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'00010010', N'客户名称关键字');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'00010011', N'业务类型');
 
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'00060001', N'联系需求');
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'00060002', N'联系方式');
@@ -565,6 +600,16 @@ INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100100004', N'责任');
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100100005', N'公司');
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100100006', N'安徽');
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100100007', N'合肥');
+
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100110001', N'2G');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100110002', N'3G');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100110003', N'4G');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100110004', N'固话');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100110005', N'宽带');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100110006', N'电路');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100110007', N'ICT');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100110008', N'IDC');
+INSERT [dbo].[Code] ([code], [value]) VALUES (N'000100110009', N'其它');
 
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'000600010001', N'一般');
 INSERT [dbo].[Code] ([code], [value]) VALUES (N'000600010002', N'重要');

@@ -32,18 +32,8 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Customer2', {
             initController('customerManagement.contactTrack.ContactHistory').viewInit(122, previous, this.record);
         } else if (id ==='leaderadvicetab') {
             initController('customerManagement.customerProfiles.LeaderAdvice').viewInit(114, previous, this.record);
+        }else if (id ==='businesstab') {
+            initController('customerManagement.customerProfiles.Business').viewInit(999, previous, this.record);
         }
-//    },
-//    onPanelRendered2: function(panel) {
-//        initController('contactManagement.contactProfiles.Contact').viewInit(211, panel, this.record);
-//    },
-//    onPanelRendered4: function(panel) {
-//        initController('customerManagement.contactTrack.ContactController').viewInit(121, panel, this.record);
-//    },
-//    onPanelRendered5: function(panel) {
-//        initController('customerManagement.contactTrack.ContactHistory').viewInit(122, panel, this.record);
-//    },
-//    onPanelRendered6: function(panel) {
-//        initController('customerManagement.customerProfiles.LeaderAdvice').viewInit(114, panel, this.record);
     }
 });

@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ustcsoft.gs.crm.webui.common.exception.CRMDBException;
 import com.ustcsoft.gs.crm.webui.common.util.CRMUtils;
+import com.ustcsoft.gs.crm.webui.contact.bean.ContactBean;
 import com.ustcsoft.gs.crm.webui.contact.bean.ContactSearchBean;
 import com.ustcsoft.gs.crm.webui.contact.dao.ContactInfoDao;
 import com.ustcsoft.gs.crm.webui.contact.dto.ContactInfoDto;
@@ -27,6 +28,19 @@ public class ContactInfoServiceImpl implements ContactInfoService {
     private ContactInfoDao contactInfoDao;
 
     private static Log LOG = LogFactory.getLog(ContactInfoServiceImpl.class);
+
+    public List<ContactBean> getAllContact(int cusotmerID) throws CRMDBException {
+        try {
+            LOG.debug("method get all contacts records start!");
+            List<ContactBean> list = contactInfoDao.getAllContact(cusotmerID);
+            LOG.debug("method get all contacts records end!");
+
+            return list;
+        } catch (DataAccessException e) {
+            LOG.info(" DataAccessException occurs in method getAllContact!", e);
+            throw new CRMDBException(e);
+        }
+    }
 
     /**
      * method to get all contacts records and searched records

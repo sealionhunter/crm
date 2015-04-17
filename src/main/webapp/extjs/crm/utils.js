@@ -708,6 +708,28 @@ CRM.Utils.prototype = {
             dd.setDate(dd.getDate() - day);
         }
         return dd;
+    },
+    showMoreCusUpdatedStatus: function() {
+        var win = Ext.create('CRM.view.index.CusUpdatedStatusListWin');
+        var gird = win.getComponent('cusupdatedstatuslist');
+        var store = gird.getStore();
+        store.on('beforeload', function(store, options) {
+            var new_params = {
+                userID: USER_ID,
+                jsonString: '{}',
+            };
+            Ext.apply(store.proxy.extraParams, new_params);
+        });
+        store.loadPage(1, {
+            scope: this,
+            callback: function(records, operation, success) {
+                if (store.getCount() == 0) {
+                    messageBox.alert('提示', '没有客户更新信息！');
+                }
+            }
+        });
+        store.currentPage = 1;
+        win.show();
     }
     // Added for EXTJS 4.2 end 20150302
 };

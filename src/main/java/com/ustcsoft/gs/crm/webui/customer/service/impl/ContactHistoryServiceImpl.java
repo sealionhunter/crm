@@ -1,5 +1,6 @@
 package com.ustcsoft.gs.crm.webui.customer.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
@@ -8,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.ustcsoft.gs.crm.webui.common.exception.CRMDBException;
 import com.ustcsoft.gs.crm.webui.customer.bean.ContactHistorySearchBean;
+import com.ustcsoft.gs.crm.webui.customer.bean.ContactTrackListBean;
 import com.ustcsoft.gs.crm.webui.customer.dao.ContactHistoryDao;
 import com.ustcsoft.gs.crm.webui.customer.service.ContactHistoryService;
 import com.ustcsoft.gs.crm.webui.customer.service.SourceInfoService;
@@ -25,6 +27,15 @@ public class ContactHistoryServiceImpl implements ContactHistoryService {
 
     /** define sourceInfoService */
     private SourceInfoService sourceInfoService = null;
+
+    public List<ContactTrackListBean> getAllContactHistory(final int customerID)
+            throws CRMDBException {
+        LOG.debug("method searchOrGetAllContactHistory start!");
+        List<ContactTrackListBean> list = contactHistoryDao.getAllContactHistory(customerID);
+        LOG.debug("method searchOrGetAllContactHistory end!");
+
+        return list;
+    }
 
     /**
      * list and search

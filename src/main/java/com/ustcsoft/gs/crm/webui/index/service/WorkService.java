@@ -98,5 +98,5 @@ public interface WorkService {
 
     public Map<String, Object> getContactTrackInfo(int userID, String date) throws CRMDBException;
 
-    public Map<String, Object> getCustomerUpdatedStatus(int userID, String date) throws CRMDBException;
+    public Map<String, Object> getCustomerUpdatedStatus(int userID, int page, int limit) throws CRMDBException;
 }

@@ -109,7 +109,31 @@
                 <param name="root">map</param>
             </result>
         </action>
-
+        <!-- 业务使用情况 -->
+        <action name="getAllBusiness" class="businessList"
+            method="getAllBusiness">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="addOrUpdateBusiness" class="businessList"
+            method="updateBusiness">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="deleteBusiness" class="businessList"
+            method="deleteBusiness">
+            <result name="success" type="json">
+                <param name="root">map</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
         <!--合同模板 -->
         <action name="getAllFileTemplate" class="fileTemplate">
             <result type="json">

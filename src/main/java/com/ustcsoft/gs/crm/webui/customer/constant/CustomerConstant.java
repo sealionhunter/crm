@@ -331,6 +331,32 @@ public class CustomerConstant {
             + " and conT.customerID = :customerID";
 //            + " and conT.customerID in (select cd.customerID from CustomerDto as cd where cd.customerID = conT.customerID and cd.isAbolished = 0 "
 //            + " and cd.holder in (:userID))";
+    public static final String CONTACTHISTORY_GETALL_HQL_BY_CUSTOMERID = "select new Map("
+            + " conT.contactID as contactID,"
+            + " conT.customerID as customerID, "
+            + " (select cd.customerName from CustomerDto as cd where conT.customerID = cd.customerID and cd.isAbolished = 0) as customerName,"
+            + " conT.contactTheme as contactTheme,"
+//            + " conT.weContact as weContact,"
+//            + "(select uiDto.realName from UserInfoDto as uiDto where conT.weContact = uiDto.userID and uiDto.isAbolished = 0) as weContactName,"
+            + " conT.oppositeContact as oppositeContact,"
+            + " conT.contactWay as contactWay,"
+            + " conT.contactType as contactType,"
+            + " conT.ifContact as ifContact,"
+            + " (select ci.contactName from ContactInfoDto as ci where conT.oppositeContact = ci.contactID and ci.isAbolished = 0) as oppositeContactName,"
+            + " (select cod.value from CodeDto as cod where conT.contactType = cod.code) as contactTypeName,"
+            + " (select cod.value from CodeDto as cod where conT.contactWay = cod.code) as contactWayName,"
+            + " (select cod.value from CodeDto as cod where (conT.ifContact = 1 and cod.code='000600030001') or (conT.ifContact = 0 and cod.code='000600030002')) as ifContactName,"
+            + " conT.contactContent as contactContent,"
+            + " conT.planDateBegin as planDateBegin,"
+            + " conT.realityDateBegin as realityDateBegin,"
+            + " conT.realityDateEnd as realityDateEnd,"
+            + " conT.notContantReason as notContantReason,"
+            + " conT.userFeedbackInformation as userFeedbackInformation,"
+            + " conT.strategy as strategy,"
+            + " conT.remarks as remarks)"
+            + " from ContactTrackInfoDto as conT where conT.isAbolished = 0"
+            + " and (conT.realityDateBegin is not null or conT.notContantReason is not null)"
+            + " and conT.customerID = ?";
     public static final String CONTACTHISTORY_COUNT_HQL = "select count(*) from ContactTrackInfoDto as conT where conT.isAbolished = 0"
             + " and (conT.realityDateBegin is not null or conT.notContantReason is not null)"
             + " and conT.customerID = :customerID";
@@ -401,12 +427,18 @@ public class CustomerConstant {
             + " and conT.notContantReason is null"
             + " and conT.customerID = :customerID";
 
-//    public static final String GET_CONTACT_TO_NOTIFICATION_HQL = GET_CONTACTTRACK_PREFIX_HQL
-//            + " where conT.isAbolished = 0"
-//            + " and conT.realityDateBegin is null"
-//            + " and conT.notContantReason is null"
+    public static final String GET_ALLCONTACTTRACK_HQL_BY_CUSTOMERID = GET_CONTACTTRACK_PREFIX_HQL
+            + " where conT.isAbolished = 0"
+            + " and conT.realityDateBegin is null"
+            + " and conT.notContantReason is null"
+            + " and conT.customerID = ?";
+
+    public static final String GET_CONTACT_TO_NOTIFICATION_HQL = GET_CONTACTTRACK_PREFIX_HQL
+            + " where conT.isAbolished = 0"
+            + " and conT.realityDateBegin is null"
+            + " and conT.notContantReason is null"
 //            + " and conT.weContact = :userID"
-//            + " and conT.planDateBegin >= :date";
+            + " and conT.planDateBegin >= :date";
 
     public static final String GETNUMOFCONTACTTRACK_HQL = "update ContactTrackInfoDto as conT set conT.isAbolished = 'true'"
             + " where conT.contactID in ";
@@ -939,5 +971,43 @@ public class CustomerConstant {
             + " and ("
             + " (select user.realName from UserInfoDto as user where user.userID = ld.userID) like:searchText"
             + " or ld.adviceContent like:searchText"
+            + " )";
+    // business
+    public static final String GET_BUSINESS_PREFIX_HQL = "select new Map("
+            + " ld.businessId as businessId,"
+            + " ld.customerID as customerID,"
+            + " (select cd.customerName from CustomerDto as cd where ld.customerID = cd.customerID) as customerName,"
+            + " ld.businessType as businessType,"
+            + "(select comB.value from CodeDto as comB where comB.code = ld.businessType) as businessTypeName, "
+            + " ld.contractYear as contractYear,"
+            + " ld.contractNumber as contractNumber,"
+            + " ld.contractMoney as contractMoney,"
+            + " ld.startDate as startDate,"
+            + " ld.descriptions as descriptions,"
+            + " ld.createTime as createTime,"
+            + " ld.updateTime as updateTime"
+            + " )"
+            + " from BusinessDto as ld";
+    public static final String GET_BUSINESS_LIST_HQL = GET_BUSINESS_PREFIX_HQL
+            + " where ld.isAbolished = 0"
+            + " and ld.customerID = :customerID"
+            + " order by ld.updateTime desc";
+    public static final String GET_BUSINESS_TOTAL_HQL = "select count(*) from BusinessDto as ld"
+            + " where ld.isAbolished = 0"
+            + " and ld.customerID = :customerID";
+    public static final String BUSINESS_DEL_HQL = "update BusinessDto as ld set ld.updateTime=CONVERT(varchar(19), getdate(), 120),ld.isAbolished = 1 where ld.adviceID in ";
+    public static final String BUSINESS_QUERY_HQL = GET_BUSINESS_PREFIX_HQL 
+            + " where ld.isAbolished = 0"
+            + " and ld.customerID = :customerID"
+            + " and ("
+            + " (select comB.value from CodeDto as comB where comB.code = ld.businessType) like:searchText"
+            + " or ld.adviceContent like:searchText"
+            + " )";
+    public static final String BUSINESS_QUERY_TOTAL_HQL = "select count(*) from BusinessDto as ld"
+            + " where ld.isAbolished = 0"
+            + " and ld.customerID = :customerID"
+            + " and ("
+            + " (select comB.value from CodeDto as comB where comB.code = ld.businessType) like:searchText"
+//            + " or ld.adviceContent like:searchText"
             + " )";
 }

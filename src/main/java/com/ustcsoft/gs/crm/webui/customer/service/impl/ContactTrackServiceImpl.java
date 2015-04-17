@@ -1,6 +1,7 @@
 package com.ustcsoft.gs.crm.webui.customer.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
@@ -48,6 +49,23 @@ public class ContactTrackServiceImpl implements ContactTrackService {
      */
     public void setSourceInfoService(SourceInfoService sourceInfoService) {
         this.sourceInfoService = sourceInfoService;
+    }
+
+    public List<ContactTrackListBean> getAllContactTrack(int customerID)
+            throws CRMDBException {
+        try {
+            LOG.debug("method getAllContactTrack start!");
+            List<ContactTrackListBean> list = contactTrackDao
+                    .getAllContactTrack(customerID);
+            LOG.debug("method getAllContactTrack end!");
+
+            return list;
+        } catch (DataAccessException e) {
+            LOG.error(
+                    "DataAccessException occurs in method getAllContactTrack!",
+                    e);
+            throw new CRMDBException(e);
+        }
     }
 
     /**

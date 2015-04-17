@@ -105,5 +105,5 @@ public interface WorkDao {
 
     public Map<String, Object> getContactTrackInfo(int userID, String date);
 
-    public Map<String, Object> getCustomerUpdatedStatus(int userID, String date);
+    public Map<String, Object> getCustomerUpdatedStatus(int userID, int page, int limit);
 }

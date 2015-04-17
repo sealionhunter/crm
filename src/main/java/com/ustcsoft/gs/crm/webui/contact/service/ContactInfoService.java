@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ustcsoft.gs.crm.webui.common.exception.CRMDBException;
+import com.ustcsoft.gs.crm.webui.contact.bean.ContactBean;
 import com.ustcsoft.gs.crm.webui.contact.bean.ContactSearchBean;
 import com.ustcsoft.gs.crm.webui.contact.dto.ContactInfoDto;
 import com.ustcsoft.gs.crm.webui.contact.dto.FamilyDto;
@@ -13,6 +14,8 @@ import com.ustcsoft.gs.crm.webui.contact.dto.SocialDto;
  * @author xuzhen
  */
 public interface ContactInfoService {
+    List<ContactBean> getAllContact(int cusotmerID) throws CRMDBException;
+
     /**
      * method to get all contacts records and searched records
      * 

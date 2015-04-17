@@ -1,14 +1,9 @@
-Ext.define('CRM.store.index.CustomerUpdatedStatus', {
-//    extend: 'Ext.data.Store',
+Ext.define('CRM.store.customerManagement.customerProfiles.Business', {
     extend: 'CRM.store.commonStore',
-    pageSize: 15,
-    fields:[
-        {name: 'days', type: 'int'},
-        {name: 'customerName', type: 'string'}
-    ],
+    model: 'CRM.model.customerManagement.customerProfiles.Business',
     proxy: {
         type: 'ajax',
-        url: 'getCustomerUpdatedStatus.action',
+        url: 'getAllBusiness.action',
         actionMethods: {
             read: 'POST'
         },
