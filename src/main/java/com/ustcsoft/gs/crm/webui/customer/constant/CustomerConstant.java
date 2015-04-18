@@ -995,19 +995,27 @@ public class CustomerConstant {
     public static final String GET_BUSINESS_TOTAL_HQL = "select count(*) from BusinessDto as ld"
             + " where ld.isAbolished = 0"
             + " and ld.customerID = :customerID";
-    public static final String BUSINESS_DEL_HQL = "update BusinessDto as ld set ld.updateTime=CONVERT(varchar(19), getdate(), 120),ld.isAbolished = 1 where ld.adviceID in ";
+    public static final String BUSINESS_DEL_HQL = "update BusinessDto as ld set ld.updateTime=CONVERT(varchar(19), getdate(), 120),ld.isAbolished = 1 where ld.businessId in ";
     public static final String BUSINESS_QUERY_HQL = GET_BUSINESS_PREFIX_HQL 
             + " where ld.isAbolished = 0"
             + " and ld.customerID = :customerID"
             + " and ("
             + " (select comB.value from CodeDto as comB where comB.code = ld.businessType) like:searchText"
-            + " or ld.adviceContent like:searchText"
+            + " or ld.contractYear like:searchText"
+            + " or ld.contractNumber like:searchText"
+            + " or ld.contractMoney like:searchText"
+            + " or ld.startDate like:searchText"
+            + " or ld.descriptions like:searchText"
             + " )";
     public static final String BUSINESS_QUERY_TOTAL_HQL = "select count(*) from BusinessDto as ld"
             + " where ld.isAbolished = 0"
             + " and ld.customerID = :customerID"
             + " and ("
             + " (select comB.value from CodeDto as comB where comB.code = ld.businessType) like:searchText"
-//            + " or ld.adviceContent like:searchText"
+            + " or ld.contractYear like:searchText"
+            + " or ld.contractNumber like:searchText"
+            + " or ld.contractMoney like:searchText"
+            + " or ld.startDate like:searchText"
+            + " or ld.descriptions like:searchText"
             + " )";
 }

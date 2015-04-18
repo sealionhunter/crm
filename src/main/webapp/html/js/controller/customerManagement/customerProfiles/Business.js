@@ -52,7 +52,6 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Business', {
         if (typeof record !== 'undefined') {
             this.record = record;
             var store  = businessList.getStore();
-            alert(record.get('customerID'));
             store.on('beforeload', function(store, options) {
                 var new_params = {
                         customerID: record.get('customerID')
@@ -75,8 +74,8 @@ Ext.define('CRM.controller.customerManagement.customerProfiles.Business', {
     showEditWin: function(button) {
         var grid = button.up('grid');
         var checkRecord = grid.getSelectionModel().getSelection();
-        var view = Ext.widget('business');
-        view.setTitle('编辑领导建议信息');
+        var view = Ext.widget('businessupdate');
+        view.setTitle('编辑业务信息');
         view.down('[action=resetBusiness]').setText('重置');
         // load select record
         view.down('form').loadRecord(checkRecord[0]);
