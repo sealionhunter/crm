@@ -70,4 +70,16 @@ public class BusinessDaoImpl implements BusinessDao {
         return map;
     }
 
+    @Override
+    public Map<String, Object> getBusinessMessage(int page, int limit) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<?> businessList = hibernateTemplate.executeFind(new PagingHibernateCallback(
+                CustomerConstant.BUSINESS_QUERY_HQL_MESSAGE, page, limit));
+        long total = (Long) hibernateTemplate.find(CustomerConstant.BUSINESS_QUERY_TOTAL_HQL_MESSAGE
+               ).get(0);
+        map.put(CRMConstant.ITEMS, businessList);
+        map.put(CRMConstant.TOTAL, total);
+        return map;
+    }
+
 }

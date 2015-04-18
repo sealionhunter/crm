@@ -67,6 +67,8 @@ public class BusinessServiceImpl implements BusinessService {
                 searchBean.setCustomerID(customerID);
                 searchBean.setUserID(userID);
                 map = dao.queryBusiness(searchBean, page, limit);
+            } else if (searchFlag == 3) {
+                map = dao.getBusinessMessage(page, limit);
             } else {
                 map = dao.getAllBusiness(searchFlag, searchBean, page, limit, userID, customerID);
             }

@@ -1018,4 +1018,10 @@ public class CustomerConstant {
             + " or ld.startDate like:searchText"
             + " or ld.descriptions like:searchText"
             + " )";
+    public static final String BUSINESS_QUERY_HQL_MESSAGE = GET_BUSINESS_PREFIX_HQL 
+            + " where ld.isAbolished = 0"
+            + " and ld.createTime >= CONVERT(varchar(19), getdate() - 1 , 120)";
+    public static final String BUSINESS_QUERY_TOTAL_HQL_MESSAGE = "select count(*) from BusinessDto as ld"
+            + " where ld.isAbolished = 0"
+            + " and ld.createTime >= CONVERT(varchar(19), getdate() - 1 , 120)";
 }

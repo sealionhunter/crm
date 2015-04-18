@@ -76,10 +76,10 @@ Ext.define('CRM.controller.index.IndexController', {
             },
             'workupdate datetimefield[id=workStratTime]': {
                 change: this.checkTime
-            },
-            // 监听消息弹出窗口单击事件
-            'messagelist gridpanel': {
-                itemclick: this.showMessageDetail
+//            },
+//            // 监听消息弹出窗口单击事件
+//            'messagelist gridpanel': {
+//                itemclick: this.showMessageDetail
             }
         });
     },
@@ -349,14 +349,14 @@ Ext.define('CRM.controller.index.IndexController', {
             me.changeTask('importantTask');
         }, 300);
     },
-    showMessageDetail: function(grid, record) {
-        var messageDetailWin = Ext.getCmp('taskform');
-        if (typeof (messageDetailWin) == 'undefined') {
-            messageDetailWin = Ext.widget('taskform');
-            var form = messageDetailWin.down('#taskForm');
-            form.loadRecord(record);
-        }
-    },
+//    showMessageDetail: function(grid, record) {
+//        var messageDetailWin = Ext.getCmp('taskform');
+//        if (typeof (messageDetailWin) == 'undefined') {
+//            messageDetailWin = Ext.widget('taskform');
+//            var form = messageDetailWin.down('#taskForm');
+//            form.loadRecord(record);
+//        }
+//    },
 
     taskFormClose: function(button) {
         var win = button.up('window');
@@ -371,20 +371,20 @@ Ext.define('CRM.controller.index.IndexController', {
                 if (CRM.checkResponse(response)) {
                     return;
                 }
-                var messageGrid = Ext.getCmp('messageGrid');
-                if (typeof (messageGrid) != 'undefined') {
-                    var messageStore = messageGrid.getStore();
-                    var currentPage = messageStore.currentPage;
-                    var pageSize = messageStore.pageSize;
-                    var total = messageStore.totalCount - 1;
-                    if (total <= (currentPage - 1) * pageSize) {
-                        currentPage = currentPage - 1;
-                    }
-                    if (total == 0) {
-                        currentPage = 1;
-                    }
-                    messageStore.loadPage(currentPage);
-                }
+//                var messageGrid = Ext.getCmp('messageGrid');
+//                if (typeof (messageGrid) != 'undefined') {
+//                    var messageStore = messageGrid.getStore();
+//                    var currentPage = messageStore.currentPage;
+//                    var pageSize = messageStore.pageSize;
+//                    var total = messageStore.totalCount - 1;
+//                    if (total <= (currentPage - 1) * pageSize) {
+//                        currentPage = currentPage - 1;
+//                    }
+//                    if (total == 0) {
+//                        currentPage = 1;
+//                    }
+//                    messageStore.loadPage(currentPage);
+//                }
 //                utils.changeMessageText();
             },
             failure: function(response) {

@@ -16,4 +16,6 @@ public interface BusinessDao {
 
     public Map<String, Object> queryBusiness(BusinessSearchBean searchBean, int page, int limit);
 
+    public Map<String, Object> getBusinessMessage(int page, int limit);
+
 }

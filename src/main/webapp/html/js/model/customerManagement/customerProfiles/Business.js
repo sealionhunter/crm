@@ -7,6 +7,9 @@ Ext.define('CRM.model.customerManagement.customerProfiles.Business', {
         name: 'customerID',
         type: 'string'
     }, {
+        name: 'customerName',
+        type: 'string'
+    }, {
         name: 'businessType',
         type: 'string'
     }, {
