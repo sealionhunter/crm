@@ -1,15 +1,18 @@
 package com.ustcsoft.gs.crm.webui.customer.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.ustcsoft.gs.crm.webui.common.exception.CRMDBException;
 import com.ustcsoft.gs.crm.webui.customer.bean.ContactHistorySearchBean;
+import com.ustcsoft.gs.crm.webui.customer.bean.ContactTrackListBean;
 
 /**
  * @author yinweili
  * 
  */
 public interface ContactHistoryService {
+    public List<ContactTrackListBean> getAllContactHistory(final int customerID) throws CRMDBException;
 
     /**
      * list and search

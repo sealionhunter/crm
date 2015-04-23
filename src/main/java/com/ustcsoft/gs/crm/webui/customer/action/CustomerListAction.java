@@ -184,8 +184,7 @@ public class CustomerListAction extends CRMAction {
                     msgParam.append("<br>【").append(mayRepeatedNameList.get(i)).append("】");
                 }
 
-                addFieldError("CusotmerNameRepeat", String.format(this.getText("customerName.repeat"),
-                        customerDto.getCustomerName(), msgParam.toString()));
+                addFieldError("CusotmerNameRepeat", msgParam.toString());
             }
 
             map.putAll(getFieldErrors());

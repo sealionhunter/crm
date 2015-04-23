@@ -19,6 +19,15 @@ public class UserInfoDto {
     private String entryTime = null;
     private String descriptions = null;
     private Boolean isAbolished = false;
+    private int contactInterval = 0;
+
+    public int getContactInterval() {
+        return contactInterval;
+    }
+
+    public void setContactInterval(int contactInterval) {
+        this.contactInterval = contactInterval;
+    }
 
     /**
      * 

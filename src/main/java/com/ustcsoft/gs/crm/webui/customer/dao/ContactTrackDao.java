@@ -1,7 +1,9 @@
 package com.ustcsoft.gs.crm.webui.customer.dao;
 
+import java.util.List;
 import java.util.Map;
 
+import com.ustcsoft.gs.crm.webui.customer.bean.ContactTrackListBean;
 import com.ustcsoft.gs.crm.webui.customer.bean.ContactTrackSearchBean;
 import com.ustcsoft.gs.crm.webui.customer.dto.ContactTrackInfoDto;
 
@@ -11,6 +13,8 @@ import com.ustcsoft.gs.crm.webui.customer.dto.ContactTrackInfoDto;
  * 
  */
 public interface ContactTrackDao {
+
+    public List<ContactTrackListBean> getAllContactTrack(int customerID);
 
     /**
      * the function is getting information form database to ContactTrackList.js

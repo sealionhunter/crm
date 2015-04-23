@@ -33,6 +33,12 @@ Ext.define('CRM.view.customerManagement.customerProfiles.CustomerTab', {
             layout: 'fit',
             xtype: 'panel',
             border: false
+        }, {
+            title: '联通业务使用情况',
+            id: 'businesstab',
+            layout: 'fit',
+            xtype: 'panel',
+            border: false
         } ];
         this.callParent(arguments);
     }

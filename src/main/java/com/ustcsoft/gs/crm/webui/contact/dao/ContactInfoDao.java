@@ -6,15 +6,18 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 
 import com.ustcsoft.gs.crm.webui.common.exception.CRMDBException;
+import com.ustcsoft.gs.crm.webui.contact.bean.ContactBean;
 import com.ustcsoft.gs.crm.webui.contact.bean.ContactSearchBean;
 import com.ustcsoft.gs.crm.webui.contact.dto.ContactInfoDto;
 import com.ustcsoft.gs.crm.webui.contact.dto.FamilyDto;
 import com.ustcsoft.gs.crm.webui.contact.dto.SocialDto;
+import com.ustcsoft.gs.crm.webui.customer.dto.ContactSelectDto;
 
 /**
  * @author xuzhen
  */
 public interface ContactInfoDao {
+    public List<ContactBean> getAllContact(int customerID) throws DataAccessException;
     /**
      * method to get all contacts records and searched records from DB
      * 

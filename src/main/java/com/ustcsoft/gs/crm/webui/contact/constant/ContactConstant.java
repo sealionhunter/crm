@@ -15,6 +15,11 @@ public class ContactConstant {
             + "(select com.value from CodeDto as com where com.code = con.education) as educationName,"
             + "(select com.value from CodeDto as com where com.code = con.contactType) as contactTypeName) "
             + "from ContactInfoDto as con where con.customerID = :customerID and con.isAbolished = 0";
+    public static final String GETALLCONTRACT_HQL_BY_CUSTOMERID = "select new com.ustcsoft.gs.crm.webui.contact.bean.ContactBean(con,"
+            + "(select com.value from CodeDto as com where com.code = con.sex) as sexName,"
+            + "(select com.value from CodeDto as com where com.code = con.education) as educationName,"
+            + "(select com.value from CodeDto as com where com.code = con.contactType) as contactTypeName) "
+            + "from ContactInfoDto as con where con.customerID = ? and con.isAbolished = 0";
 
     public static final String GETALLCONTACTCOUNT_HQL = "select count(*) from ContactInfoDto as con where con.isAbolished = 0";
     public static final String GETALLCONTACTCOUNT_HQL_2 = "select count(*) from ContactInfoDto as con where con.customerID = :customerID and con.isAbolished = 0";

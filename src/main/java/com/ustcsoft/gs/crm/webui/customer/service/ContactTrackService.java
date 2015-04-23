@@ -1,5 +1,6 @@
 package com.ustcsoft.gs.crm.webui.customer.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.ustcsoft.gs.crm.webui.common.exception.CRMDBException;
@@ -12,6 +13,9 @@ import com.ustcsoft.gs.crm.webui.customer.bean.ContactTrackSearchBean;
  * 
  */
 public interface ContactTrackService {
+
+    public List<ContactTrackListBean> getAllContactTrack(int customerID)
+            throws CRMDBException;
 
     /**
      * the function is getting information form database to ContactTrackList.js

@@ -37,7 +37,7 @@ public class SystemConstant extends CRMConstant {
             + "(select cDto.value from CodeDto as cDto where user.education = cDto.code) as educationB, "
             + "(select cDto.value from CodeDto as cDto where user.jobTitle = cDto.code) as jobTitleB, "
             + "user.userID as userID, user.jobID as jobID , user.password as password , user.userName as userName , user.realName as realName , user.company as company ,"
-            + "user.jobTitle as jobTitle, user.education as education, user.groupID as groupID, user.departmentID as departmentID, user.projectTeamID as projectTeamID, "
+            + "user.jobTitle as jobTitle, user.contactInterval as contactInterval, user.education as education, user.groupID as groupID, user.departmentID as departmentID, user.projectTeamID as projectTeamID, "
             + "user.job as job , user.email as email , user.mobile as mobile , user.officePhone as officePhone , user.entryTime as entryTime , user.descriptions as descriptions)"
             + "from UserInfoDto as user where user.isAbolished = 0 and user.groupID > 1 ";
     public static final String USER_MIDQUERY1_HQL = " and user.departmentID =:departmentID ";

@@ -129,36 +129,37 @@
                     editable: false,
                     displayField: 'value',
                     valueField: 'code'
-                } ]            }, {
-                    layout: 'hbox',
-                    items: [ {
-                        xtype: 'combobox',
-                        allowBlank: false,
-                        blankText: '客户状态不能为空！',
-                        name: 'customerStatement',
-                        itemId: 'customerStatement',
-                        labelSeparator: redStar,
-                        fieldLabel: '客户状态',
-                        store: Ext.getCmp('customerlist').customerStatementStore,
-                        queryMode: 'local',
-                        editable: false,
-                        forceSelection: true,
-                        displayField: 'value',
-                        valueField: 'code'
-                    }, {
-                        allowBlank: false,
-                        blankText: '客户名称不能为空！',
-                        labelSeparator: redStar,
-                        xtype: 'numberfield',
-                        margin: '0 0 0 25',
-                        name: 'number',
-                        itemId: 'number',
-                        minValue: 5,
-                        minText: '公司人数不能小于5人！',
-                        maxValue: 1000000,
-                        maxText: '公司人数不能超过1000000人！',
-                        fieldLabel: '公司人数'
-                    } ]
+                } ]
+            }, {
+                layout: 'hbox',
+                items: [ {
+                    xtype: 'combobox',
+                    allowBlank: false,
+                    blankText: '客户状态不能为空！',
+                    name: 'customerStatement',
+                    itemId: 'customerStatement',
+                    labelSeparator: redStar,
+                    fieldLabel: '客户状态',
+                    store: Ext.getCmp('customerlist').customerStatementStore,
+                    queryMode: 'local',
+                    editable: false,
+                    forceSelection: true,
+                    displayField: 'value',
+                    valueField: 'code'
+                }, {
+                    allowBlank: false,
+                    blankText: '客户名称不能为空！',
+                    labelSeparator: redStar,
+                    xtype: 'numberfield',
+                    margin: '0 0 0 25',
+                    name: 'number',
+                    itemId: 'number',
+                    minValue: 5,
+                    minText: '公司人数不能小于5人！',
+                    maxValue: 1000000,
+                    maxText: '公司人数不能超过1000000人！',
+                    fieldLabel: '公司人数'
+                } ]
             }, {
                 layout: 'hbox',
                 items: [ {
@@ -216,17 +217,17 @@
                     labelWidth: 100,
                     height: 50
                 }, {
-                  fieldLabel: '联通业务使用情况',
-                  xtype: 'textarea',
-                  name: 'business1',
-                  itemId: 'business1',
-                  enforceMaxLength: true,
-                  maxLength: 1024,
-                  maxLengthText: "联通业务使用情况长度不能超过1024个字符！",
-                  width: 530,
-                  labelWidth: 100,
-                  height: 50,
-                  emptyText: "固网、移网业务及月出账信息！"
+                    fieldLabel: '联通业务使用情况',
+                    xtype: 'textarea',
+                    name: 'business1',
+                    itemId: 'business1',
+                    enforceMaxLength: true,
+                    maxLength: 1024,
+                    maxLengthText: "联通业务使用情况长度不能超过1024个字符！",
+                    width: 530,
+                    labelWidth: 100,
+                    height: 50,
+                    emptyText: "固网、移网业务及月出账信息！"
               }, {
             	  fieldLabel: '竞争对手业务使用情况',
                   xtype: 'textarea',

@@ -73,8 +73,6 @@ Ext.define('CRM.view.systemManagement.userManagement.UserUpdate', {
                     queryMode: 'local',
                     displayField: 'groupName',
                     valueField: 'groupID'
-//                        ,
-//                    tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.groupName)]}</li>', '</tpl></ul>')
                 }, {
                     xtype: 'textfield',
                     name: 'jobID',
@@ -128,8 +126,6 @@ Ext.define('CRM.view.systemManagement.userManagement.UserUpdate', {
                     valueField: 'departmentID',
                     labelSeparator: redStar,
                     fieldLabel: '部门'
-//                        ,
-//                    tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.departmentName)]}</li>', '</tpl></ul>')
                 }, {
                     xtype: 'textfield',
                     margin: '0 0 0 25',
@@ -153,8 +149,6 @@ Ext.define('CRM.view.systemManagement.userManagement.UserUpdate', {
                     queryMode: 'local',
                     displayField: 'value',
                     valueField: 'code'
-//                        ,
-//                    tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.value)]}</li>', '</tpl></ul>')
                 }, {
                     xtype: 'textfield',
                     name: 'mobile',
@@ -209,8 +203,19 @@ Ext.define('CRM.view.systemManagement.userManagement.UserUpdate', {
                     queryMode: 'local',
                     displayField: 'value',
                     valueField: 'code'
-//                        ,
-//                    tpl: Ext.create('Ext.XTemplate', '<ul><tpl for=".">', '<li role="option" class="x-boundlist-item">{[Ext.htmlEncode(values.value)]}</li>', '</tpl></ul>')
+                }, {
+                    allowBlank: false,
+                    blankText: '事前联系间隔不能为空！',
+                    labelSeparator: redStar,
+                    xtype: 'numberfield',
+                    margin: '0 0 0 25',
+                    name: 'contactInterval',
+                    itemId: 'contactInterval',
+                    minValue: 1,
+                    minText: '事前联系间隔不能小于1天！',
+                    maxValue: 90,
+                    maxText: '事前联系间隔不能超过90天！',
+                    fieldLabel: '事前联系间隔'
                 } ]
             }, {
                 xtype: 'textarea',

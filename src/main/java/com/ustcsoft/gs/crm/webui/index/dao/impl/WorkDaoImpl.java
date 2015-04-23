@@ -430,16 +430,18 @@ public class WorkDaoImpl implements WorkDao {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Map<String, Object> getCustomerUpdatedStatus(int userID, String date) {
+    public Map<String, Object> getCustomerUpdatedStatus(int userID, int page, int limit) {
         LOG.debug("method getCustomerUpdatedStatus start!");
 
         Map<String, Object> map = new HashMap<String, Object>();
-        String[] params = { "userID" };
-        Object[] paramValues = { userID };
         List<CustomerUpdatedStatusBean> list = new ArrayList<CustomerUpdatedStatusBean>();
-        list = hibernateTemplate.findByNamedParam(IndexConstant.GET_CUSTOMER_UPDATED_STATUS,
-                params, paramValues);
+        list = hibernateTemplate.executeFind(new PagingHibernateCallback(
+                IndexConstant.GET_CUSTOMER_UPDATED_STATUS,
+                page, CustomerConstant.USER_ID, userID, limit));
+        List<?> result = hibernateTemplate.findByNamedParam(IndexConstant.GET_CUSTOMER_UPDATED_STATUS_COUNT,
+                CustomerConstant.USER_ID, userID);
         map.put(CRMConstant.ITEMS, list);
+        map.put(CRMConstant.TOTAL, result.get(0));
 
         LOG.debug("method getCustomerUpdatedStatus end!");
         return map;

@@ -60,69 +60,27 @@
                 <value>
                     com/ustcsoft/gs/crm/webui/customer/dto/CustomerDto.hbm.xml
                 </value>
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/customer/dto/CompetitorinfoDto.hbm.xml -->
-<!--                 </value> -->
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/customer/dto/FileTemplateDto.hbm.xml -->
-<!--                 </value> -->
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/customer/dto/ContactSelectDto.hbm.xml -->
-<!--                 </value> -->
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/customer/dto/ContractDto.hbm.xml -->
-<!--                 </value> -->
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/customer/dto/ProposalOrContractDto.hbm.xml -->
-<!--                 </value> -->
                 <value>
                     com/ustcsoft/gs/crm/webui/customer/dto/LeaderAdviceDto.hbm.xml
                 </value>
                 <value>
+                    com/ustcsoft/gs/crm/webui/customer/dto/BusinessDto.hbm.xml
+                </value>
+                <value>
                     com/ustcsoft/gs/crm/webui/customer/dto/ContactTrackInfoDto.hbm.xml
                 </value>
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/customer/dto/SourceInfoDto.hbm.xml -->
-<!--                 </value> -->
                 <value>
                     com/ustcsoft/gs/crm/webui/contact/dto/ContactInfoDto.hbm.xml
                 </value>
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/activity/dto/ActivityInfoDto.hbm.xml -->
-<!--                 </value> -->
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/customer/dto/OrderDto.hbm.xml -->
-<!--                 </value> -->
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/customer/dto/OrderTrackDto.hbm.xml -->
-<!--                 </value> -->
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/customer/dto/SelectProductInfo.hbm.xml -->
-<!--                 </value> -->
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/customer/dto/CooperatorDto.hbm.xml -->
-<!--                 </value> -->
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/customer/dto/CooperationProjectDto.hbm.xml -->
-<!--                 </value> -->
                 <value>
                     com/ustcsoft/gs/crm/webui/code/dto/CodeDto.hbm.xml
                 </value>
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/customer/dto/CprAnalysisDto.hbm.xml -->
-<!--                 </value> -->
                 <value>
                     com/ustcsoft/gs/crm/webui/contact/dto/FamilyDto.hbm.xml
                 </value>
                 <value>
                     com/ustcsoft/gs/crm/webui/contact/dto/SocialDto.hbm.xml
                 </value>
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/customer/dto/CoopResumeDto.hbm.xml -->
-<!--                 </value> -->
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/customer/dto/CopAnalysisDto.hbm.xml -->
-<!--                 </value> -->
                 <value>
                     com/ustcsoft/gs/crm/webui/system/dto/ActionGroupDto.hbm.xml
                 </value>
@@ -144,32 +102,9 @@
                 <value>
                     com/ustcsoft/gs/crm/webui/system//dto/UserInfoDto.hbm.xml
                 </value>
-<!--                 product management -->
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/product/dto/ProductDto.hbm.xml -->
-<!--                 </value> -->
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/product/dto/ProductPriceRangeDto.hbm.xml -->
-<!--                 </value> -->
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/count/dto/SalesCountDto.hbm.xml -->
-<!--                 </value> -->
-<!--                 sales event mapping -->
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/sales/dto/SalesEventDto.hbm.xml -->
-<!--                 </value> -->
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/sales/dto/SalesTrackDto.hbm.xml -->
-<!--                 </value> -->
                 <value>
                     com/ustcsoft/gs/crm/webui/system/dto/OrganizationalStructureDto.hbm.xml
                 </value>
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/sales/dto/SalesEventFlow.hbm.xml -->
-<!--                 </value> -->
-<!--                 <value> -->
-<!--                     com/ustcsoft/gs/crm/webui/sales/dto/SalesEventFlowCode.hbm.xml -->
-<!--                 </value> -->
             </list>
         </property>
     </bean>
@@ -245,10 +180,26 @@
         class="com.ustcsoft.gs.crm.webui.customer.action.LeaderAdviceAction">
         <property name="service" ref="leaderAdviceService"></property>
     </bean>
+    <!-- 业务类型-->
+    <bean id="businessDao"
+        class="com.ustcsoft.gs.crm.webui.customer.dao.impl.BusinessDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
+    <bean id="businessService"
+        class="com.ustcsoft.gs.crm.webui.customer.service.impl.BusinessServiceImpl">
+        <property name="dao" ref="businessDao"></property>
+    </bean>
+    <bean id="businessList"
+        class="com.ustcsoft.gs.crm.webui.customer.action.BusinessAction">
+        <property name="service" ref="businessService"></property>
+    </bean>
     <bean id="customerExport"
         class="com.ustcsoft.gs.crm.webui.customer.action.CustomerExportAction"
         scope="prototype">
         <property name="customerService" ref="customerService"></property>
+        <property name="contactInfoService" ref="contactInfoService"></property>
+        <property name="contactTrackService" ref="contactTrackService"></property>
+        <property name="contactHistoryService" ref="contactHistoryService"></property>
     </bean>
 
     <!-- 文件模板 -->

@@ -21,14 +21,15 @@ Ext.define('CRM.view.index.MessageList', {
         var width = messageList.getWidth();
         var height = messageList.getHeight();
         var offsetWidth = document.body.offsetWidth;
-        this.x = xy[0] + width - 16;
+        this.x = xy[0] + width - 20;
         this.y = xy[1] + height;
         this.width = offsetWidth - this.x - 5;
-        this.messageStore = Ext.create('CRM.store.index.MessageStore');
+        this.messageStore = Ext.create('CRM.store.customerManagement.customerProfiles.Business');
         this.messageStore.on('beforeload', function(store, options) {
             var new_params = {
                 userID: USER_ID,
-                searchFlag: 3
+                searchFlag: 3,
+                limit: 10
             };
             Ext.apply(store.proxy.extraParams, new_params);
         });
@@ -37,25 +38,30 @@ Ext.define('CRM.view.index.MessageList', {
             xtype: 'grid',
             id: 'messageGrid',
             layout: 'fit',
-            hideHeaders: true,
+//            hideHeaders: true,
             border: true,
             store: this.messageStore,
             columns: [ Ext.create('Ext.grid.RowNumberer', {
                 text: '序号',
-                flex: 1,
+                width: 40,
                 align: "right",
                 renderer: function(value, metadata, record, rowIndex) {
-                    var page = me.store.currentPage, pageSize = me.store.pageSize;
+                    var page = me.messageStore.currentPage, pageSize = me.messageStore.pageSize;
                     return (page - 1) * pageSize + rowIndex + 1;
                 }
             }), {
-                text: '消息',
-                dataIndex: 'theme',
-                renderer: this.rendererValue,
-                flex: 7
+                text: '内容',
+                dataIndex: 'customerName',
+                width: 400,
+                tips: true,
+                renderer: function(value, metadata, record, rowIndex) {
+                    value = value + '办理了【' + record.get('contractNumber') + '】个【'
+                        + record.get('businessTypeName') + '】业务，合同金额：' + record.get('contractMoney');
+                    return value;
+                }
             } ],
             bbar: Ext.create('CRM.view.PagingToolbar', {
-                store: this.store,
+                store: this.messageStore,
             })
         } ];
         this.callParent(arguments);

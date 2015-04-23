@@ -1,6 +1,6 @@
 Ext.define('CRM.controller.index.IndexController', {
     extend: 'Ext.app.Controller',
-    views: [ 'index.WorkIndex', 'index.MyWorkingList', 'index.ImportantTask', 'index.InformTask', 'index.WorkUpdate', 'index.MessageList', 'index.TaskForm', 'index.ContactTrackInfo'],
+    views: [ 'index.WorkIndex', 'index.MyWorkingList', 'index.ImportantTask', 'index.InformTask', 'index.WorkUpdate', 'index.MessageList', 'index.TaskForm', 'index.ContactTrackInfo', 'index.CusUpdatedStatusListWin'],
     stores: [ 'index.WorkStore', 'index.TaskStore', 'index.ContactTrackStore', 'index.CustomerUpdatedStatus' ],
     models: [],
     init: function() {
@@ -76,10 +76,10 @@ Ext.define('CRM.controller.index.IndexController', {
             },
             'workupdate datetimefield[id=workStratTime]': {
                 change: this.checkTime
-            },
-            // 监听消息弹出窗口单击事件
-            'messagelist gridpanel': {
-                itemclick: this.showMessageDetail
+//            },
+//            // 监听消息弹出窗口单击事件
+//            'messagelist gridpanel': {
+//                itemclick: this.showMessageDetail
             }
         });
     },
@@ -349,14 +349,14 @@ Ext.define('CRM.controller.index.IndexController', {
             me.changeTask('importantTask');
         }, 300);
     },
-    showMessageDetail: function(grid, record) {
-        var messageDetailWin = Ext.getCmp('taskform');
-        if (typeof (messageDetailWin) == 'undefined') {
-            messageDetailWin = Ext.widget('taskform');
-            var form = messageDetailWin.down('#taskForm');
-            form.loadRecord(record);
-        }
-    },
+//    showMessageDetail: function(grid, record) {
+//        var messageDetailWin = Ext.getCmp('taskform');
+//        if (typeof (messageDetailWin) == 'undefined') {
+//            messageDetailWin = Ext.widget('taskform');
+//            var form = messageDetailWin.down('#taskForm');
+//            form.loadRecord(record);
+//        }
+//    },
 
     taskFormClose: function(button) {
         var win = button.up('window');
@@ -371,20 +371,20 @@ Ext.define('CRM.controller.index.IndexController', {
                 if (CRM.checkResponse(response)) {
                     return;
                 }
-                var messageGrid = Ext.getCmp('messageGrid');
-                if (typeof (messageGrid) != 'undefined') {
-                    var messageStore = messageGrid.getStore();
-                    var currentPage = messageStore.currentPage;
-                    var pageSize = messageStore.pageSize;
-                    var total = messageStore.totalCount - 1;
-                    if (total <= (currentPage - 1) * pageSize) {
-                        currentPage = currentPage - 1;
-                    }
-                    if (total == 0) {
-                        currentPage = 1;
-                    }
-                    messageStore.loadPage(currentPage);
-                }
+//                var messageGrid = Ext.getCmp('messageGrid');
+//                if (typeof (messageGrid) != 'undefined') {
+//                    var messageStore = messageGrid.getStore();
+//                    var currentPage = messageStore.currentPage;
+//                    var pageSize = messageStore.pageSize;
+//                    var total = messageStore.totalCount - 1;
+//                    if (total <= (currentPage - 1) * pageSize) {
+//                        currentPage = currentPage - 1;
+//                    }
+//                    if (total == 0) {
+//                        currentPage = 1;
+//                    }
+//                    messageStore.loadPage(currentPage);
+//                }
 //                utils.changeMessageText();
             },
             failure: function(response) {
@@ -418,7 +418,9 @@ Ext.define('CRM.controller.index.IndexController', {
                 store.each(function(item) {
                     var workID = item.get('workID');
                     var theme = item.get('theme');
-                    html = html + "<div style='padding-left:20px;'><h4>" + "<span style='color:blue;'>" + storelength
+//                    html = html + "<div style='padding-left:20px;'><h4>" + "<span style='color:blue;'>" + storelength
+//                            + "、" + Ext.htmlEncode(theme) + "</span></h4></div>";
+                    html = html + "<div style='padding-left:20px;'><h4>" + "<span style='color:blue;cursor:pointer;'" + "onclick=utils.showOneTask(this,'" + componentID + "'," + workID + ")>" + storelength
                             + "、" + Ext.htmlEncode(theme) + "</span></h4></div>";
                     storelength += 1;
                 });
@@ -505,19 +507,22 @@ Ext.define('CRM.controller.index.IndexController', {
 
         // default component
         var infoDiv = 'showinformTask';
-        if (store.getCount() > 5){
-            infoDiv = me.addMarquee('showinformTask');
-        }
-        var index = 1;
-        store.each(function(item){
-            var customerName = item.get('customerName');
-            var days = item.get('days');
+//        if (store.getCount() > 5){
+//            infoDiv = me.addMarquee('showinformTask');
+//        }
+        for (var i = 0; i < store.getCount(); i++) {
+            if (i > 4) {
+                break;
+            }
+            var record = store.getAt(i);
+            var customerName = record.get('customerName');
+            var days = record.get('days');
             tpl.append(infoDiv, {
-                'index': index++,
+                'index': (i+1),
                 'days': me.formatDays(days),
                 'customerName': Ext.htmlEncode(customerName) 
             });
-        });
+        }
     },
 //    appendMessage: function(store, componentID) {
 //        var me = this;

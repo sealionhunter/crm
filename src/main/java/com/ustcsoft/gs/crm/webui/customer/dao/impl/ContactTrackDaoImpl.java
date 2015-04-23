@@ -33,6 +33,16 @@ public class ContactTrackDaoImpl implements ContactTrackDao {
 
     private HibernateTemplate hibernateTemplate;
 
+    @SuppressWarnings("unchecked")
+    public List<ContactTrackListBean> getAllContactTrack(final int customerID) {
+        LOG.debug("method getAllContactTrack start!");
+        List<ContactTrackListBean> list = hibernateTemplate.find(
+                CustomerConstant.GET_ALLCONTACTTRACK_HQL_BY_CUSTOMERID,
+                customerID);
+        LOG.debug("method getAllContactTrack end!");
+        return list;
+    }
+
     /**
      * @param hibernateTemplate
      *            the hibernateTemplate to set

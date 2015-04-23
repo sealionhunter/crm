@@ -1,14 +1,17 @@
 package com.ustcsoft.gs.crm.webui.customer.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import com.ustcsoft.gs.crm.webui.customer.bean.ContactHistorySearchBean;
+import com.ustcsoft.gs.crm.webui.customer.bean.ContactTrackListBean;
 
 /**
  * @author yinweili
  * 
  */
 public interface ContactHistoryDao {
+    public List<ContactTrackListBean> getAllContactHistory(int customerID);
 
     /**
      * list and search

@@ -68,24 +68,25 @@ Ext.define('CRM.view.main.Main', {
                         src : 'html/img/top_logo.png'
                     }
                 }, '->', {
-//                    id: 'message',
-//                    xtype: 'button',
-//                    text: '<font size="2.5">' + '【0条未读消息】' + '</font>',
-//                    listeners: {
-//                        click: function() {
-//                            var messagelist = Ext.getCmp('messagelist');
+                    id: 'message',
+                    xtype: 'button',
+                    text: '<font size="2.5">喜报</font>',
+                    listeners: {
+                        click: function() {
+                            var messagelist = Ext.getCmp('messagelist');
+//                            messagelist.down('grid').getStore().load();
 //                            utils.changeMessageText();
-//                            if (typeof (messagelist) == 'undefined') {
-//                                Ext.widget('messagelist');
-//                            } else {
-//                                messagelist.close();
-//                            }
-//                        }
-//                    }
-//                }, {
-//                    xtype: 'tbseparator',
-//                    id: 'message_tbs'
-//                }, {
+                            if (typeof (messagelist) == 'undefined') {
+                                Ext.widget('messagelist');
+                            } else {
+                                messagelist.close();
+                            }
+                        }
+                    }
+                }, {
+                    xtype: 'tbseparator',
+                    id: 'message_tbs'
+                }, {
                     xtype : 'splitbutton',
                     text : '<font color="blue" size="2.5">' + REAL_NAME + '</font>',
                     menu : [ {

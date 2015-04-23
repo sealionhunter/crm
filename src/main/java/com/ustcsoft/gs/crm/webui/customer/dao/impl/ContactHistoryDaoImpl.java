@@ -33,6 +33,17 @@ public class ContactHistoryDaoImpl implements ContactHistoryDao {
     /** define hibernateTemplate */
     private HibernateTemplate hibernateTemplate;
 
+    @SuppressWarnings("unchecked")
+    public List<ContactTrackListBean> getAllContactHistory(int customerID) {
+        LOG.debug("method getAllContactHistory start!");
+        List<ContactTrackListBean> list = hibernateTemplate.find(
+                CustomerConstant.CONTACTHISTORY_GETALL_HQL_BY_CUSTOMERID,
+                customerID);
+        LOG.debug("method getAllContactHistory end!");
+
+        return list;
+    }
+
     /**
      * simple search or super search or get all
      * 

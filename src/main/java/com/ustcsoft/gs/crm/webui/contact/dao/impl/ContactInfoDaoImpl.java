@@ -28,6 +28,15 @@ public class ContactInfoDaoImpl extends CRMUtils implements ContactInfoDao {
 
     private HibernateTemplate hibernateTemplate;
 
+    @SuppressWarnings("unchecked")
+    public List<ContactBean> getAllContact(int customerID) {
+        LOG.debug("method getAllContact start!");
+        List<ContactBean> list = hibernateTemplate.find(ContactConstant.GETALLCONTRACT_HQL_BY_CUSTOMERID, customerID);
+        LOG.debug("method getAllContact end!");
+        
+        return list;
+    }
+
     /**
      * method to get all contacts records and searched records from DB
      * 

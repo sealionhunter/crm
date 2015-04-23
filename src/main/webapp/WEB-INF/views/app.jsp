@@ -25,6 +25,7 @@
 	var GROUP_ID = '<s:property value="#session.groupID" />';
 	var DEPARTMENT_ID = '<s:property value="#session.departmentID" />';
 	var PROJECT_TEAM_ID = '<s:property value="#session.projectTeamID" />';
+	var CONTACT_INTERVAL = '<s:property value="#session.contactInterval" />';
 </script>
 <script type="text/javascript" src="extjs/locale/ext-lang-zh_CN.js"></script>
 <script type="text/javascript" src="app.js"></script>
